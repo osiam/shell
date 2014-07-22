@@ -1,4 +1,4 @@
-package org.osiam.shell.command.select;
+package org.osiam.shell.command;
 
 import org.osiam.client.OsiamConnector;
 import org.osiam.client.oauth.AccessToken;

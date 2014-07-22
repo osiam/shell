@@ -5,7 +5,6 @@ import java.io.IOException;
 import org.osiam.client.OsiamConnector;
 import org.osiam.client.oauth.AccessToken;
 import org.osiam.client.oauth.Scope;
-import org.osiam.shell.command.select.MiscCommand;
 import org.osiam.shell.command.select.SelectUserCommand;
 
 import de.raysha.lib.jsimpleshell.Shell;
