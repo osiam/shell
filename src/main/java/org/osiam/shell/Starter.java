@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.osiam.shell.command.ConnectionCommand;
 import org.osiam.shell.command.io.AccessTokenConverter;
+import org.osiam.shell.command.io.GroupConverter;
 import org.osiam.shell.command.io.UserConverter;
 
 import de.raysha.lib.jsimpleshell.Shell;
@@ -16,6 +17,7 @@ public class Starter {
 								.addHandler(new ConnectionCommand())
 								.addAuxHandler(new AccessTokenConverter())
 								.addAuxHandler(new UserConverter())
+								.addAuxHandler(new GroupConverter())
 							.build();
 		
 		shell.commandLoop();

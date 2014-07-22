@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.osiam.client.OsiamConnector;
 import org.osiam.client.oauth.AccessToken;
 import org.osiam.client.oauth.Scope;
+import org.osiam.shell.command.create.CreateGroupCommand;
 import org.osiam.shell.command.select.SelectUserCommand;
 
 import de.raysha.lib.jsimpleshell.Shell;
@@ -72,6 +73,7 @@ public class LoginCommand implements ShellDependent, InputDependent {
 									.addHandler(new LogoutCommand(at, connector))
 									.addHandler(new MiscCommand(at, connector))
 									.addHandler(new SelectUserCommand(at, connector))
+									.addHandler(new CreateGroupCommand(at, connector))
 								.build();
 		
 		subshell.commandLoop();
