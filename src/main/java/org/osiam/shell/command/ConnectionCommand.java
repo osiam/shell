@@ -133,6 +133,7 @@ public class ConnectionCommand implements ShellDependent, InputDependent {
 		final Shell subshell = ShellBuilder.subshell(getHostName(connector), shell)
 									.enableCommandCompleter()
 									.enableFileNameCompleter()
+									.addHandler(new LoginCommand(connector))
 								.build();
 		
 		subshell.commandLoop();
