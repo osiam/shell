@@ -5,6 +5,11 @@ import org.osiam.client.oauth.AccessToken;
 
 import de.raysha.lib.jsimpleshell.annotation.Command;
 
+/**
+ * This command contains some miscellaneous commands.
+ * 
+ * @author rainu
+ */
 public class MiscCommand {
 	private AccessToken accesstoken;
 	private final OsiamConnector connector;
@@ -14,7 +19,7 @@ public class MiscCommand {
 		this.connector = connector;
 	}
 	
-	@Command
+	@Command(description="Show information about your current access token.")
 	public AccessToken showAccessToken(){
 		return accesstoken;
 	}
