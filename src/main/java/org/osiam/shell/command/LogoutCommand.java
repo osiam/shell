@@ -3,6 +3,8 @@ package org.osiam.shell.command;
 import org.osiam.client.OsiamConnector;
 import org.osiam.client.oauth.AccessToken;
 
+import de.raysha.lib.jsimpleshell.Shell;
+import de.raysha.lib.jsimpleshell.ShellManageable;
 import de.raysha.lib.jsimpleshell.annotation.Command;
 import de.raysha.lib.jsimpleshell.exception.ExitException;
 
@@ -11,7 +13,7 @@ import de.raysha.lib.jsimpleshell.exception.ExitException;
  * 
  * @author rainu
  */
-public class LogoutCommand {
+public class LogoutCommand implements ShellManageable {
 	private AccessToken accessToken;
 	private final OsiamConnector connector;
 	
@@ -20,10 +22,19 @@ public class LogoutCommand {
 		this.connector = connector;
 	}
 	
+	@Override
+	public void cliEnterLoop(Shell shell) {
+		//DO NOTHING
+	}
+	
+	@Override
+	public void cliLeaveLoop(Shell shell) {
+		//user enter exit or logout
+		connector.revokeAccessToken(accessToken);
+	}
+	
 	@Command(description="Logout the current user.")
 	public void logout() throws ExitException {
-		connector.revokeAccessToken(accessToken);
-		
 		//this will cause to exit the current subshell
 		throw new ExitException();
 	}
