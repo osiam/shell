@@ -4,6 +4,7 @@ import org.osiam.client.OsiamConnector;
 import org.osiam.client.oauth.AccessToken;
 
 import de.raysha.lib.jsimpleshell.annotation.Command;
+import de.raysha.lib.jsimpleshell.exception.ExitException;
 
 /**
  * After the user is logged in, the user can also log out.
@@ -20,7 +21,10 @@ public class LogoutCommand {
 	}
 	
 	@Command(description="Logout the current user.")
-	public void logout() {
+	public void logout() throws ExitException {
 		connector.revokeAccessToken(accessToken);
+		
+		//this will cause to exit the current subshell
+		throw new ExitException();
 	}
 }
