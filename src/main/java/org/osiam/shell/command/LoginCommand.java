@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.osiam.client.OsiamConnector;
 import org.osiam.client.oauth.AccessToken;
 import org.osiam.client.oauth.Scope;
+import org.osiam.shell.command.select.MiscCommand;
 import org.osiam.shell.command.select.SelectUserCommand;
 
 import de.raysha.lib.jsimpleshell.Shell;
@@ -64,9 +65,13 @@ public class LoginCommand implements ShellDependent, InputDependent {
 			String password) throws IOException{
 		
 		final AccessToken at = connector.retrieveAccessToken(userName, password, Scope.ALL);
+		if(at == null){
+			throw new NullPointerException("The retrieved access token is null!");
+		}
 		
 		final Shell subshell = ShellBuilder.subshell(userName, shell)
 									.addHandler(new LogoutCommand(at, connector))
+									.addHandler(new MiscCommand(at, connector))
 									.addHandler(new SelectUserCommand(at, connector))
 								.build();
 		
