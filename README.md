@@ -1,4 +1,4 @@
 osiam-shell
 ===========
 
-A Shell for Osiam
+A Shell for [Osiam](https://github.com/osiam)
