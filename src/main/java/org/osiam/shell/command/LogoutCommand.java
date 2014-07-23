@@ -13,13 +13,10 @@ import de.raysha.lib.jsimpleshell.exception.ExitException;
  * 
  * @author rainu
  */
-public class LogoutCommand implements ShellManageable {
-	private AccessToken accessToken;
-	private final OsiamConnector connector;
-	
+public class LogoutCommand extends OsiamAccessCommand implements ShellManageable {
+
 	public LogoutCommand(AccessToken at, OsiamConnector connector) {
-		this.accessToken = at;
-		this.connector = connector;
+		super(at, connector);
 	}
 	
 	@Override

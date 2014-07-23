@@ -4,13 +4,11 @@ import java.io.IOException;
 
 import org.osiam.client.OsiamConnector;
 import org.osiam.client.oauth.AccessToken;
-import org.osiam.client.query.Query;
-import org.osiam.client.query.QueryBuilder;
 import org.osiam.resources.scim.Group;
-import org.osiam.resources.scim.SCIMSearchResult;
 import org.osiam.resources.scim.UpdateGroup;
 import org.osiam.resources.scim.User;
 import org.osiam.shell.command.AbstractBuilderCommand;
+import org.osiam.shell.command.OsiamAccessCommand;
 
 import de.raysha.lib.jsimpleshell.Shell;
 import de.raysha.lib.jsimpleshell.ShellBuilder;
@@ -25,16 +23,12 @@ import de.raysha.lib.jsimpleshell.io.OutputDependent;
  * 
  * @author rainu
  */
-public class UpdateGroupCommand implements ShellDependent, OutputDependent {
-	private AccessToken accessToken;
-	private final OsiamConnector connector;
-
+public class UpdateGroupCommand extends OsiamAccessCommand implements ShellDependent, OutputDependent {
 	private Shell shell;
 	private OutputBuilder output;
 	
 	public UpdateGroupCommand(AccessToken at, OsiamConnector connector) {
-		this.accessToken = at;
-		this.connector = connector;
+		super(at, connector);
 	}
 	
 	@Override
@@ -74,17 +68,6 @@ public class UpdateGroupCommand implements ShellDependent, OutputDependent {
 	}
 	
 
-	protected Group getGroup(String groupName) {
-		final Query query = new QueryBuilder().filter("displayName eq \"" + groupName + "\"").build();
-		final SCIMSearchResult<Group> result = connector.searchGroups(query, accessToken);
-
-		if (result.getTotalResults() > 0) {
-			return result.getResources().get(0);
-		}
-
-		return null;
-	}
-	
 	public class UpdateGroupBuilder extends AbstractBuilderCommand<UpdateGroup> {
 		private final Group group;
 		private UpdateGroup.Builder builder = new UpdateGroup.Builder();
@@ -148,17 +131,6 @@ public class UpdateGroupCommand implements ShellDependent, OutputDependent {
 				String externalId){
 			
 			builder.updateExternalId(externalId);
-		}
-		
-		private User getUser(String userName) {
-			final Query query = new QueryBuilder().filter("userName eq \"" + userName + "\"").build();
-			final SCIMSearchResult<User> result = connector.searchUsers(query, accessToken);
-
-			if (result.getTotalResults() > 0) {
-				return result.getResources().get(0);
-			}
-
-			return null;
 		}
 		
 		@Override

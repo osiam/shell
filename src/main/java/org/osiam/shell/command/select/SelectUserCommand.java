@@ -3,6 +3,7 @@ package org.osiam.shell.command.select;
 import org.osiam.client.OsiamConnector;
 import org.osiam.client.oauth.AccessToken;
 import org.osiam.resources.scim.User;
+import org.osiam.shell.command.OsiamAccessCommand;
 
 import de.raysha.lib.jsimpleshell.annotation.Command;
 import de.raysha.lib.jsimpleshell.annotation.Param;
@@ -12,13 +13,10 @@ import de.raysha.lib.jsimpleshell.annotation.Param;
  * 
  * @author rainu
  */
-public class SelectUserCommand {
-	private AccessToken accessToken;
-	private final OsiamConnector connector;
+public class SelectUserCommand extends OsiamAccessCommand {
 
 	public SelectUserCommand(AccessToken at, OsiamConnector connector) {
-		this.accessToken = at;
-		this.connector = connector;
+		super(at, connector);
 	}
 	
 	@Command(description="Show the user with the given user id.")

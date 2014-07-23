@@ -6,6 +6,7 @@ import org.osiam.client.OsiamConnector;
 import org.osiam.client.oauth.AccessToken;
 import org.osiam.resources.scim.Group;
 import org.osiam.shell.command.AbstractBuilderCommand;
+import org.osiam.shell.command.OsiamAccessCommand;
 
 import de.raysha.lib.jsimpleshell.Shell;
 import de.raysha.lib.jsimpleshell.ShellBuilder;
@@ -20,16 +21,12 @@ import de.raysha.lib.jsimpleshell.io.OutputDependent;
  * 
  * @author rainu
  */
-public class CreateGroupCommand implements ShellDependent, OutputDependent {
-	private AccessToken accessToken;
-	private final OsiamConnector connector;
-
+public class CreateGroupCommand extends OsiamAccessCommand implements ShellDependent, OutputDependent {
 	private Shell shell;
 	private OutputBuilder output;
 	
 	public CreateGroupCommand(AccessToken at, OsiamConnector connector) {
-		this.accessToken = at;
-		this.connector = connector;
+		super(at, connector);
 	}
 	
 	@Override

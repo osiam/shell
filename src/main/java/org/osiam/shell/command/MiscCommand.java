@@ -10,17 +10,14 @@ import de.raysha.lib.jsimpleshell.annotation.Command;
  * 
  * @author rainu
  */
-public class MiscCommand {
-	private AccessToken accesstoken;
-	private final OsiamConnector connector;
-
+public class MiscCommand extends OsiamAccessCommand {
+	
 	public MiscCommand(AccessToken at, OsiamConnector connector) {
-		this.accesstoken = at;
-		this.connector = connector;
+		super(at, connector);
 	}
 	
 	@Command(description="Show information about your current access token.")
 	public AccessToken showAccessToken(){
-		return accesstoken;
+		return accessToken;
 	}
 }
