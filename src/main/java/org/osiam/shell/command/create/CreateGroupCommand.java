@@ -17,7 +17,7 @@ import de.raysha.lib.jsimpleshell.io.OutputBuilder;
 import de.raysha.lib.jsimpleshell.io.OutputDependent;
 
 /**
- * This class contains commands that can creates groups.
+ * This class contains commands which can create groups.
  * 
  * @author rainu
  */

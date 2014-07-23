@@ -19,7 +19,7 @@ import de.raysha.lib.jsimpleshell.io.OutputBuilder;
 import de.raysha.lib.jsimpleshell.io.OutputDependent;
 
 /**
- * This class contains commands that can update groups.
+ * This class contains commands which can update groups.
  * 
  * @author rainu
  */
