@@ -1,5 +1,6 @@
 package org.osiam.shell;
 
+import java.io.File;
 import java.io.IOException;
 
 import org.osiam.shell.command.ConnectionCommand;
@@ -14,6 +15,7 @@ public class Starter {
 
 	public static void main(String[] args) throws IOException {
 		final Shell shell = ShellBuilder.shell("osiam-shell")
+								.setHistoryFile(new File(System.getProperty("user.home"), ".osiamshell_history"))
 								.addHandler(new ConnectionCommand())
 								.addAuxHandler(new AccessTokenConverter())
 								.addAuxHandler(new UserConverter())
