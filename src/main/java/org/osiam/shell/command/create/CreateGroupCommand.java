@@ -15,6 +15,11 @@ import de.raysha.lib.jsimpleshell.annotation.Param;
 import de.raysha.lib.jsimpleshell.io.OutputBuilder;
 import de.raysha.lib.jsimpleshell.io.OutputDependent;
 
+/**
+ * This class contains commands that can creates groups.
+ * 
+ * @author rainu
+ */
 public class CreateGroupCommand implements ShellDependent, OutputDependent {
 	private AccessToken accessToken;
 	private final OsiamConnector connector;

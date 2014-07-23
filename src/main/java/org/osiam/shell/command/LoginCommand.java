@@ -7,6 +7,7 @@ import org.osiam.client.oauth.AccessToken;
 import org.osiam.client.oauth.Scope;
 import org.osiam.shell.command.create.CreateGroupCommand;
 import org.osiam.shell.command.select.SelectUserCommand;
+import org.osiam.shell.command.update.UpdateGroupCommand;
 
 import de.raysha.lib.jsimpleshell.Shell;
 import de.raysha.lib.jsimpleshell.ShellBuilder;
@@ -74,6 +75,7 @@ public class LoginCommand implements ShellDependent, InputDependent {
 									.addAuxHandler(new MiscCommand(at, connector))
 									.addAuxHandler(new SelectUserCommand(at, connector))
 									.addHandler(new CreateGroupCommand(at, connector))
+									.addHandler(new UpdateGroupCommand(at, connector))
 								.build();
 		
 		subshell.commandLoop();
