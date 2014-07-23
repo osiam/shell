@@ -130,7 +130,7 @@ public class UpdateGroupCommand implements ShellDependent, OutputDependent {
 		}
 		
 		@Command(description = "Remove all members from the given group.")
-		public void removeAll(){
+		public void removeAllMembers(){
 			builder.deleteMembers();
 		}
 		
