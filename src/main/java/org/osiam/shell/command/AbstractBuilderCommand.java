@@ -9,16 +9,16 @@ import de.raysha.lib.jsimpleshell.exception.ExitException;
  * @author rainu
  */
 public abstract class AbstractBuilderCommand<ToBuild> {
-	private boolean isCanceled = false;
+	private boolean isCanceled = true;
 	
 	@Command(description = "Cancel the current process.")
 	public void cancel() throws ExitException{
-		this.isCanceled = true;
 		throw new ExitException("Process was canceled!");
 	}
 	
-	@Command(description = "Confirms the current process.")
-	public void confirm() throws ExitException{
+	@Command(description = "Commit the changes from the current process.")
+	public void commit() throws ExitException{
+		this.isCanceled = false;
 		throw new ExitException();
 	}
 	
