@@ -59,7 +59,7 @@ public class CreateGroupCommand implements ShellDependent, OutputDependent {
 		return connector.createGroup(toCreate, accessToken);
 	}
 	
-	public class GroupBuilder extends AbstractBuilderCommand {
+	public class GroupBuilder extends AbstractBuilderCommand<Group> {
 		private final Group.Builder groupBuilder;
 		
 		public GroupBuilder(String displayName) {
@@ -74,9 +74,7 @@ public class CreateGroupCommand implements ShellDependent, OutputDependent {
 			groupBuilder.setExternalId(externalId);
 		}
 		
-		public Group build() {
-			if(isCanceled()) return null;
-			
+		protected Group _build() {
 			return groupBuilder.build();
 		}
 		

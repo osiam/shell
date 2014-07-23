@@ -8,7 +8,7 @@ import de.raysha.lib.jsimpleshell.exception.ExitException;
  * 
  * @author rainu
  */
-public abstract class AbstractBuilderCommand {
+public abstract class AbstractBuilderCommand<ToBuild> {
 	private boolean isCanceled = false;
 	
 	@Command(description = "Cancel the current process.")
@@ -26,4 +26,16 @@ public abstract class AbstractBuilderCommand {
 		return isCanceled;
 	}
 
+	/**
+	 * Build the instance. If the process was canceled by the user, null will returned.
+	 * 
+	 * @return The instance of null if the user canceled the process.
+	 */
+	public ToBuild build(){
+		if(isCanceled()) return null;
+		
+		return _build();
+	}
+
+	protected abstract ToBuild _build();
 }
