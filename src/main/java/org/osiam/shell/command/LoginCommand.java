@@ -74,8 +74,8 @@ public class LoginCommand implements ShellDependent, InputDependent {
 		final Shell subshell = ShellBuilder.subshell(userName, shell)
 									.addHandler(new LogoutCommand(at, connector))
 									.addAuxHandler(new MiscCommand(at, connector))
-									.addAuxHandler(new SelectUserCommand(at, connector))
-									.addAuxHandler(new SelectGroupCommand(at, connector))
+									.addHandler(new SelectUserCommand(at, connector))
+									.addHandler(new SelectGroupCommand(at, connector))
 									.addHandler(new CreateGroupCommand(at, connector))
 									.addHandler(new UpdateGroupCommand(at, connector))
 								.build();
