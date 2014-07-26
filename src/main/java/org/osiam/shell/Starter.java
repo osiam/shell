@@ -16,6 +16,8 @@ import org.osiam.shell.command.io.ImConverter;
 import org.osiam.shell.command.io.ImTypeConverter;
 import org.osiam.shell.command.io.PhoneNumberConverter;
 import org.osiam.shell.command.io.PhoneNumberTypeConverter;
+import org.osiam.shell.command.io.PhotoConverter;
+import org.osiam.shell.command.io.PhotoTypeConverter;
 import org.osiam.shell.command.io.UserConverter;
 
 import de.raysha.lib.jsimpleshell.Shell;
@@ -40,6 +42,8 @@ public class Starter {
 								.addAuxHandler(new ImConverter())
 								.addAuxHandler(new PhoneNumberTypeConverter())
 								.addAuxHandler(new PhoneNumberConverter())
+								.addAuxHandler(new PhotoTypeConverter())
+								.addAuxHandler(new PhotoConverter())
 							.build();
 		
 		shell.commandLoop();

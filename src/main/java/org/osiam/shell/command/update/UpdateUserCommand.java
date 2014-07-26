@@ -9,6 +9,7 @@ import org.osiam.resources.scim.Email;
 import org.osiam.resources.scim.Entitlement;
 import org.osiam.resources.scim.Im;
 import org.osiam.resources.scim.PhoneNumber;
+import org.osiam.resources.scim.Photo;
 import org.osiam.resources.scim.UpdateUser;
 import org.osiam.resources.scim.User;
 import org.osiam.shell.command.AbstractBuilderCommand;
@@ -18,6 +19,7 @@ import org.osiam.shell.command.update.user.EmailBuilder;
 import org.osiam.shell.command.update.user.EntitlementBuilder;
 import org.osiam.shell.command.update.user.ImBuilder;
 import org.osiam.shell.command.update.user.PhoneNumberBuilder;
+import org.osiam.shell.command.update.user.PhotoBuilder;
 
 import de.raysha.lib.jsimpleshell.Shell;
 import de.raysha.lib.jsimpleshell.ShellBuilder;
@@ -371,6 +373,26 @@ public class UpdateUserCommand extends OsiamAccessCommand implements ShellDepend
 			final PhoneNumber phoneNumber = phoneNumberBuilder.build();
 			if(phoneNumber != null){
 				builder.addPhoneNumber(phoneNumber);
+			}
+		}
+		
+		@Command(description = "Add a photo for this user.")
+		public void addPhoto() throws IOException {
+			final PhotoBuilder photoBuilder = new PhotoBuilder();
+			
+			final Shell subShell = ShellBuilder.subshell("create-photo", shell)
+					.addHandler(photoBuilder)
+				.build();
+
+			output.out()
+				.normal("In this subshell you can create a photo. Leave this sub shell via \"commit\" to persist the changes.")
+			.println();
+			
+			subShell.commandLoop();
+			
+			final Photo photo = photoBuilder.build();
+			if(photo != null){
+				builder.addPhoto(photo);
 			}
 		}
 		
