@@ -13,6 +13,7 @@ import org.osiam.resources.scim.Photo;
 import org.osiam.resources.scim.Role;
 import org.osiam.resources.scim.UpdateUser;
 import org.osiam.resources.scim.User;
+import org.osiam.resources.scim.X509Certificate;
 import org.osiam.shell.command.AbstractBuilderCommand;
 import org.osiam.shell.command.OsiamAccessCommand;
 import org.osiam.shell.command.update.user.AddressBuilder;
@@ -22,6 +23,7 @@ import org.osiam.shell.command.update.user.ImBuilder;
 import org.osiam.shell.command.update.user.PhoneNumberBuilder;
 import org.osiam.shell.command.update.user.PhotoBuilder;
 import org.osiam.shell.command.update.user.RoleBuilder;
+import org.osiam.shell.command.update.user.X509CertificateBuilder;
 
 import de.raysha.lib.jsimpleshell.Shell;
 import de.raysha.lib.jsimpleshell.ShellBuilder;
@@ -415,6 +417,26 @@ public class UpdateUserCommand extends OsiamAccessCommand implements ShellDepend
 			final Role role = roleBuilder.build();
 			if(role != null){
 				builder.addRole(role);
+			}
+		}
+		
+		@Command(name = "add-certificate", description = "Add a (X509)certificate for this user.")
+		public void addX509Certificate() throws IOException {
+			final X509CertificateBuilder x509CertificateBuilder = new X509CertificateBuilder();
+			
+			final Shell subShell = ShellBuilder.subshell("create-certificate", shell)
+					.addHandler(x509CertificateBuilder)
+				.build();
+
+			output.out()
+				.normal("In this subshell you can create a certificate. Leave this sub shell via \"commit\" to persist the changes.")
+			.println();
+			
+			subShell.commandLoop();
+			
+			final X509Certificate x509Certificate = x509CertificateBuilder.build();
+			if(x509Certificate != null){
+				builder.addX509Certificate(x509Certificate);
 			}
 		}
 		

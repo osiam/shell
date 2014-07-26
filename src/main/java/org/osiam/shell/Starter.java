@@ -21,6 +21,8 @@ import org.osiam.shell.command.io.PhotoTypeConverter;
 import org.osiam.shell.command.io.RoleConverter;
 import org.osiam.shell.command.io.RoleTypeConverter;
 import org.osiam.shell.command.io.UserConverter;
+import org.osiam.shell.command.io.X509CertificateConverter;
+import org.osiam.shell.command.io.X509CertificateTypeConverter;
 
 import de.raysha.lib.jsimpleshell.Shell;
 import de.raysha.lib.jsimpleshell.ShellBuilder;
@@ -48,6 +50,8 @@ public class Starter {
 								.addAuxHandler(new PhotoConverter())
 								.addAuxHandler(new RoleTypeConverter())
 								.addAuxHandler(new RoleConverter())
+								.addAuxHandler(new X509CertificateTypeConverter())
+								.addAuxHandler(new X509CertificateConverter())
 							.build();
 		
 		shell.commandLoop();
