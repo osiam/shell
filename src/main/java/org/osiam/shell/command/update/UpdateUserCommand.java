@@ -10,6 +10,7 @@ import org.osiam.resources.scim.Entitlement;
 import org.osiam.resources.scim.Im;
 import org.osiam.resources.scim.PhoneNumber;
 import org.osiam.resources.scim.Photo;
+import org.osiam.resources.scim.Role;
 import org.osiam.resources.scim.UpdateUser;
 import org.osiam.resources.scim.User;
 import org.osiam.shell.command.AbstractBuilderCommand;
@@ -20,6 +21,7 @@ import org.osiam.shell.command.update.user.EntitlementBuilder;
 import org.osiam.shell.command.update.user.ImBuilder;
 import org.osiam.shell.command.update.user.PhoneNumberBuilder;
 import org.osiam.shell.command.update.user.PhotoBuilder;
+import org.osiam.shell.command.update.user.RoleBuilder;
 
 import de.raysha.lib.jsimpleshell.Shell;
 import de.raysha.lib.jsimpleshell.ShellBuilder;
@@ -393,6 +395,26 @@ public class UpdateUserCommand extends OsiamAccessCommand implements ShellDepend
 			final Photo photo = photoBuilder.build();
 			if(photo != null){
 				builder.addPhoto(photo);
+			}
+		}
+		
+		@Command(description = "Add a role for this user.")
+		public void addRole() throws IOException {
+			final RoleBuilder roleBuilder = new RoleBuilder();
+			
+			final Shell subShell = ShellBuilder.subshell("create-role", shell)
+					.addHandler(roleBuilder)
+				.build();
+
+			output.out()
+				.normal("In this subshell you can create a role. Leave this sub shell via \"commit\" to persist the changes.")
+			.println();
+			
+			subShell.commandLoop();
+			
+			final Role role = roleBuilder.build();
+			if(role != null){
+				builder.addRole(role);
 			}
 		}
 		

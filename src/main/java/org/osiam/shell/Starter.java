@@ -18,6 +18,8 @@ import org.osiam.shell.command.io.PhoneNumberConverter;
 import org.osiam.shell.command.io.PhoneNumberTypeConverter;
 import org.osiam.shell.command.io.PhotoConverter;
 import org.osiam.shell.command.io.PhotoTypeConverter;
+import org.osiam.shell.command.io.RoleConverter;
+import org.osiam.shell.command.io.RoleTypeConverter;
 import org.osiam.shell.command.io.UserConverter;
 
 import de.raysha.lib.jsimpleshell.Shell;
@@ -44,6 +46,8 @@ public class Starter {
 								.addAuxHandler(new PhoneNumberConverter())
 								.addAuxHandler(new PhotoTypeConverter())
 								.addAuxHandler(new PhotoConverter())
+								.addAuxHandler(new RoleTypeConverter())
+								.addAuxHandler(new RoleConverter())
 							.build();
 		
 		shell.commandLoop();
