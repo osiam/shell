@@ -36,9 +36,9 @@ public class ImBuilder extends AbstractBuilderCommand<Im> {
 		builder.setOperation(operation);
 	}
 
-	@Command(description = "Is this address primary?")
+	@Command(description = "Is this im primary?")
 	public void setPrimary(
-			@Param(name = "primary", description = "True if this address is primary. Otherwise false.")
+			@Param(name = "primary", description = "True if this im is primary. Otherwise false.")
 			Boolean primary) {
 		
 		builder.setPrimary(primary);

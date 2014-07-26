@@ -14,6 +14,8 @@ import org.osiam.shell.command.io.EntitlementTypeConverter;
 import org.osiam.shell.command.io.GroupConverter;
 import org.osiam.shell.command.io.ImConverter;
 import org.osiam.shell.command.io.ImTypeConverter;
+import org.osiam.shell.command.io.PhoneNumberConverter;
+import org.osiam.shell.command.io.PhoneNumberTypeConverter;
 import org.osiam.shell.command.io.UserConverter;
 
 import de.raysha.lib.jsimpleshell.Shell;
@@ -36,6 +38,8 @@ public class Starter {
 								.addAuxHandler(new EntitlementConverter())
 								.addAuxHandler(new ImTypeConverter())
 								.addAuxHandler(new ImConverter())
+								.addAuxHandler(new PhoneNumberTypeConverter())
+								.addAuxHandler(new PhoneNumberConverter())
 							.build();
 		
 		shell.commandLoop();

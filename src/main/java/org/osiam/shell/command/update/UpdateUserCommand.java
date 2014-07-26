@@ -8,6 +8,7 @@ import org.osiam.resources.scim.Address;
 import org.osiam.resources.scim.Email;
 import org.osiam.resources.scim.Entitlement;
 import org.osiam.resources.scim.Im;
+import org.osiam.resources.scim.PhoneNumber;
 import org.osiam.resources.scim.UpdateUser;
 import org.osiam.resources.scim.User;
 import org.osiam.shell.command.AbstractBuilderCommand;
@@ -16,6 +17,7 @@ import org.osiam.shell.command.update.user.AddressBuilder;
 import org.osiam.shell.command.update.user.EmailBuilder;
 import org.osiam.shell.command.update.user.EntitlementBuilder;
 import org.osiam.shell.command.update.user.ImBuilder;
+import org.osiam.shell.command.update.user.PhoneNumberBuilder;
 
 import de.raysha.lib.jsimpleshell.Shell;
 import de.raysha.lib.jsimpleshell.ShellBuilder;
@@ -349,6 +351,26 @@ public class UpdateUserCommand extends OsiamAccessCommand implements ShellDepend
 			final Im im = imBuilder.build();
 			if(im != null){
 				builder.addIm(im);
+			}
+		}
+		
+		@Command(description = "Add a phone number for this user.")
+		public void addPhoneNumber() throws IOException {
+			final PhoneNumberBuilder phoneNumberBuilder = new PhoneNumberBuilder();
+			
+			final Shell subShell = ShellBuilder.subshell("create-phone-number", shell)
+					.addHandler(phoneNumberBuilder)
+				.build();
+
+			output.out()
+				.normal("In this subshell you can create a phone-number. Leave this sub shell via \"commit\" to persist the changes.")
+			.println();
+			
+			subShell.commandLoop();
+			
+			final PhoneNumber phoneNumber = phoneNumberBuilder.build();
+			if(phoneNumber != null){
+				builder.addPhoneNumber(phoneNumber);
 			}
 		}
 		

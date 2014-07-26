@@ -36,9 +36,9 @@ public class EmailBuilder extends AbstractBuilderCommand<Email> {
 		builder.setOperation(operation);
 	}
 
-	@Command(description = "Is this address primary?")
+	@Command(description = "Is this email address primary?")
 	public void setPrimary(
-			@Param(name = "primary", description = "True if this address is primary. Otherwise false.")
+			@Param(name = "primary", description = "True if this email address is primary. Otherwise false.")
 			Boolean primary) {
 		
 		builder.setPrimary(primary);
