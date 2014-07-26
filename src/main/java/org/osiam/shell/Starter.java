@@ -7,6 +7,8 @@ import org.osiam.shell.command.ConnectionCommand;
 import org.osiam.shell.command.io.AccessTokenConverter;
 import org.osiam.shell.command.io.AddressConverter;
 import org.osiam.shell.command.io.AddressTypeConverter;
+import org.osiam.shell.command.io.EmailConverter;
+import org.osiam.shell.command.io.EmailTypeConverter;
 import org.osiam.shell.command.io.GroupConverter;
 import org.osiam.shell.command.io.UserConverter;
 
@@ -24,6 +26,8 @@ public class Starter {
 								.addAuxHandler(new GroupConverter())
 								.addAuxHandler(new AddressTypeConverter())
 								.addAuxHandler(new AddressConverter())
+								.addAuxHandler(new EmailTypeConverter())
+								.addAuxHandler(new EmailConverter())
 							.build();
 		
 		shell.commandLoop();

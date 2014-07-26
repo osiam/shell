@@ -5,11 +5,13 @@ import java.io.IOException;
 import org.osiam.client.OsiamConnector;
 import org.osiam.client.oauth.AccessToken;
 import org.osiam.resources.scim.Address;
+import org.osiam.resources.scim.Email;
 import org.osiam.resources.scim.UpdateUser;
 import org.osiam.resources.scim.User;
 import org.osiam.shell.command.AbstractBuilderCommand;
 import org.osiam.shell.command.OsiamAccessCommand;
 import org.osiam.shell.command.update.user.AddressBuilder;
+import org.osiam.shell.command.update.user.EmailBuilder;
 
 import de.raysha.lib.jsimpleshell.Shell;
 import de.raysha.lib.jsimpleshell.ShellBuilder;
@@ -283,6 +285,26 @@ public class UpdateUserCommand extends OsiamAccessCommand implements ShellDepend
 			final Address address = addressBuilder.build();
 			if(address != null){
 				builder.addAddress(address);
+			}
+		}
+		
+		@Command(description = "Add an email for this user.")
+		public void addEmail() throws IOException {
+			final EmailBuilder emailBuilder = new EmailBuilder();
+			
+			final Shell subShell = ShellBuilder.subshell("create-email", shell)
+					.addHandler(emailBuilder)
+				.build();
+
+			output.out()
+				.normal("In this subshell you can create an email. Leave this sub shell via \"commit\" to persist the changes.")
+			.println();
+			
+			subShell.commandLoop();
+			
+			final Email email = emailBuilder.build();
+			if(email != null){
+				builder.addEmail(email);
 			}
 		}
 		
