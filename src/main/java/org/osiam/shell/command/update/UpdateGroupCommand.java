@@ -117,7 +117,7 @@ public class UpdateGroupCommand extends OsiamAccessCommand implements ShellDepen
 			builder.deleteMembers();
 		}
 		
-		@Command(description = "Remove the given user from the given group.")
+		@Command(description = "Rename the group.")
 		public void rename(
 				@Param(name = "name", description = "The new group display name.")
 				String newName){

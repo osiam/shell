@@ -11,6 +11,7 @@ import org.osiam.shell.command.delete.DeleteUserCommand;
 import org.osiam.shell.command.select.SelectGroupCommand;
 import org.osiam.shell.command.select.SelectUserCommand;
 import org.osiam.shell.command.update.UpdateGroupCommand;
+import org.osiam.shell.command.update.UpdateUserCommand;
 
 import de.raysha.lib.jsimpleshell.Shell;
 import de.raysha.lib.jsimpleshell.ShellBuilder;
@@ -80,6 +81,7 @@ public class LoginCommand implements ShellDependent, InputDependent {
 									.addHandler(new SelectGroupCommand(at, connector))
 									.addHandler(new CreateGroupCommand(at, connector))
 									.addHandler(new UpdateGroupCommand(at, connector))
+									.addHandler(new UpdateUserCommand(at, connector))
 									.addHandler(new DeleteGroupCommand(at, connector))
 									.addHandler(new DeleteUserCommand(at, connector))
 								.build();
