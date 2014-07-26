@@ -1,6 +1,8 @@
 package org.osiam.shell.command.update;
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.osiam.client.OsiamConnector;
 import org.osiam.client.oauth.AccessToken;
@@ -338,6 +340,70 @@ public class UpdateUserCommand extends OsiamAccessCommand implements ShellDepend
 			if(x509Certificate != null){
 				builder.addX509Certificate(x509Certificate);
 			}
+		}
+		
+		@Command(description = "Show all addresses (persited and non persisted) for the user.")
+		public Set<Address> showAllAddresses(){
+			Set<Address> all = new HashSet<>(user.getAddresses());
+			all.addAll(_build().getScimConformUpdateUser().getAddresses());
+			
+			return all;
+		}
+		
+		@Command(description = "Show all emails (persited and non persisted) for the user.")
+		public Set<Email> showAllEmails(){
+			Set<Email> all = new HashSet<>(user.getEmails());
+			all.addAll(_build().getScimConformUpdateUser().getEmails());
+			
+			return all;
+		}
+		
+		@Command(description = "Show all entitlements (persited and non persisted) for the user.")
+		public Set<Entitlement> showAllEntitlements(){
+			Set<Entitlement> all = new HashSet<>(user.getEntitlements());
+			all.addAll(_build().getScimConformUpdateUser().getEntitlements());
+			
+			return all;
+		}
+		
+		@Command(description = "Show all ims (persited and non persisted) for the user.")
+		public Set<Im> showAllIms(){
+			Set<Im> all = new HashSet<>(user.getIms());
+			all.addAll(_build().getScimConformUpdateUser().getIms());
+			
+			return all;
+		}
+		
+		@Command(description = "Show all phone numbers (persited and non persisted) for the user.")
+		public Set<PhoneNumber> showAllPhoneNumbers(){
+			Set<PhoneNumber> all = new HashSet<>(user.getPhoneNumbers());
+			all.addAll(_build().getScimConformUpdateUser().getPhoneNumbers());
+			
+			return all;
+		}
+		
+		@Command(description = "Show all photos (persited and non persisted) for the user.")
+		public Set<Photo> showAllPhotos(){
+			Set<Photo> all = new HashSet<>(user.getPhotos());
+			all.addAll(_build().getScimConformUpdateUser().getPhotos());
+			
+			return all;
+		}
+		
+		@Command(description = "Show all roles (persited and non persisted) for the user.")
+		public Set<Role> showAllRoles(){
+			Set<Role> all = new HashSet<>(user.getRoles());
+			all.addAll(_build().getScimConformUpdateUser().getRoles());
+			
+			return all;
+		}
+		
+		@Command(name = "show-all-certificate", description = "Show all certificates (persited and non persisted) for the user.")
+		public Set<X509Certificate> showAllX509Certificates(){
+			Set<X509Certificate> all = new HashSet<>(user.getX509Certificates());
+			all.addAll(_build().getScimConformUpdateUser().getX509Certificates());
+			
+			return all;
 		}
 		
 		@Override
