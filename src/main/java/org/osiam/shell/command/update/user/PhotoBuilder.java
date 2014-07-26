@@ -35,14 +35,6 @@ public class PhotoBuilder extends AbstractBuilderCommand<Photo> {
 		builder.setDisplay(display);
 	}
 
-	@Command(description = "Sets the operation.")
-	public void setOperation(
-			@Param(name = "operation", description = "The operation.")
-			String operation) {
-		
-		builder.setOperation(operation);
-	}
-
 	@Command(description = "Is this photo primary?")
 	public void setPrimary(
 			@Param(name = "primary", description = "True if this photo is primary. Otherwise false.")

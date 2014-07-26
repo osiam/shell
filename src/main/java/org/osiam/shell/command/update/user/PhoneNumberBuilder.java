@@ -28,14 +28,6 @@ public class PhoneNumberBuilder extends AbstractBuilderCommand<PhoneNumber> {
 		builder.setDisplay(display);
 	}
 
-	@Command(description = "Sets the operation.")
-	public void setOperation(
-			@Param(name = "operation", description = "The operation.")
-			String operation) {
-		
-		builder.setOperation(operation);
-	}
-
 	@Command(description = "Is this phone number primary?")
 	public void setPrimary(
 			@Param(name = "primary", description = "True if this phone number is primary. Otherwise false.")

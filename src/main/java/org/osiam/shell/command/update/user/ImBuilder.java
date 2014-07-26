@@ -28,14 +28,6 @@ public class ImBuilder extends AbstractBuilderCommand<Im> {
 		builder.setDisplay(display);
 	}
 
-	@Command(description = "Sets the operation.")
-	public void setOperation(
-			@Param(name = "operation", description = "The operation.")
-			String operation) {
-		
-		builder.setOperation(operation);
-	}
-
 	@Command(description = "Is this im primary?")
 	public void setPrimary(
 			@Param(name = "primary", description = "True if this im is primary. Otherwise false.")

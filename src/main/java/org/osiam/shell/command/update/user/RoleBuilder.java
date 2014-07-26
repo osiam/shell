@@ -28,14 +28,6 @@ public class RoleBuilder extends AbstractBuilderCommand<Role> {
 		builder.setDisplay(display);
 	}
 
-	@Command(description = "Sets the operation.")
-	public void setOperation(
-			@Param(name = "operation", description = "The operation.")
-			String operation) {
-		
-		builder.setOperation(operation);
-	}
-
 	@Command(description = "Is this role primary?")
 	public void setPrimary(
 			@Param(name = "primary", description = "True if this role is primary. Otherwise false.")

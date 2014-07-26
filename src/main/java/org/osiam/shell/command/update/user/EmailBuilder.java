@@ -28,14 +28,6 @@ public class EmailBuilder extends AbstractBuilderCommand<Email> {
 		builder.setDisplay(display);
 	}
 
-	@Command(description = "Sets the operation.")
-	public void setOperation(
-			@Param(name = "operation", description = "The operation.")
-			String operation) {
-		
-		builder.setOperation(operation);
-	}
-
 	@Command(description = "Is this email address primary?")
 	public void setPrimary(
 			@Param(name = "primary", description = "True if this email address is primary. Otherwise false.")

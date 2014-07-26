@@ -28,14 +28,6 @@ public class EntitlementBuilder extends AbstractBuilderCommand<Entitlement> {
 		builder.setDisplay(display);
 	}
 
-	@Command(description = "Sets the operation.")
-	public void setOperation(
-			@Param(name = "operation", description = "The operation.")
-			String operation) {
-		
-		builder.setOperation(operation);
-	}
-
 	@Command(description = "Is this entitlement primary?")
 	public void setPrimary(
 			@Param(name = "primary", description = "True if this entitlement is primary. Otherwise false.")

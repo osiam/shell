@@ -28,14 +28,6 @@ public class X509CertificateBuilder extends AbstractBuilderCommand<X509Certifica
 		builder.setDisplay(display);
 	}
 
-	@Command(description = "Sets the operation.")
-	public void setOperation(
-			@Param(name = "operation", description = "The operation.")
-			String operation) {
-		
-		builder.setOperation(operation);
-	}
-
 	@Command(description = "Is this certificate primary?")
 	public void setPrimary(
 			@Param(name = "primary", description = "True if this certificate is primary. Otherwise false.")

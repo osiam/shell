@@ -44,14 +44,6 @@ public class AddressBuilder extends AbstractBuilderCommand<Address> {
 		builder.setLocality(locality);
 	}
 
-	@Command(description = "Sets the operation.")
-	public void setOperation(
-			@Param(name = "operation", description = "The operation.")
-			String operation) {
-		
-		builder.setOperation(operation);
-	}
-
 	@Command(description = "Sets the postal code.")
 	public void setPostalCode(
 			@Param(name = "postalCode", description = "The postal code.")
