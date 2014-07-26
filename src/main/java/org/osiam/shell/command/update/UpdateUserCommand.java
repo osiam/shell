@@ -6,12 +6,14 @@ import org.osiam.client.OsiamConnector;
 import org.osiam.client.oauth.AccessToken;
 import org.osiam.resources.scim.Address;
 import org.osiam.resources.scim.Email;
+import org.osiam.resources.scim.Entitlement;
 import org.osiam.resources.scim.UpdateUser;
 import org.osiam.resources.scim.User;
 import org.osiam.shell.command.AbstractBuilderCommand;
 import org.osiam.shell.command.OsiamAccessCommand;
 import org.osiam.shell.command.update.user.AddressBuilder;
 import org.osiam.shell.command.update.user.EmailBuilder;
+import org.osiam.shell.command.update.user.EntitlementBuilder;
 
 import de.raysha.lib.jsimpleshell.Shell;
 import de.raysha.lib.jsimpleshell.ShellBuilder;
@@ -305,6 +307,26 @@ public class UpdateUserCommand extends OsiamAccessCommand implements ShellDepend
 			final Email email = emailBuilder.build();
 			if(email != null){
 				builder.addEmail(email);
+			}
+		}
+		
+		@Command(description = "Add an entitlement for this user.")
+		public void addEntitlement() throws IOException {
+			final EntitlementBuilder entitlementBuilder = new EntitlementBuilder();
+			
+			final Shell subShell = ShellBuilder.subshell("create-entitlement", shell)
+					.addHandler(entitlementBuilder)
+				.build();
+
+			output.out()
+				.normal("In this subshell you can create an entitlement. Leave this sub shell via \"commit\" to persist the changes.")
+			.println();
+			
+			subShell.commandLoop();
+			
+			final Entitlement entitlement = entitlementBuilder.build();
+			if(entitlement != null){
+				builder.addEntitlement(entitlement);
 			}
 		}
 		

@@ -19,6 +19,8 @@ public class AddressTypeConverter implements InputConverter {
 			case "HOME": return Type.HOME;
 			case "OTHER": return Type.OTHER;
 			}
+			
+			return new Type(original);
 		}
 		
 		return null;

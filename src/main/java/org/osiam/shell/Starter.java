@@ -9,6 +9,8 @@ import org.osiam.shell.command.io.AddressConverter;
 import org.osiam.shell.command.io.AddressTypeConverter;
 import org.osiam.shell.command.io.EmailConverter;
 import org.osiam.shell.command.io.EmailTypeConverter;
+import org.osiam.shell.command.io.EntitlementConverter;
+import org.osiam.shell.command.io.EntitlementTypeConverter;
 import org.osiam.shell.command.io.GroupConverter;
 import org.osiam.shell.command.io.UserConverter;
 
@@ -28,6 +30,8 @@ public class Starter {
 								.addAuxHandler(new AddressConverter())
 								.addAuxHandler(new EmailTypeConverter())
 								.addAuxHandler(new EmailConverter())
+								.addAuxHandler(new EntitlementTypeConverter())
+								.addAuxHandler(new EntitlementConverter())
 							.build();
 		
 		shell.commandLoop();
