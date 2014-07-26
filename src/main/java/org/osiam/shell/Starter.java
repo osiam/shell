@@ -5,6 +5,8 @@ import java.io.IOException;
 
 import org.osiam.shell.command.ConnectionCommand;
 import org.osiam.shell.command.io.AccessTokenConverter;
+import org.osiam.shell.command.io.AddressConverter;
+import org.osiam.shell.command.io.AddressTypeConverter;
 import org.osiam.shell.command.io.GroupConverter;
 import org.osiam.shell.command.io.UserConverter;
 
@@ -20,6 +22,8 @@ public class Starter {
 								.addAuxHandler(new AccessTokenConverter())
 								.addAuxHandler(new UserConverter())
 								.addAuxHandler(new GroupConverter())
+								.addAuxHandler(new AddressTypeConverter())
+								.addAuxHandler(new AddressConverter())
 							.build();
 		
 		shell.commandLoop();

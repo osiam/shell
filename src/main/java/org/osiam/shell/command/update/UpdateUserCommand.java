@@ -4,10 +4,12 @@ import java.io.IOException;
 
 import org.osiam.client.OsiamConnector;
 import org.osiam.client.oauth.AccessToken;
+import org.osiam.resources.scim.Address;
 import org.osiam.resources.scim.UpdateUser;
 import org.osiam.resources.scim.User;
 import org.osiam.shell.command.AbstractBuilderCommand;
 import org.osiam.shell.command.OsiamAccessCommand;
+import org.osiam.shell.command.update.user.AddressBuilder;
 
 import de.raysha.lib.jsimpleshell.Shell;
 import de.raysha.lib.jsimpleshell.ShellBuilder;
@@ -69,11 +71,14 @@ public class UpdateUserCommand extends OsiamAccessCommand implements ShellDepend
 	}
 	
 
-	public class UpdateUserBuilder extends AbstractBuilderCommand<UpdateUser> implements OutputDependent, InputDependent {
+	public class UpdateUserBuilder extends AbstractBuilderCommand<UpdateUser> 
+		implements OutputDependent, InputDependent, ShellDependent {
+		
 		private final User user;
 		private UpdateUser.Builder builder = new UpdateUser.Builder();
 		private OutputBuilder output;
 		private InputBuilder input;
+		private Shell shell;
 		
 		public UpdateUserBuilder(User user) {
 			this.user = user;
@@ -87,6 +92,11 @@ public class UpdateUserCommand extends OsiamAccessCommand implements ShellDepend
 		@Override
 		public void cliSetInput(InputBuilder input) {
 			this.input = input;
+		}
+		
+		@Override
+		public void cliSetShell(Shell theShell) {
+			this.shell = theShell;
 		}
 		
 		@Command(description = "Shows the current (persited) user that will be updated.")
@@ -251,17 +261,29 @@ public class UpdateUserCommand extends OsiamAccessCommand implements ShellDepend
 			builder.deleteRoles();
 		}
 
-		@Command(description = "Deletes all X509Certificates.")
+		@Command(name = "delete-X509Certificates", description = "Deletes all X509Certificates.")
 		public void deleteX509Certificates() {
 			builder.deleteX509Certificates();
 		}
 		
-		@Command(description = "Set the externalId for the user.")
-		public void setExternalId(
-				@Param(name = "externalId", description = "The new externalId for the user.")
-				String externalId){
-		
-			builder.updateExternalId(externalId);
+		@Command(description = "Add an address for this user.")
+		public void addAddress() throws IOException {
+			final AddressBuilder addressBuilder = new AddressBuilder();
+			
+			final Shell subShell = ShellBuilder.subshell("create-address", shell)
+					.addHandler(addressBuilder)
+				.build();
+
+			output.out()
+				.normal("In this subshell you can create an address. Leave this sub shell via \"commit\" to persist the changes.")
+			.println();
+			
+			subShell.commandLoop();
+			
+			final Address address = addressBuilder.build();
+			if(address != null){
+				builder.addAddress(address);
+			}
 		}
 		
 		@Override
