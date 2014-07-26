@@ -7,6 +7,7 @@ import org.osiam.client.oauth.AccessToken;
 import org.osiam.resources.scim.Address;
 import org.osiam.resources.scim.Email;
 import org.osiam.resources.scim.Entitlement;
+import org.osiam.resources.scim.Im;
 import org.osiam.resources.scim.UpdateUser;
 import org.osiam.resources.scim.User;
 import org.osiam.shell.command.AbstractBuilderCommand;
@@ -14,6 +15,7 @@ import org.osiam.shell.command.OsiamAccessCommand;
 import org.osiam.shell.command.update.user.AddressBuilder;
 import org.osiam.shell.command.update.user.EmailBuilder;
 import org.osiam.shell.command.update.user.EntitlementBuilder;
+import org.osiam.shell.command.update.user.ImBuilder;
 
 import de.raysha.lib.jsimpleshell.Shell;
 import de.raysha.lib.jsimpleshell.ShellBuilder;
@@ -327,6 +329,26 @@ public class UpdateUserCommand extends OsiamAccessCommand implements ShellDepend
 			final Entitlement entitlement = entitlementBuilder.build();
 			if(entitlement != null){
 				builder.addEntitlement(entitlement);
+			}
+		}
+		
+		@Command(description = "Add an im for this user.")
+		public void addIm() throws IOException {
+			final ImBuilder imBuilder = new ImBuilder();
+			
+			final Shell subShell = ShellBuilder.subshell("create-im", shell)
+					.addHandler(imBuilder)
+				.build();
+
+			output.out()
+				.normal("In this subshell you can create an im. Leave this sub shell via \"commit\" to persist the changes.")
+			.println();
+			
+			subShell.commandLoop();
+			
+			final Im im = imBuilder.build();
+			if(im != null){
+				builder.addIm(im);
 			}
 		}
 		
