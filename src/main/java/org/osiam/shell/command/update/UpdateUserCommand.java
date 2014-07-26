@@ -16,14 +16,7 @@ import org.osiam.resources.scim.User;
 import org.osiam.resources.scim.X509Certificate;
 import org.osiam.shell.command.AbstractBuilderCommand;
 import org.osiam.shell.command.OsiamAccessCommand;
-import org.osiam.shell.command.update.user.AddressBuilder;
-import org.osiam.shell.command.update.user.EmailBuilder;
-import org.osiam.shell.command.update.user.EntitlementBuilder;
-import org.osiam.shell.command.update.user.ImBuilder;
-import org.osiam.shell.command.update.user.PhoneNumberBuilder;
-import org.osiam.shell.command.update.user.PhotoBuilder;
-import org.osiam.shell.command.update.user.RoleBuilder;
-import org.osiam.shell.command.update.user.X509CertificateBuilder;
+import org.osiam.shell.command.update.user.BuilderShellFactory;
 
 import de.raysha.lib.jsimpleshell.Shell;
 import de.raysha.lib.jsimpleshell.ShellBuilder;
@@ -93,6 +86,7 @@ public class UpdateUserCommand extends OsiamAccessCommand implements ShellDepend
 		private OutputBuilder output;
 		private InputBuilder input;
 		private Shell shell;
+		private BuilderShellFactory builderShellFactory = new BuilderShellFactory();
 		
 		public UpdateUserBuilder(User user) {
 			this.user = user;
@@ -101,6 +95,7 @@ public class UpdateUserCommand extends OsiamAccessCommand implements ShellDepend
 		@Override
 		public void cliSetOutput(OutputBuilder output) {
 			this.output = output;
+			this.builderShellFactory.setOutput(output);
 		}
 		
 		@Override
@@ -111,6 +106,7 @@ public class UpdateUserCommand extends OsiamAccessCommand implements ShellDepend
 		@Override
 		public void cliSetShell(Shell theShell) {
 			this.shell = theShell;
+			this.builderShellFactory.setShell(theShell);
 		}
 		
 		@Command(description = "Shows the current (persited) user that will be updated.")
@@ -282,19 +278,7 @@ public class UpdateUserCommand extends OsiamAccessCommand implements ShellDepend
 		
 		@Command(description = "Add an address for this user.")
 		public void addAddress() throws IOException {
-			final AddressBuilder addressBuilder = new AddressBuilder();
-			
-			final Shell subShell = ShellBuilder.subshell("create-address", shell)
-					.addHandler(addressBuilder)
-				.build();
-
-			output.out()
-				.normal("In this subshell you can create an address. Leave this sub shell via \"commit\" to persist the changes.")
-			.println();
-			
-			subShell.commandLoop();
-			
-			final Address address = addressBuilder.build();
+			final Address address = builderShellFactory.enterAddressShell();
 			if(address != null){
 				builder.addAddress(address);
 			}
@@ -302,19 +286,7 @@ public class UpdateUserCommand extends OsiamAccessCommand implements ShellDepend
 		
 		@Command(description = "Add an email for this user.")
 		public void addEmail() throws IOException {
-			final EmailBuilder emailBuilder = new EmailBuilder();
-			
-			final Shell subShell = ShellBuilder.subshell("create-email", shell)
-					.addHandler(emailBuilder)
-				.build();
-
-			output.out()
-				.normal("In this subshell you can create an email. Leave this sub shell via \"commit\" to persist the changes.")
-			.println();
-			
-			subShell.commandLoop();
-			
-			final Email email = emailBuilder.build();
+			final Email email = builderShellFactory.enterEmailShell();
 			if(email != null){
 				builder.addEmail(email);
 			}
@@ -322,19 +294,7 @@ public class UpdateUserCommand extends OsiamAccessCommand implements ShellDepend
 		
 		@Command(description = "Add an entitlement for this user.")
 		public void addEntitlement() throws IOException {
-			final EntitlementBuilder entitlementBuilder = new EntitlementBuilder();
-			
-			final Shell subShell = ShellBuilder.subshell("create-entitlement", shell)
-					.addHandler(entitlementBuilder)
-				.build();
-
-			output.out()
-				.normal("In this subshell you can create an entitlement. Leave this sub shell via \"commit\" to persist the changes.")
-			.println();
-			
-			subShell.commandLoop();
-			
-			final Entitlement entitlement = entitlementBuilder.build();
+			final Entitlement entitlement = builderShellFactory.enterEntitlementShell();
 			if(entitlement != null){
 				builder.addEntitlement(entitlement);
 			}
@@ -342,19 +302,7 @@ public class UpdateUserCommand extends OsiamAccessCommand implements ShellDepend
 		
 		@Command(description = "Add an im for this user.")
 		public void addIm() throws IOException {
-			final ImBuilder imBuilder = new ImBuilder();
-			
-			final Shell subShell = ShellBuilder.subshell("create-im", shell)
-					.addHandler(imBuilder)
-				.build();
-
-			output.out()
-				.normal("In this subshell you can create an im. Leave this sub shell via \"commit\" to persist the changes.")
-			.println();
-			
-			subShell.commandLoop();
-			
-			final Im im = imBuilder.build();
+			final Im im = builderShellFactory.enterImShell();
 			if(im != null){
 				builder.addIm(im);
 			}
@@ -362,19 +310,7 @@ public class UpdateUserCommand extends OsiamAccessCommand implements ShellDepend
 		
 		@Command(description = "Add a phone number for this user.")
 		public void addPhoneNumber() throws IOException {
-			final PhoneNumberBuilder phoneNumberBuilder = new PhoneNumberBuilder();
-			
-			final Shell subShell = ShellBuilder.subshell("create-phone-number", shell)
-					.addHandler(phoneNumberBuilder)
-				.build();
-
-			output.out()
-				.normal("In this subshell you can create a phone-number. Leave this sub shell via \"commit\" to persist the changes.")
-			.println();
-			
-			subShell.commandLoop();
-			
-			final PhoneNumber phoneNumber = phoneNumberBuilder.build();
+			final PhoneNumber phoneNumber = builderShellFactory.enterPhoneNumberShell();
 			if(phoneNumber != null){
 				builder.addPhoneNumber(phoneNumber);
 			}
@@ -382,19 +318,7 @@ public class UpdateUserCommand extends OsiamAccessCommand implements ShellDepend
 		
 		@Command(description = "Add a photo for this user.")
 		public void addPhoto() throws IOException {
-			final PhotoBuilder photoBuilder = new PhotoBuilder();
-			
-			final Shell subShell = ShellBuilder.subshell("create-photo", shell)
-					.addHandler(photoBuilder)
-				.build();
-
-			output.out()
-				.normal("In this subshell you can create a photo. Leave this sub shell via \"commit\" to persist the changes.")
-			.println();
-			
-			subShell.commandLoop();
-			
-			final Photo photo = photoBuilder.build();
+			final Photo photo = builderShellFactory.enterPhotoShell();
 			if(photo != null){
 				builder.addPhoto(photo);
 			}
@@ -402,19 +326,7 @@ public class UpdateUserCommand extends OsiamAccessCommand implements ShellDepend
 		
 		@Command(description = "Add a role for this user.")
 		public void addRole() throws IOException {
-			final RoleBuilder roleBuilder = new RoleBuilder();
-			
-			final Shell subShell = ShellBuilder.subshell("create-role", shell)
-					.addHandler(roleBuilder)
-				.build();
-
-			output.out()
-				.normal("In this subshell you can create a role. Leave this sub shell via \"commit\" to persist the changes.")
-			.println();
-			
-			subShell.commandLoop();
-			
-			final Role role = roleBuilder.build();
+			final Role role = builderShellFactory.enterRoleShell();
 			if(role != null){
 				builder.addRole(role);
 			}
@@ -422,19 +334,7 @@ public class UpdateUserCommand extends OsiamAccessCommand implements ShellDepend
 		
 		@Command(name = "add-certificate", description = "Add a (X509)certificate for this user.")
 		public void addX509Certificate() throws IOException {
-			final X509CertificateBuilder x509CertificateBuilder = new X509CertificateBuilder();
-			
-			final Shell subShell = ShellBuilder.subshell("create-certificate", shell)
-					.addHandler(x509CertificateBuilder)
-				.build();
-
-			output.out()
-				.normal("In this subshell you can create a certificate. Leave this sub shell via \"commit\" to persist the changes.")
-			.println();
-			
-			subShell.commandLoop();
-			
-			final X509Certificate x509Certificate = x509CertificateBuilder.build();
+			final X509Certificate x509Certificate = builderShellFactory.enterX509CertificateShell();
 			if(x509Certificate != null){
 				builder.addX509Certificate(x509Certificate);
 			}
