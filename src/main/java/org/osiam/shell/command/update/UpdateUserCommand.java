@@ -2,6 +2,7 @@ package org.osiam.shell.command.update;
 
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import org.osiam.client.OsiamConnector;
@@ -19,6 +20,8 @@ import org.osiam.resources.scim.X509Certificate;
 import org.osiam.shell.command.AbstractBuilderCommand;
 import org.osiam.shell.command.OsiamAccessCommand;
 import org.osiam.shell.command.update.user.BuilderShellFactory;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import de.raysha.lib.jsimpleshell.Shell;
 import de.raysha.lib.jsimpleshell.ShellBuilder;
@@ -89,6 +92,7 @@ public class UpdateUserCommand extends OsiamAccessCommand implements ShellDepend
 		private InputBuilder input;
 		private Shell shell;
 		private BuilderShellFactory builderShellFactory = new BuilderShellFactory();
+		private ObjectMapper objectMapper = new ObjectMapper();	
 		
 		public UpdateUserBuilder(User user) {
 			this.user = user;
@@ -118,7 +122,7 @@ public class UpdateUserCommand extends OsiamAccessCommand implements ShellDepend
 		
 		@Command(description = "Shows the user state. This state is not persisted yet!")
 		public User showState() {
-			return build().getScimConformUpdateUser();
+			return _build().getScimConformUpdateUser();
 		}
 
 		@Command(description = "Deactivate the user.")
@@ -239,42 +243,42 @@ public class UpdateUserCommand extends OsiamAccessCommand implements ShellDepend
 		}
 
 		@Command(description = "Deletes all existing addresses.")
-		public void deleteAddresses() {
+		public void deleteAllAddresses() {
 			builder.deleteAddresses();
 		}
 
 		@Command(description = "Deletes all emails.")
-		public void deleteEmails() {
+		public void deleteAllEmails() {
 			builder.deleteEmails();
 		}
 
 		@Command(description = "Deletes all entitlements.")
-		public void deleteEntitlements() {
+		public void deleteAllEntitlements() {
 			builder.deleteEntitlements();
 		}
 
 		@Command(description = "Deletes all ims.")
-		public void deleteIms() {
+		public void deleteAllIms() {
 			builder.deleteIms();
 		}
 
 		@Command(description = "Deletes all phonenumbers.")
-		public void deletePhoneNumbers() {
+		public void deleteAllPhoneNumbers() {
 			builder.deletePhoneNumbers();
 		}
 
 		@Command(description = "Deletes all photos.")
-		public void deletePhotos() {
+		public void deleteAllPhotos() {
 			builder.deletePhotos();
 		}
 
 		@Command(description = "Deletes all roles.")
-		public void deleteRoles() {
+		public void deleteAllRoles() {
 			builder.deleteRoles();
 		}
 
 		@Command(name = "delete-X509Certificates", description = "Deletes all X509Certificates.")
-		public void deleteX509Certificates() {
+		public void deleteAllX509Certificates() {
 			builder.deleteX509Certificates();
 		}
 		
@@ -404,6 +408,139 @@ public class UpdateUserCommand extends OsiamAccessCommand implements ShellDepend
 			all.addAll(_build().getScimConformUpdateUser().getX509Certificates());
 			
 			return all;
+		}
+		
+		@Command(description = "Delete an address from the user.")
+		public void deleteAddress(
+				@Param(name = "searchKey", description = "Which key should be used to identify the address.")
+				String key,
+				@Param(name = "expr", description = "If the value matches this regular expression, the address will deleted.")
+				String valueExp){
+			
+			Set<Address> addresses = showAllAddresses();
+			for(Address current : addresses){
+				if(match(current, key, valueExp)){
+					builder.deleteAddress(current);
+				}
+			}
+		}
+		
+		@Command(description = "Delete an email from the user.")
+		public void deleteEmail(
+				@Param(name = "searchKey", description = "Which key should be used to identify the email.")
+				String key,
+				@Param(name = "expr", description = "If the value matches this regular expression, the email will deleted.")
+				String valueExp){
+			
+			Set<Email> emails = showAllEmails();
+			for(Email current : emails){
+				if(match(current, key, valueExp)){
+					builder.deleteEmail(current);
+				}
+			}
+		}
+		
+		@Command(description = "Delete an entitlement from the user.")
+		public void deleteEntitlement(
+				@Param(name = "searchKey", description = "Which key should be used to identify the entitlement.")
+				String key,
+				@Param(name = "expr", description = "If the value matches this regular expression, the entitlement will deleted.")
+				String valueExp){
+			
+			Set<Entitlement> entitlements = showAllEntitlements();
+			for(Entitlement current : entitlements){
+				if(match(current, key, valueExp)){
+					builder.deleteEntitlement(current);
+				}
+			}
+		}
+		
+		@Command(description = "Delete an im from the user.")
+		public void deleteIm(
+				@Param(name = "searchKey", description = "Which key should be used to identify the im.")
+				String key,
+				@Param(name = "expr", description = "If the value matches this regular expression, the im will deleted.")
+				String valueExp){
+			
+			Set<Im> im = showAllIms();
+			for(Im current : im){
+				if(match(current, key, valueExp)){
+					builder.deleteIm(current);
+				}
+			}
+		}
+		
+		@Command(description = "Delete a phone number from the user.")
+		public void deletePhoneNumber(
+				@Param(name = "searchKey", description = "Which key should be used to identify the phone number.")
+				String key,
+				@Param(name = "expr", description = "If the value matches this regular expression, the phone number will deleted.")
+				String valueExp){
+			
+			Set<PhoneNumber> phoneNumbers = showAllPhoneNumbers();
+			for(PhoneNumber current : phoneNumbers){
+				if(match(current, key, valueExp)){
+					builder.deletePhoneNumber(current);
+				}
+			}
+		}
+		
+		
+		@Command(description = "Delete a photo from the user.")
+		public void deletePhoto(
+				@Param(name = "searchKey", description = "Which key should be used to identify the photo.")
+				String key,
+				@Param(name = "expr", description = "If the value matches this regular expression, the photo will deleted.")
+				String valueExp){
+			
+			Set<Photo> photos = showAllPhotos();
+			for(Photo current : photos){
+				if(match(current, key, valueExp)){
+					builder.deletePhoto(current);
+				}
+			}
+		}
+		
+		@Command(description = "Delete a role from the user.")
+		public void deleteRole(
+				@Param(name = "searchKey", description = "Which key should be used to identify the role.")
+				String key,
+				@Param(name = "expr", description = "If the value matches this regular expression, the role will deleted.")
+				String valueExp){
+			
+			Set<Role> roles = showAllRoles();
+			for(Role current : roles){
+				if(match(current, key, valueExp)){
+					builder.deleteRole(current);
+				}
+			}
+		}
+		
+		@Command(description = "Delete a certificate from the user.")
+		public void deleteCertificate(
+				@Param(name = "searchKey", description = "Which key should be used to identify the certificate.")
+				String key,
+				@Param(name = "expr", description = "If the value matches this regular expression, the certificate will deleted.")
+				String valueExp){
+			
+			Set<X509Certificate> certificates = showAllX509Certificates();
+			for(X509Certificate current : certificates){
+				if(match(current, key, valueExp)){
+					builder.deleteX509Certificate(current);
+				}
+			}
+		}
+		
+		private boolean match(Object object, String key, String valueExp) {
+			Map<String, Object> props = objectMapper.convertValue(object, Map.class);
+			
+			String sValue = "null";
+			
+			if(props.containsKey(key)){
+				sValue = String.valueOf(props.get(key));
+			}
+			
+			return sValue.matches(valueExp);
 		}
 		
 		@Override
