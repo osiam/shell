@@ -1,8 +1,14 @@
 package org.osiam.shell.command.update.user;
 
+import java.io.File;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.net.URI;
+import java.nio.ByteBuffer;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Date;
 
 import org.osiam.resources.scim.Extension;
@@ -94,6 +100,19 @@ public class ExtensionBuilder extends AbstractBuilderCommand<Extension> {
 			URI value){
 		
 		builder.setField(fieldName, value);
+	}
+	
+	@Command(description = "Set the file value of a extension field.")
+	public void setFileField(
+			@Param(name = "field", description = "The name of the extension field.")
+			String fieldName,
+			@Param(name = "path", description = "The path to the file.")
+			String filePath) throws IOException {
+		
+		Path path = new File(filePath).toPath();
+		byte[] byteContent = Files.readAllBytes(path);
+		
+		builder.setField(fieldName, ByteBuffer.wrap(byteContent));
 	}
 	
 	@Override
