@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.osiam.resources.scim.Address;
 import org.osiam.resources.scim.Email;
 import org.osiam.resources.scim.Entitlement;
+import org.osiam.resources.scim.Extension;
 import org.osiam.resources.scim.Im;
 import org.osiam.resources.scim.PhoneNumber;
 import org.osiam.resources.scim.Photo;
@@ -12,6 +13,7 @@ import org.osiam.resources.scim.Role;
 import org.osiam.resources.scim.X509Certificate;
 
 import de.raysha.lib.jsimpleshell.annotation.Command;
+import de.raysha.lib.jsimpleshell.annotation.Param;
 
 /**
  * This class is only a part of {@link UpdateUserBuilder}! This class contains
@@ -47,6 +49,17 @@ public class UpdateUserAddCommands {
 		final Entitlement entitlement = builderCommand.builderShellFactory.enterEntitlementShell();
 		if(entitlement != null){
 			builderCommand.builder.addEntitlement(entitlement);
+		}
+	}
+	
+	@Command(description = "Update the extension.")
+	public void updateExtension(
+			@Param(name = "urn", description = "The URN of the extension.")
+			String urn) throws IOException{
+		
+		final Extension extension = builderCommand.builderShellFactory.enterExtensionShell(urn);
+		if(extension != null){
+			builderCommand.builder.updateExtension(extension);
 		}
 	}
 	

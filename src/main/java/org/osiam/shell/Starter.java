@@ -7,10 +7,12 @@ import org.osiam.shell.command.ConnectionCommand;
 import org.osiam.shell.command.io.AccessTokenConverter;
 import org.osiam.shell.command.io.AddressConverter;
 import org.osiam.shell.command.io.AddressTypeConverter;
+import org.osiam.shell.command.io.DateConverter;
 import org.osiam.shell.command.io.EmailConverter;
 import org.osiam.shell.command.io.EmailTypeConverter;
 import org.osiam.shell.command.io.EntitlementConverter;
 import org.osiam.shell.command.io.EntitlementTypeConverter;
+import org.osiam.shell.command.io.ExtensionConverter;
 import org.osiam.shell.command.io.GroupConverter;
 import org.osiam.shell.command.io.ImConverter;
 import org.osiam.shell.command.io.ImTypeConverter;
@@ -20,6 +22,7 @@ import org.osiam.shell.command.io.PhotoConverter;
 import org.osiam.shell.command.io.PhotoTypeConverter;
 import org.osiam.shell.command.io.RoleConverter;
 import org.osiam.shell.command.io.RoleTypeConverter;
+import org.osiam.shell.command.io.URIConverter;
 import org.osiam.shell.command.io.UserConverter;
 import org.osiam.shell.command.io.X509CertificateConverter;
 import org.osiam.shell.command.io.X509CertificateTypeConverter;
@@ -42,6 +45,7 @@ public class Starter {
 								.addAuxHandler(new EmailConverter())
 								.addAuxHandler(new EntitlementTypeConverter())
 								.addAuxHandler(new EntitlementConverter())
+								.addAuxHandler(new ExtensionConverter())
 								.addAuxHandler(new ImTypeConverter())
 								.addAuxHandler(new ImConverter())
 								.addAuxHandler(new PhoneNumberTypeConverter())
@@ -52,6 +56,8 @@ public class Starter {
 								.addAuxHandler(new RoleConverter())
 								.addAuxHandler(new X509CertificateTypeConverter())
 								.addAuxHandler(new X509CertificateConverter())
+								.addAuxHandler(new DateConverter())
+								.addAuxHandler(new URIConverter())
 							.build();
 		
 		shell.commandLoop();

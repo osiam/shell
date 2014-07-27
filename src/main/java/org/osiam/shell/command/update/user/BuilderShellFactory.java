@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.osiam.resources.scim.Address;
 import org.osiam.resources.scim.Email;
 import org.osiam.resources.scim.Entitlement;
+import org.osiam.resources.scim.Extension;
 import org.osiam.resources.scim.Im;
 import org.osiam.resources.scim.PhoneNumber;
 import org.osiam.resources.scim.Photo;
@@ -99,6 +100,23 @@ public class BuilderShellFactory {
 		subShell.commandLoop();
 		
 		return entitlementBuilder.build();
+	}
+	
+	public Extension enterExtensionShell(String urn) throws IOException {
+		final ExtensionBuilder extensionBuilder = new ExtensionBuilder(urn);
+		
+		final Shell subShell = ShellBuilder.subshell("update-extension", shell)
+				.disableExitCommand()
+				.addHandler(extensionBuilder)
+			.build();
+
+		output.out()
+			.normal("In this subshell you can create an extension. Leave this sub shell via \"commit\" to persist the changes.")
+		.println();
+		
+		subShell.commandLoop();
+		
+		return extensionBuilder.build();
 	}
 	
 	/**
@@ -215,5 +233,5 @@ public class BuilderShellFactory {
 		
 		return x509CertificateBuilder.build();
 	}
-	
+
 }
