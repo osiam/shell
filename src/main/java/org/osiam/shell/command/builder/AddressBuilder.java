@@ -4,6 +4,8 @@ import org.osiam.resources.scim.Address;
 import org.osiam.resources.scim.Address.Type;
 import org.osiam.shell.command.AbstractBuilderCommand;
 
+import de.raysha.lib.jsimpleshell.Shell;
+import de.raysha.lib.jsimpleshell.ShellDependent;
 import de.raysha.lib.jsimpleshell.annotation.Command;
 import de.raysha.lib.jsimpleshell.annotation.Param;
 
@@ -12,9 +14,29 @@ import de.raysha.lib.jsimpleshell.annotation.Param;
  * 
  * @author rainu
  */
-public class AddressBuilder extends AbstractBuilderCommand<Address> {
-	private Address.Builder builder = new Address.Builder();
+public class AddressBuilder extends AbstractBuilderCommand<Address> implements ShellDependent {
+	private Address.Builder builder;
+	private Address current;
 
+	public AddressBuilder(Address current) {
+		this.current = current;
+		this.builder = new Address.Builder(current);
+	}
+	
+	@Override
+	public void cliSetShell(Shell theShell) {
+		if(current != null){
+			theShell.addMainHandler(new ShowAddress(), "");
+		}
+	}
+	
+	public class ShowAddress {
+		@Command(description = "Shows the current (persited) address that will be replaced.")
+		public Address showAddress(){
+			return current;
+		}
+	}
+	
 	@Command(description = "Shows the address state. This state is not persisted yet!")
 	public Address showState() {
 		return _build();

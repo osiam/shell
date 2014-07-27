@@ -52,17 +52,6 @@ public class UpdateUserAddCommands {
 		}
 	}
 	
-	@Command(description = "Update the extension.")
-	public void updateExtension(
-			@Param(name = "urn", description = "The URN of the extension.")
-			String urn) throws IOException{
-		
-		final Extension extension = builderCommand.builderShellFactory.enterExtensionShell(urn);
-		if(extension != null){
-			builderCommand.builder.updateExtension(extension);
-		}
-	}
-	
 	@Command(description = "Add an im for this user.")
 	public void addIm() throws IOException {
 		final Im im = builderCommand.builderShellFactory.enterImShell();

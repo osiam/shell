@@ -11,6 +11,8 @@ import org.osiam.resources.scim.Photo;
 import org.osiam.resources.scim.Photo.Type;
 import org.osiam.shell.command.AbstractBuilderCommand;
 
+import de.raysha.lib.jsimpleshell.Shell;
+import de.raysha.lib.jsimpleshell.ShellDependent;
 import de.raysha.lib.jsimpleshell.annotation.Command;
 import de.raysha.lib.jsimpleshell.annotation.Param;
 
@@ -19,9 +21,29 @@ import de.raysha.lib.jsimpleshell.annotation.Param;
  * 
  * @author rainu
  */
-public class PhotoBuilder extends AbstractBuilderCommand<Photo> {
-	private Photo.Builder builder = new Photo.Builder();
+public class PhotoBuilder extends AbstractBuilderCommand<Photo> implements ShellDependent {
+	private Photo.Builder builder;
+	private Photo current;
 
+	public PhotoBuilder(Photo current) {
+		this.current = current;
+		this.builder = new Photo.Builder(current);
+	}
+	
+	@Override
+	public void cliSetShell(Shell theShell) {
+		if(current != null){
+			theShell.addMainHandler(new ShowPhoto(), "");
+		}
+	}
+	
+	public class ShowPhoto {
+		@Command(description = "Shows the current (persited) photo that will be replaced.")
+		public Photo showPhoto(){
+			return current;
+		}
+	}
+	
 	@Command(description = "Shows the photo state. This state is not persisted yet!")
 	public Photo showState() {
 		return _build();

@@ -4,6 +4,8 @@ import org.osiam.resources.scim.Entitlement;
 import org.osiam.resources.scim.Entitlement.Type;
 import org.osiam.shell.command.AbstractBuilderCommand;
 
+import de.raysha.lib.jsimpleshell.Shell;
+import de.raysha.lib.jsimpleshell.ShellDependent;
 import de.raysha.lib.jsimpleshell.annotation.Command;
 import de.raysha.lib.jsimpleshell.annotation.Param;
 
@@ -12,9 +14,29 @@ import de.raysha.lib.jsimpleshell.annotation.Param;
  * 
  * @author rainu
  */
-public class EntitlementBuilder extends AbstractBuilderCommand<Entitlement> {
-	private Entitlement.Builder builder = new Entitlement.Builder();
+public class EntitlementBuilder extends AbstractBuilderCommand<Entitlement> implements ShellDependent {
+	private Entitlement.Builder builder;
+	private Entitlement current;
 
+	public EntitlementBuilder(Entitlement current) {
+		this.current = current;
+		this.builder = new Entitlement.Builder(current);
+	}
+	
+	@Override
+	public void cliSetShell(Shell theShell) {
+		if(current != null){
+			theShell.addMainHandler(new ShowEntitlement(), "");
+		}
+	}
+	
+	public class ShowEntitlement {
+		@Command(description = "Shows the current (persited) entitlement that will be replaced.")
+		public Entitlement showEntitlement(){
+			return current;
+		}
+	}
+	
 	@Command(description = "Shows the entitlement state. This state is not persisted yet!")
 	public Entitlement showState() {
 		return _build();

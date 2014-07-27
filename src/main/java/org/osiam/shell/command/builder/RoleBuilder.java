@@ -4,6 +4,8 @@ import org.osiam.resources.scim.Role;
 import org.osiam.resources.scim.Role.Type;
 import org.osiam.shell.command.AbstractBuilderCommand;
 
+import de.raysha.lib.jsimpleshell.Shell;
+import de.raysha.lib.jsimpleshell.ShellDependent;
 import de.raysha.lib.jsimpleshell.annotation.Command;
 import de.raysha.lib.jsimpleshell.annotation.Param;
 
@@ -12,9 +14,29 @@ import de.raysha.lib.jsimpleshell.annotation.Param;
  * 
  * @author rainu
  */
-public class RoleBuilder extends AbstractBuilderCommand<Role> {
-	private Role.Builder builder = new Role.Builder();
+public class RoleBuilder extends AbstractBuilderCommand<Role> implements ShellDependent {
+	private Role.Builder builder;
+	private Role current;
 
+	public RoleBuilder(Role current) {
+		this.current = current;
+		this.builder = new Role.Builder(current);
+	}
+	
+	@Override
+	public void cliSetShell(Shell theShell) {
+		if(current != null){
+			theShell.addMainHandler(new ShowRole(), "");
+		}
+	}
+	
+	public class ShowRole {
+		@Command(description = "Shows the current (persited) role that will be replaced.")
+		public Role showRole(){
+			return current;
+		}
+	}
+	
 	@Command(description = "Shows the role state. This state is not persisted yet!")
 	public Role showState() {
 		return _build();

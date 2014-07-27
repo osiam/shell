@@ -61,6 +61,7 @@ public class UpdateUserBuilder extends AbstractBuilderCommand<UpdateUser>
 		
 		shell.addMainHandler(new UpdateUserDeleteCommands(this), "");
 		shell.addMainHandler(new UpdateUserAddCommands(this), "");
+		shell.addMainHandler(new UpdateUserUpdateCommands(this), "");
 	}
 	
 	@Command(description = "Shows the current (persited) user that will be updated.")

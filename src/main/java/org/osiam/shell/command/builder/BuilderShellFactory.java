@@ -64,9 +64,20 @@ public class BuilderShellFactory {
 	 * @throws IOException
 	 */
 	public Address enterAddressShell() throws IOException {
-		final AddressBuilder addressBuilder = new AddressBuilder();
+		return enterAddressShell(null);
+	}
+	
+	/**
+	 * Enter a new subshell for creating an {@link Address}.
+	 * 
+	 * @param current The current persisted {@link Address}.
+	 * @return The {@link Address}. Or null if the user interrupt the process.
+	 * @throws IOException
+	 */
+	public Address enterAddressShell(Address current) throws IOException {
+		final AddressBuilder addressBuilder = new AddressBuilder(current);
 		
-		final Shell subShell = ShellBuilder.subshell("create-address", shell)
+		final Shell subShell = ShellBuilder.subshell((current == null ? "create" : "replace") + "-address", shell)
 				.disableExitCommand()
 				.addHandler(addressBuilder)
 			.build();
@@ -87,9 +98,20 @@ public class BuilderShellFactory {
 	 * @throws IOException
 	 */
 	public Email enterEmailShell() throws IOException {
-		final EmailBuilder emailBuilder = new EmailBuilder();
+		return enterEmailShell(null);
+	}
+	
+	/**
+	 * Enter a new subshell for creating an {@link Email}.
+	 * 
+	 * @param current The current persisted {@link Email}.
+	 * @return The {@link Email}. Or null if the user interrupt the process.
+	 * @throws IOException
+	 */
+	public Email enterEmailShell(Email current) throws IOException {
+		final EmailBuilder emailBuilder = new EmailBuilder(current);
 		
-		final Shell subShell = ShellBuilder.subshell("create-email", shell)
+		final Shell subShell = ShellBuilder.subshell((current == null ? "create" : "replace") + "-email", shell)
 				.disableExitCommand()
 				.addHandler(emailBuilder)
 			.build();
@@ -110,9 +132,20 @@ public class BuilderShellFactory {
 	 * @throws IOException
 	 */
 	public Entitlement enterEntitlementShell() throws IOException {
-		final EntitlementBuilder entitlementBuilder = new EntitlementBuilder();
+		return enterEntitlementShell(null);
+	}
+	
+	/**
+	 * Enter a new subshell for creating an {@link Entitlement}.
+	 * 
+	 * @param current The current persisted {@link Entitlement}.
+	 * @return The {@link Entitlement}. Or null if the user interrupt the process.
+	 * @throws IOException
+	 */
+	public Entitlement enterEntitlementShell(Entitlement current) throws IOException {
+		final EntitlementBuilder entitlementBuilder = new EntitlementBuilder(current);
 		
-		final Shell subShell = ShellBuilder.subshell("create-entitlement", shell)
+		final Shell subShell = ShellBuilder.subshell((current == null ? "create" : "replace") + "-entitlement", shell)
 				.disableExitCommand()
 				.addHandler(entitlementBuilder)
 			.build();
@@ -150,9 +183,20 @@ public class BuilderShellFactory {
 	 * @throws IOException
 	 */
 	public Im enterImShell() throws IOException {
-		final ImBuilder imBuilder = new ImBuilder();
+		return enterImShell(null);
+	}
+	
+	/**
+	 * Enter a new subshell for creating an {@link Im}.
+	 * 
+	 * @param current The current persisted {@link Im}.
+	 * @return The {@link Im}. Or null if the user interrupt the process.
+	 * @throws IOException
+	 */
+	public Im enterImShell(Im current) throws IOException {
+		final ImBuilder imBuilder = new ImBuilder(current);
 		
-		final Shell subShell = ShellBuilder.subshell("create-im", shell)
+		final Shell subShell = ShellBuilder.subshell((current == null ? "create" : "replace") + "-im", shell)
 				.disableExitCommand()
 				.addHandler(imBuilder)
 			.build();
@@ -173,9 +217,20 @@ public class BuilderShellFactory {
 	 * @throws IOException
 	 */
 	public PhoneNumber enterPhoneNumberShell() throws IOException {
-		final PhoneNumberBuilder phoneNumberBuilder = new PhoneNumberBuilder();
+		return enterPhoneNumberShell(null);
+	}
+	
+	/**
+	 * Enter a new subshell for creating a {@link PhoneNumber}.
+	 * 
+	 * @param current The current persisted {@link PhoneNumber}.
+	 * @return The {@link PhoneNumber}. Or null if the user interrupt the process.
+	 * @throws IOException
+	 */
+	public PhoneNumber enterPhoneNumberShell(PhoneNumber current) throws IOException {
+		final PhoneNumberBuilder phoneNumberBuilder = new PhoneNumberBuilder(current);
 		
-		final Shell subShell = ShellBuilder.subshell("create-phone-number", shell)
+		final Shell subShell = ShellBuilder.subshell((current == null ? "create" : "replace") + "-phone-number", shell)
 				.disableExitCommand()
 				.addHandler(phoneNumberBuilder)
 			.build();
@@ -196,9 +251,20 @@ public class BuilderShellFactory {
 	 * @throws IOException
 	 */
 	public Photo enterPhotoShell() throws IOException {
-		final PhotoBuilder photoBuilder = new PhotoBuilder();
+		return enterPhotoShell(null);
+	}
+	
+	/**
+	 * Enter a new subshell for creating a {@link Photo}.
+	 * 
+	 * @param current The current persisted {@link Photo}.
+	 * @return The {@link Photo}. Or null if the user interrupt the process.
+	 * @throws IOException
+	 */
+	public Photo enterPhotoShell(Photo current) throws IOException {
+		final PhotoBuilder photoBuilder = new PhotoBuilder(current);
 		
-		final Shell subShell = ShellBuilder.subshell("create-photo", shell)
+		final Shell subShell = ShellBuilder.subshell((current == null ? "create" : "replace") + "-photo", shell)
 				.disableExitCommand()
 				.addHandler(photoBuilder)
 			.build();
@@ -219,9 +285,20 @@ public class BuilderShellFactory {
 	 * @throws IOException
 	 */
 	public Role enterRoleShell() throws IOException {
-		final RoleBuilder roleBuilder = new RoleBuilder();
+		return enterRoleShell(null);
+	}
+	
+	/**
+	 * Enter a new subshell for creating a {@link Role}.
+	 * 
+	 * @param current The current persisted {@link Role}.
+	 * @return The {@link Role}. Or null if the user interrupt the process.
+	 * @throws IOException
+	 */
+	public Role enterRoleShell(Role current) throws IOException {
+		final RoleBuilder roleBuilder = new RoleBuilder(current);
 		
-		final Shell subShell = ShellBuilder.subshell("create-role", shell)
+		final Shell subShell = ShellBuilder.subshell((current == null ? "create" : "replace") + "-role", shell)
 				.disableExitCommand()
 				.addHandler(roleBuilder)
 			.build();
@@ -242,9 +319,20 @@ public class BuilderShellFactory {
 	 * @throws IOException
 	 */
 	public X509Certificate enterX509CertificateShell() throws IOException {
-		final X509CertificateBuilder x509CertificateBuilder = new X509CertificateBuilder();
+		return enterX509CertificateShell(null);
+	}
+
+	/**
+	 * Enter a new subshell for creating a {@link X509Certificate}.
+	 * 
+	 * @param current The current persisted {@link X509Certificate}.
+	 * @return The {@link X509Certificate}. Or null if the user interrupt the process.
+	 * @throws IOException
+	 */
+	public X509Certificate enterX509CertificateShell(X509Certificate current) throws IOException {
+		final X509CertificateBuilder x509CertificateBuilder = new X509CertificateBuilder(current);
 		
-		final Shell subShell = ShellBuilder.subshell("create-certificate", shell)
+		final Shell subShell = ShellBuilder.subshell((current == null ? "create" : "replace") + "-certificate", shell)
 				.disableExitCommand()
 				.addHandler(x509CertificateBuilder)
 			.build();
@@ -257,5 +345,4 @@ public class BuilderShellFactory {
 		
 		return x509CertificateBuilder.build();
 	}
-
 }

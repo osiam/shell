@@ -4,6 +4,8 @@ import org.osiam.resources.scim.PhoneNumber;
 import org.osiam.resources.scim.PhoneNumber.Type;
 import org.osiam.shell.command.AbstractBuilderCommand;
 
+import de.raysha.lib.jsimpleshell.Shell;
+import de.raysha.lib.jsimpleshell.ShellDependent;
 import de.raysha.lib.jsimpleshell.annotation.Command;
 import de.raysha.lib.jsimpleshell.annotation.Param;
 
@@ -12,9 +14,29 @@ import de.raysha.lib.jsimpleshell.annotation.Param;
  * 
  * @author rainu
  */
-public class PhoneNumberBuilder extends AbstractBuilderCommand<PhoneNumber> {
-	private PhoneNumber.Builder builder = new PhoneNumber.Builder();
+public class PhoneNumberBuilder extends AbstractBuilderCommand<PhoneNumber> implements ShellDependent {
+	private PhoneNumber.Builder builder;
+	private PhoneNumber current;
 
+	public PhoneNumberBuilder(PhoneNumber current) {
+		this.current = current;
+		this.builder = new PhoneNumber.Builder(current);
+	}
+	
+	@Override
+	public void cliSetShell(Shell theShell) {
+		if(current != null){
+			theShell.addMainHandler(new ShowPhoneNumber(), "");
+		}
+	}
+	
+	public class ShowPhoneNumber {
+		@Command(description = "Shows the current (persited) phone number that will be replaced.")
+		public PhoneNumber showPhoneNumber(){
+			return current;
+		}
+	}
+	
 	@Command(description = "Shows the phone number state. This state is not persisted yet!")
 	public PhoneNumber showState() {
 		return _build();

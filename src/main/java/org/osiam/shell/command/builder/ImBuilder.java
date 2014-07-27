@@ -4,6 +4,8 @@ import org.osiam.resources.scim.Im;
 import org.osiam.resources.scim.Im.Type;
 import org.osiam.shell.command.AbstractBuilderCommand;
 
+import de.raysha.lib.jsimpleshell.Shell;
+import de.raysha.lib.jsimpleshell.ShellDependent;
 import de.raysha.lib.jsimpleshell.annotation.Command;
 import de.raysha.lib.jsimpleshell.annotation.Param;
 
@@ -12,9 +14,29 @@ import de.raysha.lib.jsimpleshell.annotation.Param;
  * 
  * @author rainu
  */
-public class ImBuilder extends AbstractBuilderCommand<Im> {
-	private Im.Builder builder = new Im.Builder();
+public class ImBuilder extends AbstractBuilderCommand<Im> implements ShellDependent {
+	private Im.Builder builder;
+	private Im current;
 
+	public ImBuilder(Im current) {
+		this.current = current;
+		this.builder = new Im.Builder(current);
+	}
+	
+	@Override
+	public void cliSetShell(Shell theShell) {
+		if(current != null){
+			theShell.addMainHandler(new ShowIm(), "");
+		}
+	}
+	
+	public class ShowIm {
+		@Command(description = "Shows the current (persited) im that will be replaced.")
+		public Im showIm(){
+			return current;
+		}
+	}
+	
 	@Command(description = "Shows the im state. This state is not persisted yet!")
 	public Im showState() {
 		return _build();

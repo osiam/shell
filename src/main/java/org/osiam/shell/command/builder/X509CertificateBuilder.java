@@ -4,6 +4,8 @@ import org.osiam.resources.scim.X509Certificate;
 import org.osiam.resources.scim.X509Certificate.Type;
 import org.osiam.shell.command.AbstractBuilderCommand;
 
+import de.raysha.lib.jsimpleshell.Shell;
+import de.raysha.lib.jsimpleshell.ShellDependent;
 import de.raysha.lib.jsimpleshell.annotation.Command;
 import de.raysha.lib.jsimpleshell.annotation.Param;
 
@@ -12,9 +14,29 @@ import de.raysha.lib.jsimpleshell.annotation.Param;
  * 
  * @author rainu
  */
-public class X509CertificateBuilder extends AbstractBuilderCommand<X509Certificate> {
-	private X509Certificate.Builder builder = new X509Certificate.Builder();
+public class X509CertificateBuilder extends AbstractBuilderCommand<X509Certificate> implements ShellDependent {
+	private X509Certificate.Builder builder;
+	private X509Certificate current;
 
+	public X509CertificateBuilder(X509Certificate current) {
+		this.current = current;
+		this.builder = new X509Certificate.Builder(current);
+	}
+	
+	@Override
+	public void cliSetShell(Shell theShell) {
+		if(current != null){
+			theShell.addMainHandler(new ShowCertificate(), "");
+		}
+	}
+	
+	public class ShowCertificate {
+		@Command(description = "Shows the current (persited) certificate that will be replaced.")
+		public X509Certificate showCertificate(){
+			return current;
+		}
+	}
+	
 	@Command(description = "Shows the certificate state. This state is not persisted yet!")
 	public X509Certificate showState() {
 		return _build();

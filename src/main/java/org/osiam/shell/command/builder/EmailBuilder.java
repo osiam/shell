@@ -4,6 +4,8 @@ import org.osiam.resources.scim.Email;
 import org.osiam.resources.scim.Email.Type;
 import org.osiam.shell.command.AbstractBuilderCommand;
 
+import de.raysha.lib.jsimpleshell.Shell;
+import de.raysha.lib.jsimpleshell.ShellDependent;
 import de.raysha.lib.jsimpleshell.annotation.Command;
 import de.raysha.lib.jsimpleshell.annotation.Param;
 
@@ -12,9 +14,29 @@ import de.raysha.lib.jsimpleshell.annotation.Param;
  * 
  * @author rainu
  */
-public class EmailBuilder extends AbstractBuilderCommand<Email> {
-	private Email.Builder builder = new Email.Builder();
+public class EmailBuilder extends AbstractBuilderCommand<Email> implements ShellDependent {
+	private Email.Builder builder;
+	private Email current;
 
+	public EmailBuilder(Email current) {
+		this.current = current;
+		this.builder = new Email.Builder(current);
+	}
+	
+	@Override
+	public void cliSetShell(Shell theShell) {
+		if(current != null){
+			theShell.addMainHandler(new ShowEmail(), "");
+		}
+	}
+	
+	public class ShowEmail {
+		@Command(description = "Shows the current (persited) email that will be replaced.")
+		public Email showEmail(){
+			return current;
+		}
+	}
+	
 	@Command(description = "Shows the email state. This state is not persisted yet!")
 	public Email showState() {
 		return _build();
