@@ -1,4 +1,4 @@
-package org.osiam.shell.command.update.user;
+package org.osiam.shell.command.builder;
 
 import java.io.IOException;
 
@@ -7,6 +7,7 @@ import org.osiam.resources.scim.Email;
 import org.osiam.resources.scim.Entitlement;
 import org.osiam.resources.scim.Extension;
 import org.osiam.resources.scim.Im;
+import org.osiam.resources.scim.Name;
 import org.osiam.resources.scim.PhoneNumber;
 import org.osiam.resources.scim.Photo;
 import org.osiam.resources.scim.Role;
@@ -31,6 +32,29 @@ public class BuilderShellFactory {
 	
 	public void setShell(Shell shell) {
 		this.shell = shell;
+	}
+	
+	/**
+	 * Enter a new subshell for creating an {@link Name}.
+	 * 
+	 * @return The {@link Name}. Or null if the user interrupt the process.
+	 * @throws IOException
+	 */
+	public Name enterNameShell() throws IOException {
+		final NameBuilder nameBuilder = new NameBuilder();
+		
+		final Shell subShell = ShellBuilder.subshell("create-name", shell)
+				.disableExitCommand()
+				.addHandler(nameBuilder)
+			.build();
+
+		output.out()
+			.normal("In this subshell you can create an name. Leave this sub shell via \"commit\" to persist the changes.")
+		.println();
+		
+		subShell.commandLoop();
+		
+		return nameBuilder.build();
 	}
 
 	/**

@@ -1,26 +1,26 @@
-package org.osiam.shell.command.update.user;
+package org.osiam.shell.command.builder;
 
-import org.osiam.resources.scim.Entitlement;
-import org.osiam.resources.scim.Entitlement.Type;
+import org.osiam.resources.scim.X509Certificate;
+import org.osiam.resources.scim.X509Certificate.Type;
 import org.osiam.shell.command.AbstractBuilderCommand;
 
 import de.raysha.lib.jsimpleshell.annotation.Command;
 import de.raysha.lib.jsimpleshell.annotation.Param;
 
 /**
- * This class contains commands which can create {@link Entitlement}s.
+ * This class contains commands which can create {@link X509Certificate}s.
  * 
  * @author rainu
  */
-public class EntitlementBuilder extends AbstractBuilderCommand<Entitlement> {
-	private Entitlement.Builder builder = new Entitlement.Builder();
+public class X509CertificateBuilder extends AbstractBuilderCommand<X509Certificate> {
+	private X509Certificate.Builder builder = new X509Certificate.Builder();
 
-	@Command(description = "Shows the entitlement state. This state is not persisted yet!")
-	public Entitlement showState() {
+	@Command(description = "Shows the certificate state. This state is not persisted yet!")
+	public X509Certificate showState() {
 		return _build();
 	}
 
-	@Command(description = "Set the display name of the entitlement.")
+	@Command(description = "Set the display name of the certificate.")
 	public void setDisplay(
 			@Param(name = "display", description = "The display name.")
 			String display) {
@@ -28,9 +28,9 @@ public class EntitlementBuilder extends AbstractBuilderCommand<Entitlement> {
 		builder.setDisplay(display);
 	}
 
-	@Command(description = "Is this entitlement primary?")
+	@Command(description = "Is this certificate primary?")
 	public void setPrimary(
-			@Param(name = "primary", description = "True if this entitlement is primary. Otherwise false.")
+			@Param(name = "primary", description = "True if this certificate is primary. Otherwise false.")
 			Boolean primary) {
 		
 		builder.setPrimary(primary);
@@ -44,7 +44,7 @@ public class EntitlementBuilder extends AbstractBuilderCommand<Entitlement> {
 		builder.setType(type);
 	}
 
-	@Command(description = "Set the value of the entitlement.")
+	@Command(description = "Set the value of the certificate.")
 	public void setValue(
 			@Param(name = "value", description = "The value.")
 			String value) {
@@ -53,7 +53,7 @@ public class EntitlementBuilder extends AbstractBuilderCommand<Entitlement> {
 	}
 
 	@Override
-	protected Entitlement _build() {
+	protected X509Certificate _build() {
 		return builder.build();
 	}
 }

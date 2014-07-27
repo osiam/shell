@@ -15,6 +15,7 @@ import org.osiam.resources.scim.UpdateUser;
 import org.osiam.resources.scim.User;
 import org.osiam.resources.scim.X509Certificate;
 import org.osiam.shell.command.AbstractBuilderCommand;
+import org.osiam.shell.command.builder.BuilderShellFactory;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 

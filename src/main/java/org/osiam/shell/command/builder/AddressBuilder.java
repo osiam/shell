@@ -1,4 +1,4 @@
-package org.osiam.shell.command.create.user;
+package org.osiam.shell.command.builder;
 
 import org.osiam.resources.scim.Address;
 import org.osiam.resources.scim.Address.Type;

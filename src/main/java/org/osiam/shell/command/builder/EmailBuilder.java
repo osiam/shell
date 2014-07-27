@@ -1,4 +1,4 @@
-package org.osiam.shell.command.update.user;
+package org.osiam.shell.command.builder;
 
 import org.osiam.resources.scim.Email;
 import org.osiam.resources.scim.Email.Type;

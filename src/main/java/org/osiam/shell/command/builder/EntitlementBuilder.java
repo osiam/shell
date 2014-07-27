@@ -1,26 +1,26 @@
-package org.osiam.shell.command.update.user;
+package org.osiam.shell.command.builder;
 
-import org.osiam.resources.scim.Im;
-import org.osiam.resources.scim.Im.Type;
+import org.osiam.resources.scim.Entitlement;
+import org.osiam.resources.scim.Entitlement.Type;
 import org.osiam.shell.command.AbstractBuilderCommand;
 
 import de.raysha.lib.jsimpleshell.annotation.Command;
 import de.raysha.lib.jsimpleshell.annotation.Param;
 
 /**
- * This class contains commands which can create {@link Im}s.
+ * This class contains commands which can create {@link Entitlement}s.
  * 
  * @author rainu
  */
-public class ImBuilder extends AbstractBuilderCommand<Im> {
-	private Im.Builder builder = new Im.Builder();
+public class EntitlementBuilder extends AbstractBuilderCommand<Entitlement> {
+	private Entitlement.Builder builder = new Entitlement.Builder();
 
-	@Command(description = "Shows the im state. This state is not persisted yet!")
-	public Im showState() {
+	@Command(description = "Shows the entitlement state. This state is not persisted yet!")
+	public Entitlement showState() {
 		return _build();
 	}
 
-	@Command(description = "Set the display name of the im.")
+	@Command(description = "Set the display name of the entitlement.")
 	public void setDisplay(
 			@Param(name = "display", description = "The display name.")
 			String display) {
@@ -28,9 +28,9 @@ public class ImBuilder extends AbstractBuilderCommand<Im> {
 		builder.setDisplay(display);
 	}
 
-	@Command(description = "Is this im primary?")
+	@Command(description = "Is this entitlement primary?")
 	public void setPrimary(
-			@Param(name = "primary", description = "True if this im is primary. Otherwise false.")
+			@Param(name = "primary", description = "True if this entitlement is primary. Otherwise false.")
 			Boolean primary) {
 		
 		builder.setPrimary(primary);
@@ -44,7 +44,7 @@ public class ImBuilder extends AbstractBuilderCommand<Im> {
 		builder.setType(type);
 	}
 
-	@Command(description = "Set the value of the im.")
+	@Command(description = "Set the value of the entitlement.")
 	public void setValue(
 			@Param(name = "value", description = "The value.")
 			String value) {
@@ -53,7 +53,7 @@ public class ImBuilder extends AbstractBuilderCommand<Im> {
 	}
 
 	@Override
-	protected Im _build() {
+	protected Entitlement _build() {
 		return builder.build();
 	}
 }

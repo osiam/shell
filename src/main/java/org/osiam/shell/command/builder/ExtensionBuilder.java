@@ -1,4 +1,4 @@
-package org.osiam.shell.command.update.user;
+package org.osiam.shell.command.builder;
 
 import java.io.File;
 import java.io.IOException;

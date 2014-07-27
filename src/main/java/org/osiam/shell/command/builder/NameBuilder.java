@@ -1,4 +1,4 @@
-package org.osiam.shell.command.create.user;
+package org.osiam.shell.command.builder;
 
 import org.osiam.resources.scim.Name;
 import org.osiam.shell.command.AbstractBuilderCommand;

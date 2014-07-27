@@ -1,26 +1,26 @@
-package org.osiam.shell.command.create.user;
+package org.osiam.shell.command.builder;
 
-import org.osiam.resources.scim.PhoneNumber;
-import org.osiam.resources.scim.PhoneNumber.Type;
+import org.osiam.resources.scim.Role;
+import org.osiam.resources.scim.Role.Type;
 import org.osiam.shell.command.AbstractBuilderCommand;
 
 import de.raysha.lib.jsimpleshell.annotation.Command;
 import de.raysha.lib.jsimpleshell.annotation.Param;
 
 /**
- * This class contains commands which can create {@link PhoneNumber}s.
+ * This class contains commands which can create {@link Role}s.
  * 
  * @author rainu
  */
-public class PhoneNumberBuilder extends AbstractBuilderCommand<PhoneNumber> {
-	private PhoneNumber.Builder builder = new PhoneNumber.Builder();
+public class RoleBuilder extends AbstractBuilderCommand<Role> {
+	private Role.Builder builder = new Role.Builder();
 
-	@Command(description = "Shows the phone number state. This state is not persisted yet!")
-	public PhoneNumber showState() {
+	@Command(description = "Shows the role state. This state is not persisted yet!")
+	public Role showState() {
 		return _build();
 	}
 
-	@Command(description = "Set the display name of the phone number.")
+	@Command(description = "Set the display name of the role.")
 	public void setDisplay(
 			@Param(name = "display", description = "The display name.")
 			String display) {
@@ -28,9 +28,9 @@ public class PhoneNumberBuilder extends AbstractBuilderCommand<PhoneNumber> {
 		builder.setDisplay(display);
 	}
 
-	@Command(description = "Is this phone number primary?")
+	@Command(description = "Is this role primary?")
 	public void setPrimary(
-			@Param(name = "primary", description = "True if this phone number is primary. Otherwise false.")
+			@Param(name = "primary", description = "True if this role is primary. Otherwise false.")
 			Boolean primary) {
 		
 		builder.setPrimary(primary);
@@ -44,7 +44,7 @@ public class PhoneNumberBuilder extends AbstractBuilderCommand<PhoneNumber> {
 		builder.setType(type);
 	}
 
-	@Command(description = "Set the value of the phone number.")
+	@Command(description = "Set the value of the role.")
 	public void setValue(
 			@Param(name = "value", description = "The value.")
 			String value) {
@@ -53,7 +53,7 @@ public class PhoneNumberBuilder extends AbstractBuilderCommand<PhoneNumber> {
 	}
 
 	@Override
-	protected PhoneNumber _build() {
+	protected Role _build() {
 		return builder.build();
 	}
 }
