@@ -161,7 +161,7 @@ public class UpdateUserBuilder extends AbstractBuilderCommand<UpdateUser>
 	public void updateTimezone(
 			@Param(name = "timezone", description = "The new timezone for the user.")
 			String timezone) {
-		
+
 		builder.updateTimezone(timezone);
 	}
 

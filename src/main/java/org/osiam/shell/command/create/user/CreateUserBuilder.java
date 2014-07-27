@@ -137,7 +137,7 @@ public class CreateUserBuilder extends AbstractBuilderCommand<User>
 	public void setPreferredLanguage(
 			@Param(name = "language", description = "The preferred language for the user.")
 			String preferredLanguage) {
-		
+
 		builder.setPreferredLanguage(preferredLanguage);
 	}
 

@@ -16,6 +16,7 @@ import org.osiam.shell.command.io.ExtensionConverter;
 import org.osiam.shell.command.io.GroupConverter;
 import org.osiam.shell.command.io.ImConverter;
 import org.osiam.shell.command.io.ImTypeConverter;
+import org.osiam.shell.command.io.NameConverter;
 import org.osiam.shell.command.io.PhoneNumberConverter;
 import org.osiam.shell.command.io.PhoneNumberTypeConverter;
 import org.osiam.shell.command.io.PhotoConverter;
@@ -48,6 +49,7 @@ public class Starter {
 								.addAuxHandler(new ExtensionConverter())
 								.addAuxHandler(new ImTypeConverter())
 								.addAuxHandler(new ImConverter())
+								.addAuxHandler(new NameConverter())
 								.addAuxHandler(new PhoneNumberTypeConverter())
 								.addAuxHandler(new PhoneNumberConverter())
 								.addAuxHandler(new PhotoTypeConverter())

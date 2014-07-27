@@ -7,6 +7,7 @@ import org.osiam.resources.scim.Email;
 import org.osiam.resources.scim.Entitlement;
 import org.osiam.resources.scim.Extension;
 import org.osiam.resources.scim.Im;
+import org.osiam.resources.scim.Name;
 import org.osiam.resources.scim.PhoneNumber;
 import org.osiam.resources.scim.Photo;
 import org.osiam.resources.scim.Role;
@@ -26,6 +27,14 @@ public class CreateUserAddCommands {
 	
 	CreateUserAddCommands(CreateUserBuilder builder) {
 		this.builderCommand = builder;
+	}
+	
+	@Command(description = "Set the users advanced name.")
+	public void setName() throws IOException{
+		final Name name = builderCommand.builderShellFactory.enterNameShell();
+		if(name != null){
+			builderCommand.builder.setName(name);
+		}
 	}
 	
 	@Command(description = "Add an address for this user.")
