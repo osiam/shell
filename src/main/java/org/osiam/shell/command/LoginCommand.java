@@ -6,6 +6,7 @@ import org.osiam.client.OsiamConnector;
 import org.osiam.client.oauth.AccessToken;
 import org.osiam.client.oauth.Scope;
 import org.osiam.shell.command.create.CreateGroupCommand;
+import org.osiam.shell.command.create.CreateUserCommand;
 import org.osiam.shell.command.delete.DeleteGroupCommand;
 import org.osiam.shell.command.delete.DeleteUserCommand;
 import org.osiam.shell.command.select.SelectGroupCommand;
@@ -80,6 +81,7 @@ public class LoginCommand implements ShellDependent, InputDependent {
 									.addHandler(new SelectUserCommand(at, connector))
 									.addHandler(new SelectGroupCommand(at, connector))
 									.addHandler(new CreateGroupCommand(at, connector))
+									.addHandler(new CreateUserCommand(at, connector))
 									.addHandler(new UpdateGroupCommand(at, connector))
 									.addHandler(new UpdateUserCommand(at, connector))
 									.addHandler(new DeleteGroupCommand(at, connector))

@@ -94,7 +94,7 @@ public class UpdateUserBuilder extends AbstractBuilderCommand<UpdateUser>
 	public void updateExternalId(
 			@Param(name = "externalId", description = "The new externalId for the user.")
 			String externalId) {
-		
+
 		builder.updateExternalId(externalId);
 	}
 
