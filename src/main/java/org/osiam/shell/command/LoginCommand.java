@@ -74,7 +74,7 @@ public class LoginCommand implements ShellDependent, InputDependent {
 			throw new NullPointerException("The retrieved access token is null!");
 		}
 		
-		final Shell subshell = ShellBuilder.subshell(userName, shell)
+		final Shell subshell = ShellBuilder.subshell("@" + userName, shell)
 									.addHandler(new LogoutCommand(at, connector))
 									.addAuxHandler(new MiscCommand(at, connector))
 									.addHandler(new SelectUserCommand(at, connector))

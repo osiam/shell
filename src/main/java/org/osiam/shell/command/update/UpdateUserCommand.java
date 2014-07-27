@@ -50,7 +50,7 @@ public class UpdateUserCommand extends OsiamAccessCommand implements ShellDepend
 		
 		final UpdateUserBuilder builder = new UpdateUserBuilder(user);
 		
-		final Shell subShell = ShellBuilder.subshell("user-group", shell)
+		final Shell subShell = ShellBuilder.subshell("update-user[" + userName + "]", shell)
 									.disableExitCommand()
 									.addHandler(builder)
 								.build();
