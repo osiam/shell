@@ -42,7 +42,7 @@ public class UpdateUserDeleteCommands {
 	public void deleteAllEntitlements() {
 		builderCommand.builder.deleteEntitlements();
 	}
-
+	
 	@Command(description = "Deletes all ims.")
 	public void deleteAllIms() {
 		builderCommand.builder.deleteIms();
@@ -111,6 +111,14 @@ public class UpdateUserDeleteCommands {
 				builderCommand.builder.deleteEntitlement(current);
 			}
 		}
+	}
+	
+	@Command(description = "Deletes the given extension.")
+	public void deleteExtension(
+			@Param(name = "urn", description = "The URN of the extension.")
+			String urn) {
+		
+		builderCommand.builder.deleteExtension(urn);
 	}
 	
 	@Command(description = "Delete an im from the user.")
