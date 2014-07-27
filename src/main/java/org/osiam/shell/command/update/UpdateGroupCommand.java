@@ -52,6 +52,7 @@ public class UpdateGroupCommand extends OsiamAccessCommand implements ShellDepen
 		final UpdateGroupBuilder builder = new UpdateGroupBuilder(group);
 		
 		final Shell subShell = ShellBuilder.subshell("update-group", shell)
+									.disableExitCommand()
 									.addHandler(builder)
 								.build();
 		

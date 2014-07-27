@@ -19,7 +19,7 @@ import de.raysha.lib.jsimpleshell.annotation.Command;
  * 
  * @author rainu
  */
-class UpdateUserAddCommands {
+public class UpdateUserAddCommands {
 	private UpdateUserBuilder builderCommand;
 	
 	UpdateUserAddCommands(UpdateUserBuilder builder) {

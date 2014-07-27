@@ -47,6 +47,7 @@ public class CreateGroupCommand extends OsiamAccessCommand implements ShellDepen
 		final GroupBuilder builder = new GroupBuilder(displayName);
 		
 		final Shell subShell = ShellBuilder.subshell("createGroup", shell)
+									.disableExitCommand()
 									.addHandler(builder)
 								.build();
 		

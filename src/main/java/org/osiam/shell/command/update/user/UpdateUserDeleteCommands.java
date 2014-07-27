@@ -21,7 +21,7 @@ import de.raysha.lib.jsimpleshell.annotation.Param;
  * 
  * @author rainu
  */
-class UpdateUserDeleteCommands {
+public class UpdateUserDeleteCommands {
 	private UpdateUserBuilder builderCommand;
 	
 	UpdateUserDeleteCommands(UpdateUserBuilder builder) {

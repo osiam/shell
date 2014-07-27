@@ -42,6 +42,7 @@ public class BuilderShellFactory {
 		final AddressBuilder addressBuilder = new AddressBuilder();
 		
 		final Shell subShell = ShellBuilder.subshell("create-address", shell)
+				.disableExitCommand()
 				.addHandler(addressBuilder)
 			.build();
 
@@ -64,6 +65,7 @@ public class BuilderShellFactory {
 		final EmailBuilder emailBuilder = new EmailBuilder();
 		
 		final Shell subShell = ShellBuilder.subshell("create-email", shell)
+				.disableExitCommand()
 				.addHandler(emailBuilder)
 			.build();
 
@@ -86,6 +88,7 @@ public class BuilderShellFactory {
 		final EntitlementBuilder entitlementBuilder = new EntitlementBuilder();
 		
 		final Shell subShell = ShellBuilder.subshell("create-entitlement", shell)
+				.disableExitCommand()
 				.addHandler(entitlementBuilder)
 			.build();
 
@@ -108,6 +111,7 @@ public class BuilderShellFactory {
 		final ImBuilder imBuilder = new ImBuilder();
 		
 		final Shell subShell = ShellBuilder.subshell("create-im", shell)
+				.disableExitCommand()
 				.addHandler(imBuilder)
 			.build();
 
@@ -130,6 +134,7 @@ public class BuilderShellFactory {
 		final PhoneNumberBuilder phoneNumberBuilder = new PhoneNumberBuilder();
 		
 		final Shell subShell = ShellBuilder.subshell("create-phone-number", shell)
+				.disableExitCommand()
 				.addHandler(phoneNumberBuilder)
 			.build();
 
@@ -152,6 +157,7 @@ public class BuilderShellFactory {
 		final PhotoBuilder photoBuilder = new PhotoBuilder();
 		
 		final Shell subShell = ShellBuilder.subshell("create-photo", shell)
+				.disableExitCommand()
 				.addHandler(photoBuilder)
 			.build();
 
@@ -174,6 +180,7 @@ public class BuilderShellFactory {
 		final RoleBuilder roleBuilder = new RoleBuilder();
 		
 		final Shell subShell = ShellBuilder.subshell("create-role", shell)
+				.disableExitCommand()
 				.addHandler(roleBuilder)
 			.build();
 
@@ -196,6 +203,7 @@ public class BuilderShellFactory {
 		final X509CertificateBuilder x509CertificateBuilder = new X509CertificateBuilder();
 		
 		final Shell subShell = ShellBuilder.subshell("create-certificate", shell)
+				.disableExitCommand()
 				.addHandler(x509CertificateBuilder)
 			.build();
 
