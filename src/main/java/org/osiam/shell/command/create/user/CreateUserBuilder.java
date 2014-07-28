@@ -40,6 +40,10 @@ public class CreateUserBuilder extends AbstractBuilderCommand<User>
 		this.builder = new User.Builder(userName);
 	}
 	
+	public CreateUserBuilder(User user, String newUserName) {
+		this.builder = new User.Builder(newUserName, user);
+	}
+
 	@Override
 	public void cliSetOutput(OutputBuilder output) {
 		this.output = output;

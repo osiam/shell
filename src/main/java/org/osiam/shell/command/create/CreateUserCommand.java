@@ -4,11 +4,9 @@ import java.io.IOException;
 
 import org.osiam.client.OsiamConnector;
 import org.osiam.client.oauth.AccessToken;
-import org.osiam.resources.scim.UpdateUser;
 import org.osiam.resources.scim.User;
 import org.osiam.shell.command.OsiamAccessCommand;
 import org.osiam.shell.command.create.user.CreateUserBuilder;
-import org.osiam.shell.command.update.user.UpdateUserBuilder;
 
 import de.raysha.lib.jsimpleshell.Shell;
 import de.raysha.lib.jsimpleshell.ShellBuilder;
@@ -52,6 +50,37 @@ public class CreateUserCommand extends OsiamAccessCommand implements ShellDepend
 		final CreateUserBuilder builder = new CreateUserBuilder(userName);
 		
 		final Shell subShell = ShellBuilder.subshell("create-user[" + userName + "]", shell)
+									.disableExitCommand()
+									.addHandler(builder)
+								.build();
+		
+		output.out()
+			.normal("In this subshell you can create a new user. Leave this sub shell via \"commit\" to persist the changes.")
+		.println();
+		
+		subShell.commandLoop();
+		
+		final User create = builder.build();
+		if(create == null) return null;
+		
+		return connector.createUser(create, accessToken);
+	}
+	
+	@Command(description = "Copy an existing user.")
+	public Object copyUser(
+			@Param(name = "userName", description = "The name of the copied user.")
+			String userName,
+			@Param(name = "newUserName", description = "The name of the new user.")
+			String newUserName) throws IOException{
+		
+		final User user = getUser(userName);
+		if(user == null) return "A user with the name \"" + userName + "\" does not exists!";
+	
+		if(getUser(newUserName) != null) return "A user with the name \"" + newUserName + "\" already exists!";
+		
+		final CreateUserBuilder builder = new CreateUserBuilder(user, newUserName);
+		
+		final Shell subShell = ShellBuilder.subshell("create-user[" + newUserName + "]", shell)
 									.disableExitCommand()
 									.addHandler(builder)
 								.build();
