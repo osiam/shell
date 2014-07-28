@@ -1,7 +1,6 @@
 package org.osiam.shell;
 
 import java.io.File;
-import java.io.IOException;
 
 import org.osiam.shell.command.ConnectionCommand;
 import org.osiam.shell.command.io.AccessTokenConverter;
@@ -33,7 +32,7 @@ import de.raysha.lib.jsimpleshell.ShellBuilder;
 
 public class Starter {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws Exception {
 		final Shell shell = ShellBuilder.shell("osiam-shell")
 								.setHistoryFile(new File(System.getProperty("user.home"), ".osiamshell_history"))
 								.addHandler(new ConnectionCommand())
@@ -62,6 +61,7 @@ public class Starter {
 								.addAuxHandler(new URIConverter())
 							.build();
 		
+		shell.processLine("?help");
 		shell.commandLoop();
 	}
 
