@@ -87,9 +87,9 @@ public class SelectGroupCommand extends OsiamAccessCommand implements ShellDepen
 		StringBuilder prompt = new StringBuilder("searchGroups(\"");
 		prompt.append(filter);
 		prompt.append("\" ");
-		prompt.append(ascending ? "^|" : "v|");
+		prompt.append(ascending ? "v|" : "^|");
 		prompt.append(orderBy);
-		prompt.append(ascending ? "|^" : "|v");
+		prompt.append(ascending ? "|v" : "|^");
 		prompt.append(")");
 		
 		final Shell subShell = ShellBuilder.subshell(prompt.toString(), shell)

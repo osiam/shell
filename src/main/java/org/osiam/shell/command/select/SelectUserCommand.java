@@ -82,9 +82,9 @@ public class SelectUserCommand extends OsiamAccessCommand implements ShellDepend
 		StringBuilder prompt = new StringBuilder("searchUser(\"");
 		prompt.append(filter);
 		prompt.append("\" ");
-		prompt.append(ascending ? "^|" : "v|");
+		prompt.append(ascending ? "v|" : "^|");
 		prompt.append(orderBy);
-		prompt.append(ascending ? "|^" : "|v");
+		prompt.append(ascending ? "|v" : "|^");
 		prompt.append(")");
 		
 		final Shell subShell = ShellBuilder.subshell(prompt.toString(), shell)
