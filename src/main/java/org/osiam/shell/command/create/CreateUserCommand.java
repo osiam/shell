@@ -45,7 +45,7 @@ public class CreateUserCommand extends OsiamAccessCommand implements ShellDepend
 			String userName) throws IOException{
 		
 		final User user = getUser(userName);
-		if(user != null) return "A user with the name \"" + userName + "\" already exists!";
+		if(user != null) return "An user with the name \"" + userName + "\" already exists!";
 		
 		final CreateUserBuilder builder = new CreateUserBuilder(userName);
 		
@@ -74,9 +74,9 @@ public class CreateUserCommand extends OsiamAccessCommand implements ShellDepend
 			String newUserName) throws IOException{
 		
 		final User user = getUser(userName);
-		if(user == null) return "A user with the name \"" + userName + "\" does not exists!";
+		if(user == null) return "An user with the name \"" + userName + "\" does not exists!";
 	
-		if(getUser(newUserName) != null) return "A user with the name \"" + newUserName + "\" already exists!";
+		if(getUser(newUserName) != null) return "An user with the name \"" + newUserName + "\" already exists!";
 		
 		final CreateUserBuilder builder = new CreateUserBuilder(user, newUserName);
 		
