@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 
 import org.osiam.client.oauth.AccessToken;
 
+import de.raysha.lib.jsimpleshell.io.InputConverter;
 import de.raysha.lib.jsimpleshell.io.OutputConverter;
 
 /**
@@ -11,7 +12,7 @@ import de.raysha.lib.jsimpleshell.io.OutputConverter;
  * 
  * @author rainu
  */
-public class AccessTokenConverter implements OutputConverter {
+public class AccessTokenConverter implements OutputConverter, InputConverter {
 
 	@Override
 	public Object convertOutput(Object toBeFormatted) {
@@ -34,4 +35,12 @@ public class AccessTokenConverter implements OutputConverter {
 		return null;
 	}
 
+	@Override
+	public Object convertInput(String original, Class toClass) throws Exception {
+		if(toClass == AccessToken.class){
+			return new AccessToken.Builder(original).build();
+		}
+		
+		return null;
+	}
 }

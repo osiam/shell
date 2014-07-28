@@ -20,4 +20,9 @@ public class MiscCommand extends OsiamAccessCommand {
 	public AccessToken showAccessToken(){
 		return accessToken;
 	}
+	
+	@Command
+	public void validateAccessToken(AccessToken at){
+		connector.validateAccessToken(at);
+	}
 }
