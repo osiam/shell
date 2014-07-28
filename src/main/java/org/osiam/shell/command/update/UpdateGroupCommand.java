@@ -84,7 +84,7 @@ public class UpdateGroupCommand extends OsiamAccessCommand implements ShellDepen
 		
 		@Command(description = "Shows the group state. This state is not persisted yet!")
 		public Group showState(){
-			return build().getScimConformUpdateGroup();
+			return _build().getScimConformUpdateGroup();
 		}
 		
 		@Command(description = "Add the given user to the given group.")
