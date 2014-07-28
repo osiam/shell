@@ -40,6 +40,12 @@ public class UpdateUserCommand extends OsiamAccessCommand implements ShellDepend
 		this.output = output;
 	}
 	
+	@Command(description = "Update the current logged-in user.")
+	public Object updateMe() throws IOException{
+		String userName = connector.getCurrentUserBasic(accessToken).getUserName();
+		return updateUser(userName);
+	}
+	
 	@Command(description = "Update the given user.")
 	public Object updateUser(
 			@Param(name = "userName", description = "The name of the user.")
