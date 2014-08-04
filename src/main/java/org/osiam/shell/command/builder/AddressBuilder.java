@@ -44,7 +44,7 @@ public class AddressBuilder extends AbstractBuilderCommand<Address> implements S
 	
 	@Command(description = "Sets the country name.")
 	public void setCountry(
-			@Param(name = "country", description = "The country.")
+			@Param(value = "country", description = "The country.")
 			String country) {
 		
 		builder.setCountry(country);
@@ -52,7 +52,7 @@ public class AddressBuilder extends AbstractBuilderCommand<Address> implements S
 
 	@Command(description = "Sets the full mailing address.")
 	public void setFormatted(
-			@Param(name = "formatted", description = "The formatted address.")
+			@Param(value = "formatted", description = "The formatted address.")
 			String formatted) {
 		
 		builder.setFormatted(formatted);
@@ -60,7 +60,7 @@ public class AddressBuilder extends AbstractBuilderCommand<Address> implements S
 
 	@Command(description = "Sets the city or locality.")
 	public void setLocality(
-			@Param(name = "locality", description = "The locality.")
+			@Param(value = "locality", description = "The locality.")
 			String locality) {
 		
 		builder.setLocality(locality);
@@ -68,7 +68,7 @@ public class AddressBuilder extends AbstractBuilderCommand<Address> implements S
 
 	@Command(description = "Sets the postal code.")
 	public void setPostalCode(
-			@Param(name = "postalCode", description = "The postal code.")
+			@Param(value = "postalCode", description = "The postal code.")
 			String postalCode) {
 		
 		builder.setPostalCode(postalCode);
@@ -76,7 +76,7 @@ public class AddressBuilder extends AbstractBuilderCommand<Address> implements S
 
 	@Command(description = "Is this address primary?")
 	public void setPrimary(
-			@Param(name = "primary", description = "True if this address is primary. Otherwise false.")
+			@Param(value = "primary", description = "True if this address is primary. Otherwise false.")
 			Boolean primary) {
 		
 		builder.setPrimary(primary);
@@ -84,7 +84,7 @@ public class AddressBuilder extends AbstractBuilderCommand<Address> implements S
 
 	@Command(description = "Sets the state or region.")
 	public void setRegion(
-			@Param(name = "region", description = "The region.")
+			@Param(value = "region", description = "The region.")
 			String region) {
 		
 		builder.setRegion(region);
@@ -92,7 +92,7 @@ public class AddressBuilder extends AbstractBuilderCommand<Address> implements S
 
 	@Command(description = "Sets the full street address.")
 	public void setStreetAddress(
-			@Param(name = "address", description = "The street address.")
+			@Param(value = "address", description = "The street address.")
 			String streetAddress) {
 		
 		builder.setStreetAddress(streetAddress);
@@ -100,7 +100,7 @@ public class AddressBuilder extends AbstractBuilderCommand<Address> implements S
 
 	@Command(description = "Sets the label indicating the attribute's function.")
 	public void setType(
-			@Param(name = "type", description = "The type of the attribute.")
+			@Param(value = "type", description = "The type of the attribute.")
 			Type type) {
 		
 		builder.setType(type);

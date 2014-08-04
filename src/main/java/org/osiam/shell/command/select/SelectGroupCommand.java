@@ -36,7 +36,7 @@ public class SelectGroupCommand extends OsiamAccessCommand implements ShellDepen
 
 	@Command(description = "Show the given group.")
 	public Object showGroup(
-			@Param(name = "groupName", description = "The name of the group.")
+			@Param(value = "groupName", description = "The name of the group.")
 			String groupName){
 		
 		Group group = getGroup(groupName);
@@ -52,7 +52,7 @@ public class SelectGroupCommand extends OsiamAccessCommand implements ShellDepen
 	
 	@Command(description = "Search for existing groups by a given filter.")
 	public void searchGroups(
-			@Param(name = "filter", description = "The filter string.")
+			@Param(value = "filter", description = "The filter string.")
 			String filter) throws CLIException, IOException{
 
 		searchGroups(filter, 1L, 5, "displayName", true);
@@ -60,15 +60,15 @@ public class SelectGroupCommand extends OsiamAccessCommand implements ShellDepen
 	
 	@Command(description = "Search for existing groups by a given Query.")
 	public void searchGroups(
-			@Param(name = "filter", description = "The filter string.")
+			@Param(value = "filter", description = "The filter string.")
 			String filter,
-			@Param(name="index", description = "The index (1-based) of the first resource.")
+			@Param(value="index", description = "The index (1-based) of the first resource.")
 			Long startIndex,
-			@Param(name = "limit", description = "The number of returned groups per page.")
+			@Param(value = "limit", description = "The number of returned groups per page.")
 			Integer limit,
-			@Param(name = "orderBy", description = "Sort the groups by the given attribute.")
+			@Param(value = "orderBy", description = "Sort the groups by the given attribute.")
 			String orderBy,
-			@Param(name = "asc", description = "Should the groups sorted ascending?")
+			@Param(value = "asc", description = "Should the groups sorted ascending?")
 			Boolean ascending) throws CLIException, IOException{
 		
 		final QueryBuilder builder = new QueryBuilder()

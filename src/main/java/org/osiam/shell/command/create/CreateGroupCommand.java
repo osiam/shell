@@ -42,7 +42,7 @@ public class CreateGroupCommand extends OsiamAccessCommand implements ShellDepen
 	
 	@Command(description="Create a new group.")
 	public Group createGroup(
-			@Param(name = "name", description = "The display name of the new group.")
+			@Param(value = "name", description = "The display name of the new group.")
 			String displayName) throws IOException{
 		
 		final GroupBuilder builder = new GroupBuilder(displayName);
@@ -65,9 +65,9 @@ public class CreateGroupCommand extends OsiamAccessCommand implements ShellDepen
 	
 	@Command(description="Copy a existing group.")
 	public Object copyGroup(
-			@Param(name = "name", description = "The display name of the persited group.")
+			@Param(value = "name", description = "The display name of the persited group.")
 			String displayName,
-			@Param(name = "newName", description = "The display name of the new group.")
+			@Param(value = "newName", description = "The display name of the new group.")
 			String newDisplayName) throws IOException{
 		
 		final Group group = getGroup(displayName);
@@ -111,7 +111,7 @@ public class CreateGroupCommand extends OsiamAccessCommand implements ShellDepen
 
 		@Command
 		public void setExternalId(
-				@Param(name = "externalId", description = "The external id for the new group.")
+				@Param(value = "externalId", description = "The external id for the new group.")
 				String externalId){
 			
 			groupBuilder.setExternalId(externalId);

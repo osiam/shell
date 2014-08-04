@@ -81,7 +81,7 @@ public class CreateUserBuilder extends AbstractBuilderCommand<User>
 
 	@Command(description = "Set the display name of the user.")
 	public void setDisplayName(
-			@Param(name = "displayName", description = "The display name for the user.")
+			@Param(value = "displayName", description = "The display name for the user.")
 			String displayName) {
 		
 		builder.setDisplayName(displayName);
@@ -89,7 +89,7 @@ public class CreateUserBuilder extends AbstractBuilderCommand<User>
 
 	@Command(description = "Set the of externalId the user.")
 	public void setExternalId(
-			@Param(name = "externalId", description = "The externalId for the user.")
+			@Param(value = "externalId", description = "The externalId for the user.")
 			String externalId) {
 
 		builder.setExternalId(externalId);
@@ -97,7 +97,7 @@ public class CreateUserBuilder extends AbstractBuilderCommand<User>
 
 	@Command(description = "Set the locale of the user.")
 	public void setLocale(
-			@Param(name = "locale", description = "The locale for the user.")
+			@Param(value = "locale", description = "The locale for the user.")
 			String locale) {
 		
 		builder.setLocale(locale);
@@ -105,7 +105,7 @@ public class CreateUserBuilder extends AbstractBuilderCommand<User>
 
 	@Command(description = "Set the nickname of the user.")
 	public void setNickName(
-			@Param(name = "nickName", description = "The nickname for the user.")
+			@Param(value = "nickName", description = "The nickname for the user.")
 			String nickName) {
 		
 		builder.setNickName(nickName);
@@ -113,7 +113,7 @@ public class CreateUserBuilder extends AbstractBuilderCommand<User>
 
 	@Command(description = "Set the password of the user.")
 	public void setPassword(
-			@Param(name = "password", description = "The password for the user.")
+			@Param(value = "password", description = "The password for the user.")
 			String password) {
 		
 		builder.setPassword(password);
@@ -140,7 +140,7 @@ public class CreateUserBuilder extends AbstractBuilderCommand<User>
 
 	@Command(description = "Set the preferred language of the user.")
 	public void setPreferredLanguage(
-			@Param(name = "language", description = "The preferred language for the user.")
+			@Param(value = "language", description = "The preferred language for the user.")
 			String preferredLanguage) {
 
 		builder.setPreferredLanguage(preferredLanguage);
@@ -148,7 +148,7 @@ public class CreateUserBuilder extends AbstractBuilderCommand<User>
 
 	@Command(description = "Set the profile URL of the user.")
 	public void setProfileUrl(
-			@Param(name = "url", description = "The profile URL for the user.")
+			@Param(value = "url", description = "The profile URL for the user.")
 			String profileUrl) {
 		
 		builder.setProfileUrl(profileUrl);
@@ -156,7 +156,7 @@ public class CreateUserBuilder extends AbstractBuilderCommand<User>
 
 	@Command(description = "Set the timezone of the user.")
 	public void setTimezone(
-			@Param(name = "timezone", description = "The timezone for the user.")
+			@Param(value = "timezone", description = "The timezone for the user.")
 			String timezone) {
 		
 		builder.setTimezone(timezone);
@@ -164,7 +164,7 @@ public class CreateUserBuilder extends AbstractBuilderCommand<User>
 
 	@Command(description = "Set the title of the user.")
 	public void setTitle(
-			@Param(name = "title", description = "The title for the user.")
+			@Param(value = "title", description = "The title for the user.")
 			String title) {
 		
 		builder.setTitle(title);
@@ -172,7 +172,7 @@ public class CreateUserBuilder extends AbstractBuilderCommand<User>
 
 	@Command(description = "Set the type of the user.")
 	public void setUserType(
-			@Param(name = "type", description = "The type for the user.")
+			@Param(value = "type", description = "The type for the user.")
 			String userType) {
 		
 		builder.setUserType(userType);

@@ -36,7 +36,7 @@ public class ExtensionBuilder extends AbstractBuilderCommand<Extension> {
 
 	@Command(description = "Remove a field from the extension.")
 	public void removeField(
-			@Param(name = "field", description = "The name of the extension field.")
+			@Param(value = "field", description = "The name of the extension field.")
 			String fieldName){
 		
 		builder.removeField(fieldName);
@@ -44,9 +44,9 @@ public class ExtensionBuilder extends AbstractBuilderCommand<Extension> {
 
 	@Command(description = "Set the string value of a extension field.")
 	public void setStringField(
-			@Param(name = "field", description = "The name of the extension field.")
+			@Param(value = "field", description = "The name of the extension field.")
 			String fieldName,
-			@Param(name = "value", description = "The new field value.")
+			@Param(value = "value", description = "The new field value.")
 			String value){
 		
 		builder.setField(fieldName, value);
@@ -54,9 +54,9 @@ public class ExtensionBuilder extends AbstractBuilderCommand<Extension> {
 	
 	@Command(description = "Set the boolean value of a extension field.")
 	public void setBooleanField(
-			@Param(name = "field", description = "The name of the extension field.")
+			@Param(value = "field", description = "The name of the extension field.")
 			String fieldName,
-			@Param(name = "value", description = "The new field value.")
+			@Param(value = "value", description = "The new field value.")
 			Boolean value){
 		
 		builder.setField(fieldName, value);
@@ -64,9 +64,9 @@ public class ExtensionBuilder extends AbstractBuilderCommand<Extension> {
 	
 	@Command(description = "Set the decimal value of a extension field.")
 	public void setDecimalField(
-			@Param(name = "field", description = "The name of the extension field.")
+			@Param(value = "field", description = "The name of the extension field.")
 			String fieldName,
-			@Param(name = "value", description = "The new field value.")
+			@Param(value = "value", description = "The new field value.")
 			BigDecimal value){
 		
 		builder.setField(fieldName, value);
@@ -74,9 +74,9 @@ public class ExtensionBuilder extends AbstractBuilderCommand<Extension> {
 	
 	@Command(description = "Set the integer value of a extension field.")
 	public void setIntegerField(
-			@Param(name = "field", description = "The name of the extension field.")
+			@Param(value = "field", description = "The name of the extension field.")
 			String fieldName,
-			@Param(name = "value", description = "The new field value.")
+			@Param(value = "value", description = "The new field value.")
 			BigInteger value){
 		
 		builder.setField(fieldName, value);
@@ -84,9 +84,9 @@ public class ExtensionBuilder extends AbstractBuilderCommand<Extension> {
 	
 	@Command(description = "Set the date value of a extension field.")
 	public void setDateField(
-			@Param(name = "field", description = "The name of the extension field.")
+			@Param(value = "field", description = "The name of the extension field.")
 			String fieldName,
-			@Param(name = "value", description = "The new field value.")
+			@Param(value = "value", description = "The new field value.")
 			Date value){
 		
 		builder.setField(fieldName, value);
@@ -94,9 +94,9 @@ public class ExtensionBuilder extends AbstractBuilderCommand<Extension> {
 	
 	@Command(description = "Set the uri value of a extension field.")
 	public void setURIField(
-			@Param(name = "field", description = "The name of the extension field.")
+			@Param(value = "field", description = "The name of the extension field.")
 			String fieldName,
-			@Param(name = "value", description = "The new field value.")
+			@Param(value = "value", description = "The new field value.")
 			URI value){
 		
 		builder.setField(fieldName, value);
@@ -104,9 +104,9 @@ public class ExtensionBuilder extends AbstractBuilderCommand<Extension> {
 	
 	@Command(description = "Set the file value of a extension field.")
 	public void setFileField(
-			@Param(name = "field", description = "The name of the extension field.")
+			@Param(value = "field", description = "The name of the extension field.")
 			String fieldName,
-			@Param(name = "path", description = "The path to the file.")
+			@Param(value = "path", description = "The path to the file.")
 			String filePath) throws IOException {
 		
 		Path path = new File(filePath).toPath();

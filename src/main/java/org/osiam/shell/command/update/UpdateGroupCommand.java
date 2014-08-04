@@ -43,7 +43,7 @@ public class UpdateGroupCommand extends OsiamAccessCommand implements ShellDepen
 	
 	@Command(description = "Update the given group.")
 	public Object updateGroup(
-			@Param(name = "groupName", description = "The name of the group.")
+			@Param(value = "groupName", description = "The name of the group.")
 			String groupName) throws IOException{
 		
 		final Group group = getGroup(groupName);
@@ -89,7 +89,7 @@ public class UpdateGroupCommand extends OsiamAccessCommand implements ShellDepen
 		
 		@Command(description = "Add the given user to the given group.")
 		public String addUser(
-				@Param(name = "userName", description = "The name of the user.")
+				@Param(value = "userName", description = "The name of the user.")
 				String userName){
 			
 			final User user = getUser(userName);
@@ -102,7 +102,7 @@ public class UpdateGroupCommand extends OsiamAccessCommand implements ShellDepen
 		
 		@Command(description = "Remove the given user from the given group.")
 		public String removeUser(
-				@Param(name = "userName", description = "The name of the user.")
+				@Param(value = "userName", description = "The name of the user.")
 				String userName){
 			
 			final User user = getUser(userName);
@@ -120,7 +120,7 @@ public class UpdateGroupCommand extends OsiamAccessCommand implements ShellDepen
 		
 		@Command(description = "Rename the group.")
 		public void rename(
-				@Param(name = "name", description = "The new group display name.")
+				@Param(value = "name", description = "The new group display name.")
 				String newName){
 			
 			builder.updateDisplayName(newName);
@@ -128,7 +128,7 @@ public class UpdateGroupCommand extends OsiamAccessCommand implements ShellDepen
 
 		@Command(description = "Set the externalId for the group.")
 		public void setExternalId(
-				@Param(name = "externalId", description = "The new externalId for the group.")
+				@Param(value = "externalId", description = "The new externalId for the group.")
 				String externalId){
 			
 			builder.updateExternalId(externalId);

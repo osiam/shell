@@ -53,7 +53,7 @@ public class LoginCommand implements ShellDependent, InputDependent {
 	
 	@Command(description="Login as a user. The password will be requested separately.")
 	public void login(
-			@Param(name = PARAM_NAME_USERNAME, description = PARAM_DESCRIPTION_USERNAME)
+			@Param(value = PARAM_NAME_USERNAME, description = PARAM_DESCRIPTION_USERNAME)
 			String userName) throws IOException{
 		
 		final String password = input.invisibleIn()
@@ -65,9 +65,9 @@ public class LoginCommand implements ShellDependent, InputDependent {
 	
 	@Command(description="Login as a user.")
 	public void login(
-			@Param(name = PARAM_NAME_USERNAME, description = PARAM_DESCRIPTION_USERNAME)
+			@Param(value = PARAM_NAME_USERNAME, description = PARAM_DESCRIPTION_USERNAME)
 			String userName,
-			@Param(name = "password", description = "The password for the user.")
+			@Param(value = "password", description = "The password for the user.")
 			String password) throws IOException{
 		
 		final AccessToken at = connector.retrieveAccessToken(userName, password, Scope.ALL);

@@ -48,7 +48,7 @@ public class UpdateUserCommand extends OsiamAccessCommand implements ShellDepend
 	
 	@Command(description = "Update the given user.")
 	public Object updateUser(
-			@Param(name = "userName", description = "The name of the user.")
+			@Param(value = "userName", description = "The name of the user.")
 			String userName) throws IOException{
 		
 		final User user = getUser(userName);

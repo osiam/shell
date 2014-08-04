@@ -41,7 +41,7 @@ public class CreateUserCommand extends OsiamAccessCommand implements ShellDepend
 	
 	@Command(description = "Create a new user.")
 	public Object createUser(
-			@Param(name = "userName", description = "The name of the user.")
+			@Param(value = "userName", description = "The name of the user.")
 			String userName) throws IOException{
 		
 		final User user = getUser(userName);
@@ -68,9 +68,9 @@ public class CreateUserCommand extends OsiamAccessCommand implements ShellDepend
 	
 	@Command(description = "Copy an existing user.")
 	public Object copyUser(
-			@Param(name = "userName", description = "The name of the copied user.")
+			@Param(value = "userName", description = "The name of the copied user.")
 			String userName,
-			@Param(name = "newUserName", description = "The name of the new user.")
+			@Param(value = "newUserName", description = "The name of the new user.")
 			String newUserName) throws IOException{
 		
 		final User user = getUser(userName);

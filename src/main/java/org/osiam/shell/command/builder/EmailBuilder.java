@@ -44,7 +44,7 @@ public class EmailBuilder extends AbstractBuilderCommand<Email> implements Shell
 
 	@Command(description = "Set the display name of the email.")
 	public void setDisplay(
-			@Param(name = "display", description = "The display name.")
+			@Param(value = "display", description = "The display name.")
 			String display) {
 		
 		builder.setDisplay(display);
@@ -52,7 +52,7 @@ public class EmailBuilder extends AbstractBuilderCommand<Email> implements Shell
 
 	@Command(description = "Is this email address primary?")
 	public void setPrimary(
-			@Param(name = "primary", description = "True if this email address is primary. Otherwise false.")
+			@Param(value = "primary", description = "True if this email address is primary. Otherwise false.")
 			Boolean primary) {
 		
 		builder.setPrimary(primary);
@@ -60,7 +60,7 @@ public class EmailBuilder extends AbstractBuilderCommand<Email> implements Shell
 
 	@Command(description = "Sets the label indicating the attribute's function.")
 	public void setType(
-			@Param(name = "type", description = "The type of the attribute.")
+			@Param(value = "type", description = "The type of the attribute.")
 			Type type) {
 		
 		builder.setType(type);
@@ -68,7 +68,7 @@ public class EmailBuilder extends AbstractBuilderCommand<Email> implements Shell
 
 	@Command(description = "Set the value of the email.")
 	public void setValue(
-			@Param(name = "value", description = "The value (a valid email-address).")
+			@Param(value = "value", description = "The value (a valid email-address).")
 			String value) {
 		
 		builder.setValue(value);

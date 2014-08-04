@@ -33,9 +33,9 @@ public class UpdateUserUpdateCommands {
 	
 	@Command(description = "Update an address from the user.")
 	public void updateAddress(
-			@Param(name = "searchKey", description = "Which key should be used to identify the address.")
+			@Param(value = "searchKey", description = "Which key should be used to identify the address.")
 			String key,
-			@Param(name = "expr", description = "If the value matches this regular expression, the address will updated.")
+			@Param(value = "expr", description = "If the value matches this regular expression, the address will updated.")
 			String valueExp) throws IOException{
 		
 		Set<Address> addresses = builderCommand.showAllAddresses();
@@ -51,9 +51,9 @@ public class UpdateUserUpdateCommands {
 	
 	@Command(description = "Update an email from the user.")
 	public void updateEmail(
-			@Param(name = "searchKey", description = "Which key should be used to identify the email.")
+			@Param(value = "searchKey", description = "Which key should be used to identify the email.")
 			String key,
-			@Param(name = "expr", description = "If the value matches this regular expression, the email will updated.")
+			@Param(value = "expr", description = "If the value matches this regular expression, the email will updated.")
 			String valueExp) throws IOException{
 		
 		Set<Email> emails = builderCommand.showAllEmails();
@@ -69,9 +69,9 @@ public class UpdateUserUpdateCommands {
 	
 	@Command(description = "Update an entitlement from the user.")
 	public void updateEntitlement(
-			@Param(name = "searchKey", description = "Which key should be used to identify the entitlement.")
+			@Param(value = "searchKey", description = "Which key should be used to identify the entitlement.")
 			String key,
-			@Param(name = "expr", description = "If the value matches this regular expression, the entitlement will updated.")
+			@Param(value = "expr", description = "If the value matches this regular expression, the entitlement will updated.")
 			String valueExp) throws IOException{
 		
 		Set<Entitlement> entitlements = builderCommand.showAllEntitlements();
@@ -87,7 +87,7 @@ public class UpdateUserUpdateCommands {
 	
 	@Command(description = "Update the extension.")
 	public void updateExtension(
-			@Param(name = "urn", description = "The URN of the extension.")
+			@Param(value = "urn", description = "The URN of the extension.")
 			String urn) throws IOException{
 		
 		final Extension extension = builderCommand.builderShellFactory.enterExtensionShell(urn);
@@ -98,9 +98,9 @@ public class UpdateUserUpdateCommands {
 	
 	@Command(description = "Update an im from the user.")
 	public void updateIm(
-			@Param(name = "searchKey", description = "Which key should be used to identify the im.")
+			@Param(value = "searchKey", description = "Which key should be used to identify the im.")
 			String key,
-			@Param(name = "expr", description = "If the value matches this regular expression, the im will updated.")
+			@Param(value = "expr", description = "If the value matches this regular expression, the im will updated.")
 			String valueExp) throws IOException{
 		
 		Set<Im> im = builderCommand.showAllIms();
@@ -124,9 +124,9 @@ public class UpdateUserUpdateCommands {
 	
 	@Command(description = "Update a phone number from the user.")
 	public void updatePhoneNumber(
-			@Param(name = "searchKey", description = "Which key should be used to identify the phone number.")
+			@Param(value = "searchKey", description = "Which key should be used to identify the phone number.")
 			String key,
-			@Param(name = "expr", description = "If the value matches this regular expression, the phone number will updated.")
+			@Param(value = "expr", description = "If the value matches this regular expression, the phone number will updated.")
 			String valueExp) throws IOException{
 		
 		Set<PhoneNumber> phoneNumbers = builderCommand.showAllPhoneNumbers();
@@ -143,9 +143,9 @@ public class UpdateUserUpdateCommands {
 	
 	@Command(description = "Update a photo from the user.")
 	public void updatePhoto(
-			@Param(name = "searchKey", description = "Which key should be used to identify the photo.")
+			@Param(value = "searchKey", description = "Which key should be used to identify the photo.")
 			String key,
-			@Param(name = "expr", description = "If the value matches this regular expression, the photo will updated.")
+			@Param(value = "expr", description = "If the value matches this regular expression, the photo will updated.")
 			String valueExp) throws IOException{
 		
 		Set<Photo> photos = builderCommand.showAllPhotos();
@@ -161,9 +161,9 @@ public class UpdateUserUpdateCommands {
 	
 	@Command(description = "Update a role from the user.")
 	public void updateRole(
-			@Param(name = "searchKey", description = "Which key should be used to identify the role.")
+			@Param(value = "searchKey", description = "Which key should be used to identify the role.")
 			String key,
-			@Param(name = "expr", description = "If the value matches this regular expression, the role will updated.")
+			@Param(value = "expr", description = "If the value matches this regular expression, the role will updated.")
 			String valueExp) throws IOException{
 		
 		Set<Role> roles = builderCommand.showAllRoles();
@@ -179,9 +179,9 @@ public class UpdateUserUpdateCommands {
 	
 	@Command(description = "Update a certificate from the user.")
 	public void updateCertificate(
-			@Param(name = "searchKey", description = "Which key should be used to identify the certificate.")
+			@Param(value = "searchKey", description = "Which key should be used to identify the certificate.")
 			String key,
-			@Param(name = "expr", description = "If the value matches this regular expression, the certificate will updated.")
+			@Param(value = "expr", description = "If the value matches this regular expression, the certificate will updated.")
 			String valueExp) throws IOException{
 		
 		Set<X509Certificate> certificates = builderCommand.showAllX509Certificates();

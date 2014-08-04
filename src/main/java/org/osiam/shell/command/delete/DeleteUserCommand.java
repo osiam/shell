@@ -21,7 +21,7 @@ public class DeleteUserCommand extends OsiamAccessCommand {
 
 	@Command(description = "Delete the given user.")
 	public String deleteUser(
-			@Param(name = "userName", description = "The name of the user.")
+			@Param(value = "userName", description = "The name of the user.")
 			String userName) {
 		final User user = getUser(userName);
 		if(user == null) return "There is no user with the username \"" + userName + "\"!";

@@ -56,7 +56,7 @@ public abstract class SearchResultCommand<SearchType> extends OsiamAccessCommand
 	
 	@Command(name = COMMAND_NAME_NEXT, description = COMMAND_DESCRIPTION_NEXT)
 	public List<SearchType> next(
-			@Param(name = PARAM_NAME_LIMIT, description = PARAM_DESCRIPTION_LIMIT)
+			@Param(value = PARAM_NAME_LIMIT, description = PARAM_DESCRIPTION_LIMIT)
 			Integer limit){
 		
 		if(end) return null;
@@ -85,7 +85,7 @@ public abstract class SearchResultCommand<SearchType> extends OsiamAccessCommand
 	
 	@Command(name = COMMAND_NAME_PREVIOUS, description = COMMAND_DESCRIPTION_PREVIOUS)
 	public List<SearchType> previous(
-			@Param(name = PARAM_NAME_LIMIT, description = PARAM_DESCRIPTION_LIMIT)
+			@Param(value = PARAM_NAME_LIMIT, description = PARAM_DESCRIPTION_LIMIT)
 			Integer limit){
 		
 		if(begin) return null;

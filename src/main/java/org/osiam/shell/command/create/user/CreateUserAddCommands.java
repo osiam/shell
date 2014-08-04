@@ -63,7 +63,7 @@ public class CreateUserAddCommands {
 	
 	@Command(description = "Add an extension.")
 	public void addExtension(
-			@Param(name = "urn", description = "The URN of the extension.")
+			@Param(value = "urn", description = "The URN of the extension.")
 			String urn) throws IOException{
 		
 		final Extension extension = builderCommand.builderShellFactory.enterExtensionShell(urn);

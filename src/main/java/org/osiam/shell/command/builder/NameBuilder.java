@@ -21,7 +21,7 @@ public class NameBuilder extends AbstractBuilderCommand<Name> {
 	
 	@Command(description = "Set the familiy name.")
 	public void setFamilyName(
-			@Param(name = "familyName", description = "The family name.")
+			@Param(value = "familyName", description = "The family name.")
 			String familyName) {
 		
 		builder.setFamilyName(familyName);
@@ -29,7 +29,7 @@ public class NameBuilder extends AbstractBuilderCommand<Name> {
 
 	@Command(description = "Set the formatted name.")
 	public void setFormatted(
-			@Param(name = "formatted", description = "The formatted name.")
+			@Param(value = "formatted", description = "The formatted name.")
 			String formatted) {
 		
 		builder.setFormatted(formatted);
@@ -37,7 +37,7 @@ public class NameBuilder extends AbstractBuilderCommand<Name> {
 
 	@Command(description = "Set the given name.")
 	public void setGivenName(
-			@Param(name = "givenName", description = "The given name.")
+			@Param(value = "givenName", description = "The given name.")
 			String givenName) {
 		
 		builder.setGivenName(givenName);
@@ -45,7 +45,7 @@ public class NameBuilder extends AbstractBuilderCommand<Name> {
 
 	@Command(description = "Set the honorific prefix.")
 	public void setHonorificPrefix(
-			@Param(name = "honorificPrefix", description = "The honorific prefix.")
+			@Param(value = "honorificPrefix", description = "The honorific prefix.")
 			String honorificPrefix) {
 		
 		builder.setHonorificPrefix(honorificPrefix);
@@ -53,7 +53,7 @@ public class NameBuilder extends AbstractBuilderCommand<Name> {
 
 	@Command(description = "Set the honorific suffix.")
 	public void setHonorificSuffix(
-			@Param(name = "honorificSuffix", description = "The honorific suffix.")
+			@Param(value = "honorificSuffix", description = "The honorific suffix.")
 			String honorificSuffix) {
 		
 		builder.setHonorificSuffix(honorificSuffix);
@@ -61,7 +61,7 @@ public class NameBuilder extends AbstractBuilderCommand<Name> {
 
 	@Command(description = "Set the middle name.")
 	public void setMiddleName(
-			@Param(name = "middleName", description = "The middle name.")
+			@Param(value = "middleName", description = "The middle name.")
 			String middleName) {
 		
 		builder.setMiddleName(middleName);

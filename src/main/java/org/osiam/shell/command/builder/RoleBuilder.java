@@ -44,7 +44,7 @@ public class RoleBuilder extends AbstractBuilderCommand<Role> implements ShellDe
 
 	@Command(description = "Set the display name of the role.")
 	public void setDisplay(
-			@Param(name = "display", description = "The display name.")
+			@Param(value = "display", description = "The display name.")
 			String display) {
 		
 		builder.setDisplay(display);
@@ -52,7 +52,7 @@ public class RoleBuilder extends AbstractBuilderCommand<Role> implements ShellDe
 
 	@Command(description = "Is this role primary?")
 	public void setPrimary(
-			@Param(name = "primary", description = "True if this role is primary. Otherwise false.")
+			@Param(value = "primary", description = "True if this role is primary. Otherwise false.")
 			Boolean primary) {
 		
 		builder.setPrimary(primary);
@@ -60,7 +60,7 @@ public class RoleBuilder extends AbstractBuilderCommand<Role> implements ShellDe
 
 	@Command(description = "Sets the label indicating the attribute's function.")
 	public void setType(
-			@Param(name = "type", description = "The type of the attribute.")
+			@Param(value = "type", description = "The type of the attribute.")
 			Type type) {
 		
 		builder.setType(type);
@@ -68,7 +68,7 @@ public class RoleBuilder extends AbstractBuilderCommand<Role> implements ShellDe
 
 	@Command(description = "Set the value of the role.")
 	public void setValue(
-			@Param(name = "value", description = "The value.")
+			@Param(value = "value", description = "The value.")
 			String value) {
 		
 		builder.setValue(value);

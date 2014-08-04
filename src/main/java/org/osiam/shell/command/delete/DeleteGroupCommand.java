@@ -21,7 +21,7 @@ public class DeleteGroupCommand extends OsiamAccessCommand {
 
 	@Command(description = "Delete the given group.")
 	public String deleteGroup(
-			@Param(name = "groupName", description = "The name of the group.")
+			@Param(value = "groupName", description = "The name of the group.")
 			String groupName) {
 		final Group group = getGroup(groupName);
 		if(group == null) return "There is no group with the name \"" + groupName + "\"!";

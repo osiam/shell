@@ -34,7 +34,7 @@ public class SelectUserCommand extends OsiamAccessCommand implements ShellDepend
 	
 	@Command(description="Show the user with the given user id.")
 	public User showUser(
-			@Param(name = "userId", description = "The id of the user that should be shown.")
+			@Param(value = "userId", description = "The id of the user that should be shown.")
 			String userId){
 		
 		return connector.getUser(userId, accessToken);
@@ -47,7 +47,7 @@ public class SelectUserCommand extends OsiamAccessCommand implements ShellDepend
 	
 	@Command(description = "Search for existing users by a given filter.")
 	public void searchUsers(
-			@Param(name = "filter", description = "The filter string.")
+			@Param(value = "filter", description = "The filter string.")
 			String filter) throws CLIException, IOException{
 
 		searchUsers(filter, 1L, 1, "userName", true);
@@ -55,15 +55,15 @@ public class SelectUserCommand extends OsiamAccessCommand implements ShellDepend
 	
 	@Command(description = "Search for existing users by a given Query.")
 	public void searchUsers(
-			@Param(name = "filter", description = "The filter string.")
+			@Param(value = "filter", description = "The filter string.")
 			String filter,
-			@Param(name="index", description = "The index (1-based) of the first resource.")
+			@Param(value="index", description = "The index (1-based) of the first resource.")
 			Long startIndex,
-			@Param(name = "limit", description = "The number of returned users per page.")
+			@Param(value = "limit", description = "The number of returned users per page.")
 			Integer limit,
-			@Param(name = "orderBy", description = "Sort the users by the given attribute.")
+			@Param(value = "orderBy", description = "Sort the users by the given attribute.")
 			String orderBy,
-			@Param(name = "asc", description = "Should the users sorted ascending?")
+			@Param(value = "asc", description = "Should the users sorted ascending?")
 			Boolean ascending) throws CLIException, IOException{
 		
 		final QueryBuilder builder = new QueryBuilder()

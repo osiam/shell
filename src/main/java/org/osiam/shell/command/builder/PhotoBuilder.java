@@ -51,7 +51,7 @@ public class PhotoBuilder extends AbstractBuilderCommand<Photo> implements Shell
 
 	@Command(description = "Set the display name of the photo.")
 	public void setDisplay(
-			@Param(name = "display", description = "The display name.")
+			@Param(value = "display", description = "The display name.")
 			String display) {
 		
 		builder.setDisplay(display);
@@ -59,7 +59,7 @@ public class PhotoBuilder extends AbstractBuilderCommand<Photo> implements Shell
 
 	@Command(description = "Is this photo primary?")
 	public void setPrimary(
-			@Param(name = "primary", description = "True if this photo is primary. Otherwise false.")
+			@Param(value = "primary", description = "True if this photo is primary. Otherwise false.")
 			Boolean primary) {
 		
 		builder.setPrimary(primary);
@@ -67,7 +67,7 @@ public class PhotoBuilder extends AbstractBuilderCommand<Photo> implements Shell
 
 	@Command(description = "Sets the label indicating the attribute's function.")
 	public void setType(
-			@Param(name = "type", description = "The type of the attribute.")
+			@Param(value = "type", description = "The type of the attribute.")
 			Type type) {
 		
 		builder.setType(type);
@@ -75,7 +75,7 @@ public class PhotoBuilder extends AbstractBuilderCommand<Photo> implements Shell
 
 	@Command(description = "Set the uri value of the photo.")
 	public void setUriValue(
-			@Param(name = "uri", description = "A URI of the form data:image/[image extension][;base64],<data>")
+			@Param(value = "uri", description = "A URI of the form data:image/[image extension][;base64],<data>")
 			String uri) {
 		
 		builder.setValue(URI.create(uri));
@@ -83,7 +83,7 @@ public class PhotoBuilder extends AbstractBuilderCommand<Photo> implements Shell
 	
 	@Command(description = "Set the value of the photo.")
 	public void setValue(
-			@Param(name = "path", description = "The path of the localy stored photo file.")
+			@Param(value = "path", description = "The path of the localy stored photo file.")
 			String path) throws FileNotFoundException, IOException {
 		
 		FileInputStream fileInputStream = new FileInputStream(new File(path));

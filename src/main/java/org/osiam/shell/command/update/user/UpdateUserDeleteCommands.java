@@ -70,9 +70,9 @@ public class UpdateUserDeleteCommands {
 	
 	@Command(description = "Delete an address from the user.")
 	public void deleteAddress(
-			@Param(name = "searchKey", description = "Which key should be used to identify the address.")
+			@Param(value = "searchKey", description = "Which key should be used to identify the address.")
 			String key,
-			@Param(name = "expr", description = "If the value matches this regular expression, the address will deleted.")
+			@Param(value = "expr", description = "If the value matches this regular expression, the address will deleted.")
 			String valueExp){
 		
 		Set<Address> addresses = builderCommand.showAllAddresses();
@@ -85,9 +85,9 @@ public class UpdateUserDeleteCommands {
 	
 	@Command(description = "Delete an email from the user.")
 	public void deleteEmail(
-			@Param(name = "searchKey", description = "Which key should be used to identify the email.")
+			@Param(value = "searchKey", description = "Which key should be used to identify the email.")
 			String key,
-			@Param(name = "expr", description = "If the value matches this regular expression, the email will deleted.")
+			@Param(value = "expr", description = "If the value matches this regular expression, the email will deleted.")
 			String valueExp){
 		
 		Set<Email> emails = builderCommand.showAllEmails();
@@ -100,9 +100,9 @@ public class UpdateUserDeleteCommands {
 	
 	@Command(description = "Delete an entitlement from the user.")
 	public void deleteEntitlement(
-			@Param(name = "searchKey", description = "Which key should be used to identify the entitlement.")
+			@Param(value = "searchKey", description = "Which key should be used to identify the entitlement.")
 			String key,
-			@Param(name = "expr", description = "If the value matches this regular expression, the entitlement will deleted.")
+			@Param(value = "expr", description = "If the value matches this regular expression, the entitlement will deleted.")
 			String valueExp){
 		
 		Set<Entitlement> entitlements = builderCommand.showAllEntitlements();
@@ -115,7 +115,7 @@ public class UpdateUserDeleteCommands {
 	
 	@Command(description = "Deletes the given extension.")
 	public void deleteExtension(
-			@Param(name = "urn", description = "The URN of the extension.")
+			@Param(value = "urn", description = "The URN of the extension.")
 			String urn) {
 		
 		builderCommand.builder.deleteExtension(urn);
@@ -123,9 +123,9 @@ public class UpdateUserDeleteCommands {
 	
 	@Command(description = "Delete an im from the user.")
 	public void deleteIm(
-			@Param(name = "searchKey", description = "Which key should be used to identify the im.")
+			@Param(value = "searchKey", description = "Which key should be used to identify the im.")
 			String key,
-			@Param(name = "expr", description = "If the value matches this regular expression, the im will deleted.")
+			@Param(value = "expr", description = "If the value matches this regular expression, the im will deleted.")
 			String valueExp){
 		
 		Set<Im> im = builderCommand.showAllIms();
@@ -138,9 +138,9 @@ public class UpdateUserDeleteCommands {
 	
 	@Command(description = "Delete a phone number from the user.")
 	public void deletePhoneNumber(
-			@Param(name = "searchKey", description = "Which key should be used to identify the phone number.")
+			@Param(value = "searchKey", description = "Which key should be used to identify the phone number.")
 			String key,
-			@Param(name = "expr", description = "If the value matches this regular expression, the phone number will deleted.")
+			@Param(value = "expr", description = "If the value matches this regular expression, the phone number will deleted.")
 			String valueExp){
 		
 		Set<PhoneNumber> phoneNumbers = builderCommand.showAllPhoneNumbers();
@@ -154,9 +154,9 @@ public class UpdateUserDeleteCommands {
 	
 	@Command(description = "Delete a photo from the user.")
 	public void deletePhoto(
-			@Param(name = "searchKey", description = "Which key should be used to identify the photo.")
+			@Param(value = "searchKey", description = "Which key should be used to identify the photo.")
 			String key,
-			@Param(name = "expr", description = "If the value matches this regular expression, the photo will deleted.")
+			@Param(value = "expr", description = "If the value matches this regular expression, the photo will deleted.")
 			String valueExp){
 		
 		Set<Photo> photos = builderCommand.showAllPhotos();
@@ -169,9 +169,9 @@ public class UpdateUserDeleteCommands {
 	
 	@Command(description = "Delete a role from the user.")
 	public void deleteRole(
-			@Param(name = "searchKey", description = "Which key should be used to identify the role.")
+			@Param(value = "searchKey", description = "Which key should be used to identify the role.")
 			String key,
-			@Param(name = "expr", description = "If the value matches this regular expression, the role will deleted.")
+			@Param(value = "expr", description = "If the value matches this regular expression, the role will deleted.")
 			String valueExp){
 		
 		Set<Role> roles = builderCommand.showAllRoles();
@@ -184,9 +184,9 @@ public class UpdateUserDeleteCommands {
 	
 	@Command(description = "Delete a certificate from the user.")
 	public void deleteCertificate(
-			@Param(name = "searchKey", description = "Which key should be used to identify the certificate.")
+			@Param(value = "searchKey", description = "Which key should be used to identify the certificate.")
 			String key,
-			@Param(name = "expr", description = "If the value matches this regular expression, the certificate will deleted.")
+			@Param(value = "expr", description = "If the value matches this regular expression, the certificate will deleted.")
 			String valueExp){
 		
 		Set<X509Certificate> certificates = builderCommand.showAllX509Certificates();

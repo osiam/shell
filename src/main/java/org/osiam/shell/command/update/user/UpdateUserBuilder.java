@@ -86,7 +86,7 @@ public class UpdateUserBuilder extends AbstractBuilderCommand<UpdateUser>
 
 	@Command(description = "Set the display name of the user.")
 	public void updateDisplayName(
-			@Param(name = "displayName", description = "The new display name for the user.")
+			@Param(value = "displayName", description = "The new display name for the user.")
 			String displayName) {
 		
 		builder.updateDisplayName(displayName);
@@ -94,7 +94,7 @@ public class UpdateUserBuilder extends AbstractBuilderCommand<UpdateUser>
 
 	@Command(description = "Set the of externalId the user.")
 	public void updateExternalId(
-			@Param(name = "externalId", description = "The new externalId for the user.")
+			@Param(value = "externalId", description = "The new externalId for the user.")
 			String externalId) {
 
 		builder.updateExternalId(externalId);
@@ -102,7 +102,7 @@ public class UpdateUserBuilder extends AbstractBuilderCommand<UpdateUser>
 
 	@Command(description = "Set the locale of the user.")
 	public void updateLocale(
-			@Param(name = "locale", description = "The new locale for the user.")
+			@Param(value = "locale", description = "The new locale for the user.")
 			String locale) {
 		
 		builder.updateLocale(locale);
@@ -110,7 +110,7 @@ public class UpdateUserBuilder extends AbstractBuilderCommand<UpdateUser>
 
 	@Command(description = "Set the nickname of the user.")
 	public void updateNickName(
-			@Param(name = "nickName", description = "The new nickname for the user.")
+			@Param(value = "nickName", description = "The new nickname for the user.")
 			String nickName) {
 		
 		builder.updateNickName(nickName);
@@ -118,7 +118,7 @@ public class UpdateUserBuilder extends AbstractBuilderCommand<UpdateUser>
 
 	@Command(description = "Set the password of the user.")
 	public void updatePassword(
-			@Param(name = "password", description = "The new password for the user.")
+			@Param(value = "password", description = "The new password for the user.")
 			String password) {
 		
 		builder.updatePassword(password);
@@ -145,7 +145,7 @@ public class UpdateUserBuilder extends AbstractBuilderCommand<UpdateUser>
 
 	@Command(description = "Set the preferred language of the user.")
 	public void updatePreferredLanguage(
-			@Param(name = "language", description = "The new preferred language for the user.")
+			@Param(value = "language", description = "The new preferred language for the user.")
 			String preferredLanguage) {
 		
 		builder.updatePreferredLanguage(preferredLanguage);
@@ -153,7 +153,7 @@ public class UpdateUserBuilder extends AbstractBuilderCommand<UpdateUser>
 
 	@Command(description = "Set the profile URL of the user.")
 	public void updateProfileUrl(
-			@Param(name = "url", description = "The new profile URL for the user.")
+			@Param(value = "url", description = "The new profile URL for the user.")
 			String profileUrl) {
 		
 		builder.updateProfileUrl(profileUrl);
@@ -161,7 +161,7 @@ public class UpdateUserBuilder extends AbstractBuilderCommand<UpdateUser>
 
 	@Command(description = "Set the timezone of the user.")
 	public void updateTimezone(
-			@Param(name = "timezone", description = "The new timezone for the user.")
+			@Param(value = "timezone", description = "The new timezone for the user.")
 			String timezone) {
 
 		builder.updateTimezone(timezone);
@@ -169,7 +169,7 @@ public class UpdateUserBuilder extends AbstractBuilderCommand<UpdateUser>
 
 	@Command(description = "Set the title of the user.")
 	public void updateTitle(
-			@Param(name = "title", description = "The new title for the user.")
+			@Param(value = "title", description = "The new title for the user.")
 			String title) {
 		
 		builder.updateTitle(title);
@@ -177,7 +177,7 @@ public class UpdateUserBuilder extends AbstractBuilderCommand<UpdateUser>
 
 	@Command(description = "Rename the user.")
 	public void rename(
-			@Param(name = "name", description = "The new name for the user.")
+			@Param(value = "name", description = "The new name for the user.")
 			String userName) {
 		
 		builder.updateUserName(userName);
@@ -185,7 +185,7 @@ public class UpdateUserBuilder extends AbstractBuilderCommand<UpdateUser>
 
 	@Command(description = "Set the type of the user.")
 	public void updateUserType(
-			@Param(name = "type", description = "The new type for the user.")
+			@Param(value = "type", description = "The new type for the user.")
 			String userType) {
 		
 		builder.updateUserType(userType);

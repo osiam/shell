@@ -51,11 +51,11 @@ public class ConnectionCommand implements ShellDependent, InputDependent {
 	
 	@Command(description=COMMAND_DESCRIPTION_WITHOUT_SECRET)
 	public void connect(
-			@Param(name=PARAM_NAME_ENDPOINT, description=PARAM_DESCRIPTION_ENDPOINT)
+			@Param(value=PARAM_NAME_ENDPOINT, description=PARAM_DESCRIPTION_ENDPOINT)
 			String endpoint,
-			@Param(name=PARAM_NAME_REDIRECT_URI, description=PARAM_DESCRIPTION_REDIRECT_URI)
+			@Param(value=PARAM_NAME_REDIRECT_URI, description=PARAM_DESCRIPTION_REDIRECT_URI)
 			String redirectUri,
-			@Param(name=PARAM_NAME_CLIENT_ID, description=PARAM_DESCRIPTION_CLIENT_ID)
+			@Param(value=PARAM_NAME_CLIENT_ID, description=PARAM_DESCRIPTION_CLIENT_ID)
 			String clientId) throws IOException{
 		
 		final String clientSecret = readClientSecret();
@@ -64,13 +64,13 @@ public class ConnectionCommand implements ShellDependent, InputDependent {
 
 	@Command(description=COMMAND_DESCRIPTION_WITH_SECRET)
 	public void connect(
-			@Param(name=PARAM_NAME_ENDPOINT, description=PARAM_DESCRIPTION_ENDPOINT)
+			@Param(value=PARAM_NAME_ENDPOINT, description=PARAM_DESCRIPTION_ENDPOINT)
 			String endpoint,
-			@Param(name=PARAM_NAME_REDIRECT_URI, description=PARAM_DESCRIPTION_REDIRECT_URI)
+			@Param(value=PARAM_NAME_REDIRECT_URI, description=PARAM_DESCRIPTION_REDIRECT_URI)
 			String redirectUri,
-			@Param(name=PARAM_NAME_CLIENT_ID, description=PARAM_DESCRIPTION_CLIENT_ID)
+			@Param(value=PARAM_NAME_CLIENT_ID, description=PARAM_DESCRIPTION_CLIENT_ID)
 			String clientId,
-			@Param(name=PARAM_NAME_CLIENT_SECRET, description=PARAM_DESCRIPTION_CLIENT_SECRET)
+			@Param(value=PARAM_NAME_CLIENT_SECRET, description=PARAM_DESCRIPTION_CLIENT_SECRET)
 			String clientSecret) throws IOException{
 		
 		final OsiamConnector connector = new OsiamConnector.Builder()
@@ -85,13 +85,13 @@ public class ConnectionCommand implements ShellDependent, InputDependent {
 	
 	@Command(description=COMMAND_DESCRIPTION_WITHOUT_SECRET)
 	public void connectAdvanced(
-			@Param(name=PARAM_NAME_AUTHENTICATION_ENDPOINT, description=PARAM_DESCRIPTION_AUTHENTICATION_ENDPOINT)
+			@Param(value=PARAM_NAME_AUTHENTICATION_ENDPOINT, description=PARAM_DESCRIPTION_AUTHENTICATION_ENDPOINT)
 			String authEndpoint,
-			@Param(name=PARAM_NAME_RESOURCE_ENDPOINT, description=PARAM_DESCRIPTION_RESOURCE_ENDPOINT)
+			@Param(value=PARAM_NAME_RESOURCE_ENDPOINT, description=PARAM_DESCRIPTION_RESOURCE_ENDPOINT)
 			String resourceEndpoint,
-			@Param(name=PARAM_NAME_REDIRECT_URI, description=PARAM_DESCRIPTION_REDIRECT_URI)
+			@Param(value=PARAM_NAME_REDIRECT_URI, description=PARAM_DESCRIPTION_REDIRECT_URI)
 			String redirectUri,
-			@Param(name=PARAM_NAME_CLIENT_ID, description=PARAM_DESCRIPTION_CLIENT_ID)
+			@Param(value=PARAM_NAME_CLIENT_ID, description=PARAM_DESCRIPTION_CLIENT_ID)
 			String clientId) throws IOException{
 		
 		final String clientSecret = readClientSecret();
@@ -100,15 +100,15 @@ public class ConnectionCommand implements ShellDependent, InputDependent {
 	
 	@Command(description=COMMAND_DESCRIPTION_WITH_SECRET)
 	public void connectAdvanced(
-			@Param(name=PARAM_NAME_AUTHENTICATION_ENDPOINT, description=PARAM_DESCRIPTION_AUTHENTICATION_ENDPOINT)
+			@Param(value=PARAM_NAME_AUTHENTICATION_ENDPOINT, description=PARAM_DESCRIPTION_AUTHENTICATION_ENDPOINT)
 			String authEndpoint,
-			@Param(name=PARAM_NAME_RESOURCE_ENDPOINT, description=PARAM_DESCRIPTION_RESOURCE_ENDPOINT)
+			@Param(value=PARAM_NAME_RESOURCE_ENDPOINT, description=PARAM_DESCRIPTION_RESOURCE_ENDPOINT)
 			String resourceEndpoint,
-			@Param(name=PARAM_NAME_REDIRECT_URI, description=PARAM_DESCRIPTION_REDIRECT_URI)
+			@Param(value=PARAM_NAME_REDIRECT_URI, description=PARAM_DESCRIPTION_REDIRECT_URI)
 			String redirectUri,
-			@Param(name=PARAM_NAME_CLIENT_ID, description=PARAM_DESCRIPTION_CLIENT_ID)
+			@Param(value=PARAM_NAME_CLIENT_ID, description=PARAM_DESCRIPTION_CLIENT_ID)
 			String clientId,
-			@Param(name=PARAM_NAME_CLIENT_SECRET, description=PARAM_DESCRIPTION_CLIENT_SECRET)
+			@Param(value=PARAM_NAME_CLIENT_SECRET, description=PARAM_DESCRIPTION_CLIENT_SECRET)
 			String clientSecret) throws IOException{
 		
 		final OsiamConnector connector = new OsiamConnector.Builder()
