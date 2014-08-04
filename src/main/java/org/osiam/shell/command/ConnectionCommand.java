@@ -7,11 +7,11 @@ import org.osiam.client.oauth.Scope;
 
 import de.raysha.lib.jsimpleshell.Shell;
 import de.raysha.lib.jsimpleshell.ShellBuilder;
-import de.raysha.lib.jsimpleshell.ShellDependent;
 import de.raysha.lib.jsimpleshell.annotation.Command;
 import de.raysha.lib.jsimpleshell.annotation.Param;
+import de.raysha.lib.jsimpleshell.handler.InputDependent;
+import de.raysha.lib.jsimpleshell.handler.ShellDependent;
 import de.raysha.lib.jsimpleshell.io.InputBuilder;
-import de.raysha.lib.jsimpleshell.io.InputDependent;
 
 /**
  * At begining the user must "connect" to a osiam server.
@@ -131,8 +131,6 @@ public class ConnectionCommand implements ShellDependent, InputDependent {
 	
 	private void openSubShell(OsiamConnector connector) throws IOException {
 		final Shell subshell = ShellBuilder.subshell(getHostName(connector), shell)
-									.enableCommandCompleter()
-									.enableFileNameCompleter()
 									.addHandler(new LoginCommand(connector))
 								.build();
 		

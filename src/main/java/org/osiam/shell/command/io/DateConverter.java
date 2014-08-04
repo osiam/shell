@@ -4,8 +4,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import de.raysha.lib.jsimpleshell.io.InputConverter;
-import de.raysha.lib.jsimpleshell.io.OutputConverter;
+import de.raysha.lib.jsimpleshell.handler.InputConverter;
+import de.raysha.lib.jsimpleshell.handler.OutputConverter;
 
 /**
  * {@link OutputConverter} for the {@link Date}

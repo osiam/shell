@@ -2,8 +2,8 @@ package org.osiam.shell.command.io;
 
 import java.net.URI;
 
-import de.raysha.lib.jsimpleshell.io.InputConverter;
-import de.raysha.lib.jsimpleshell.io.OutputConverter;
+import de.raysha.lib.jsimpleshell.handler.InputConverter;
+import de.raysha.lib.jsimpleshell.handler.OutputConverter;
 
 /**
  * {@link OutputConverter} for the {@link URI}

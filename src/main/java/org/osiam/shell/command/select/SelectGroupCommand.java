@@ -11,10 +11,10 @@ import org.osiam.shell.command.OsiamAccessCommand;
 
 import de.raysha.lib.jsimpleshell.Shell;
 import de.raysha.lib.jsimpleshell.ShellBuilder;
-import de.raysha.lib.jsimpleshell.ShellDependent;
 import de.raysha.lib.jsimpleshell.annotation.Command;
 import de.raysha.lib.jsimpleshell.annotation.Param;
 import de.raysha.lib.jsimpleshell.exception.CLIException;
+import de.raysha.lib.jsimpleshell.handler.ShellDependent;
 
 /**
  * This class contains all commands with that show(select) groups.

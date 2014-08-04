@@ -5,9 +5,9 @@ import org.osiam.resources.scim.X509Certificate.Type;
 import org.osiam.shell.command.AbstractBuilderCommand;
 
 import de.raysha.lib.jsimpleshell.Shell;
-import de.raysha.lib.jsimpleshell.ShellDependent;
 import de.raysha.lib.jsimpleshell.annotation.Command;
 import de.raysha.lib.jsimpleshell.annotation.Param;
+import de.raysha.lib.jsimpleshell.handler.ShellDependent;
 
 /**
  * This class contains commands which can create {@link X509Certificate}s.

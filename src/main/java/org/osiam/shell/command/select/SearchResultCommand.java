@@ -11,8 +11,8 @@ import org.osiam.shell.command.OsiamAccessCommand;
 
 import de.raysha.lib.jsimpleshell.annotation.Command;
 import de.raysha.lib.jsimpleshell.annotation.Param;
+import de.raysha.lib.jsimpleshell.handler.OutputDependent;
 import de.raysha.lib.jsimpleshell.io.OutputBuilder;
-import de.raysha.lib.jsimpleshell.io.OutputDependent;
 
 /**
  * This abstract class contains Commands for paging through a {@link SCIMSearchResult}.

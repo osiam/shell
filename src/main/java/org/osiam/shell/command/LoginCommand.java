@@ -16,11 +16,11 @@ import org.osiam.shell.command.update.UpdateUserCommand;
 
 import de.raysha.lib.jsimpleshell.Shell;
 import de.raysha.lib.jsimpleshell.ShellBuilder;
-import de.raysha.lib.jsimpleshell.ShellDependent;
 import de.raysha.lib.jsimpleshell.annotation.Command;
 import de.raysha.lib.jsimpleshell.annotation.Param;
+import de.raysha.lib.jsimpleshell.handler.InputDependent;
+import de.raysha.lib.jsimpleshell.handler.ShellDependent;
 import de.raysha.lib.jsimpleshell.io.InputBuilder;
-import de.raysha.lib.jsimpleshell.io.InputDependent;
 
 /**
  * After the connection to a osiam server, the user must login.

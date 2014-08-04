@@ -10,11 +10,11 @@ import org.osiam.shell.command.create.user.CreateUserBuilder;
 
 import de.raysha.lib.jsimpleshell.Shell;
 import de.raysha.lib.jsimpleshell.ShellBuilder;
-import de.raysha.lib.jsimpleshell.ShellDependent;
 import de.raysha.lib.jsimpleshell.annotation.Command;
 import de.raysha.lib.jsimpleshell.annotation.Param;
+import de.raysha.lib.jsimpleshell.handler.OutputDependent;
+import de.raysha.lib.jsimpleshell.handler.ShellDependent;
 import de.raysha.lib.jsimpleshell.io.OutputBuilder;
-import de.raysha.lib.jsimpleshell.io.OutputDependent;
 
 /**
  * This class contains commands which can create users.

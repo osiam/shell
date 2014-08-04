@@ -4,9 +4,9 @@ import org.osiam.client.OsiamConnector;
 import org.osiam.client.oauth.AccessToken;
 
 import de.raysha.lib.jsimpleshell.Shell;
-import de.raysha.lib.jsimpleshell.ShellManageable;
 import de.raysha.lib.jsimpleshell.annotation.Command;
 import de.raysha.lib.jsimpleshell.exception.ExitException;
+import de.raysha.lib.jsimpleshell.handler.ShellManageable;
 
 /**
  * After the user is logged in, the user can also log out.

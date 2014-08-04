@@ -4,8 +4,8 @@ import java.text.SimpleDateFormat;
 
 import org.osiam.client.oauth.AccessToken;
 
-import de.raysha.lib.jsimpleshell.io.InputConverter;
-import de.raysha.lib.jsimpleshell.io.OutputConverter;
+import de.raysha.lib.jsimpleshell.handler.InputConverter;
+import de.raysha.lib.jsimpleshell.handler.OutputConverter;
 
 /**
  * {@link OutputConverter} for the {@link AccessToken}
