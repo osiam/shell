@@ -15,16 +15,16 @@ import org.osiam.shell.command.update.UpdateGroupCommand;
 import org.osiam.shell.command.update.UpdateUserCommand;
 
 import de.raysha.lib.jsimpleshell.Shell;
-import de.raysha.lib.jsimpleshell.ShellBuilder;
 import de.raysha.lib.jsimpleshell.annotation.Command;
 import de.raysha.lib.jsimpleshell.annotation.Param;
+import de.raysha.lib.jsimpleshell.builder.ShellBuilder;
 import de.raysha.lib.jsimpleshell.handler.InputDependent;
 import de.raysha.lib.jsimpleshell.handler.ShellDependent;
 import de.raysha.lib.jsimpleshell.io.InputBuilder;
 
 /**
  * After the connection to a osiam server, the user must login.
- * 
+ *
  * @author rainu
  */
 public class LoginCommand implements ShellDependent, InputDependent {
@@ -33,49 +33,51 @@ public class LoginCommand implements ShellDependent, InputDependent {
 	private static final String PARAM_NAME_USERNAME = "username";
 
 	private final OsiamConnector connector;
-	
+
 	private Shell shell;
 	private InputBuilder input;
-	
+
 	public LoginCommand(OsiamConnector connector) {
 		this.connector = connector;
 	}
-	
+
 	@Override
 	public void cliSetShell(Shell theShell) {
-		this.shell = theShell;		
+		this.shell = theShell;
 	}
-	
+
 	@Override
 	public void cliSetInput(InputBuilder input) {
 		this.input = input;
 	}
-	
-	@Command(description="Login as a user. The password will be requested separately.")
+
+	@Command(description="Login as a user. The password will be requested separately.", startsSubshell = true)
 	public void login(
 			@Param(value = PARAM_NAME_USERNAME, description = PARAM_DESCRIPTION_USERNAME)
 			String userName) throws IOException{
-		
+
 		final String password = input.invisibleIn()
 									.withPromt("Enter your password: ")
 								.readLine();
-		
+
 		login(userName, password);
 	}
-	
-	@Command(description="Login as a user.")
+
+	@Command(description="Login as a user.", startsSubshell = true)
 	public void login(
 			@Param(value = PARAM_NAME_USERNAME, description = PARAM_DESCRIPTION_USERNAME)
 			String userName,
 			@Param(value = "password", description = "The password for the user.")
 			String password) throws IOException{
-		
+
 		final AccessToken at = connector.retrieveAccessToken(userName, password, Scope.ALL);
 		if(at == null){
 			throw new NullPointerException("The retrieved access token is null!");
 		}
-		
+
 		final Shell subshell = ShellBuilder.subshell("@" + userName, shell)
+								.behavior()
+									.disableExitCommand()
 									.addHandler(new LogoutCommand(at, connector))
 									.addAuxHandler(new MiscCommand(at, connector))
 									.addHandler(new SelectUserCommand(at, connector))
@@ -86,9 +88,9 @@ public class LoginCommand implements ShellDependent, InputDependent {
 									.addHandler(new UpdateUserCommand(at, connector))
 									.addHandler(new DeleteGroupCommand(at, connector))
 									.addHandler(new DeleteUserCommand(at, connector))
-								.build();
-		
+								.back().build();
+
 		subshell.commandLoop();
 	}
-	
+
 }
