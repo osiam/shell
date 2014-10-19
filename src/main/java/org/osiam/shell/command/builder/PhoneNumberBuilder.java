@@ -11,7 +11,7 @@ import de.raysha.lib.jsimpleshell.handler.ShellDependent;
 
 /**
  * This class contains commands which can create {@link PhoneNumber}s.
- * 
+ *
  * @author rainu
  */
 public class PhoneNumberBuilder extends AbstractBuilderCommand<PhoneNumber> implements ShellDependent {
@@ -20,23 +20,23 @@ public class PhoneNumberBuilder extends AbstractBuilderCommand<PhoneNumber> impl
 
 	public PhoneNumberBuilder(PhoneNumber current) {
 		this.current = current;
-		this.builder = new PhoneNumber.Builder(current);
+		this.builder = current == null ? new PhoneNumber.Builder() : new PhoneNumber.Builder(current);
 	}
-	
+
 	@Override
 	public void cliSetShell(Shell theShell) {
 		if(current != null){
 			theShell.addMainHandler(new ShowPhoneNumber(), "");
 		}
 	}
-	
+
 	public class ShowPhoneNumber {
 		@Command(description = "Shows the current (persited) phone number that will be replaced.")
 		public PhoneNumber showPhoneNumber(){
 			return current;
 		}
 	}
-	
+
 	@Command(description = "Shows the phone number state. This state is not persisted yet!")
 	public PhoneNumber showState() {
 		return _build();
@@ -46,7 +46,7 @@ public class PhoneNumberBuilder extends AbstractBuilderCommand<PhoneNumber> impl
 	public void setDisplay(
 			@Param(value = "display", description = "The display name.")
 			String display) {
-		
+
 		builder.setDisplay(display);
 	}
 
@@ -54,7 +54,7 @@ public class PhoneNumberBuilder extends AbstractBuilderCommand<PhoneNumber> impl
 	public void setPrimary(
 			@Param(value = "primary", description = "True if this phone number is primary. Otherwise false.")
 			Boolean primary) {
-		
+
 		builder.setPrimary(primary);
 	}
 
@@ -62,7 +62,7 @@ public class PhoneNumberBuilder extends AbstractBuilderCommand<PhoneNumber> impl
 	public void setType(
 			@Param(value = "type", description = "The type of the attribute.")
 			Type type) {
-		
+
 		builder.setType(type);
 	}
 
@@ -70,7 +70,7 @@ public class PhoneNumberBuilder extends AbstractBuilderCommand<PhoneNumber> impl
 	public void setValue(
 			@Param(value = "value", description = "The value.")
 			String value) {
-		
+
 		builder.setValue(value);
 	}
 

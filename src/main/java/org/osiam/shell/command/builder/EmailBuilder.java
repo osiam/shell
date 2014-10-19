@@ -11,7 +11,7 @@ import de.raysha.lib.jsimpleshell.handler.ShellDependent;
 
 /**
  * This class contains commands which can create {@link Email}s.
- * 
+ *
  * @author rainu
  */
 public class EmailBuilder extends AbstractBuilderCommand<Email> implements ShellDependent {
@@ -20,23 +20,23 @@ public class EmailBuilder extends AbstractBuilderCommand<Email> implements Shell
 
 	public EmailBuilder(Email current) {
 		this.current = current;
-		this.builder = new Email.Builder(current);
+		this.builder = current == null ? new Email.Builder() : new Email.Builder(current);
 	}
-	
+
 	@Override
 	public void cliSetShell(Shell theShell) {
 		if(current != null){
 			theShell.addMainHandler(new ShowEmail(), "");
 		}
 	}
-	
+
 	public class ShowEmail {
 		@Command(description = "Shows the current (persited) email that will be replaced.")
 		public Email showEmail(){
 			return current;
 		}
 	}
-	
+
 	@Command(description = "Shows the email state. This state is not persisted yet!")
 	public Email showState() {
 		return _build();
@@ -46,7 +46,7 @@ public class EmailBuilder extends AbstractBuilderCommand<Email> implements Shell
 	public void setDisplay(
 			@Param(value = "display", description = "The display name.")
 			String display) {
-		
+
 		builder.setDisplay(display);
 	}
 
@@ -54,7 +54,7 @@ public class EmailBuilder extends AbstractBuilderCommand<Email> implements Shell
 	public void setPrimary(
 			@Param(value = "primary", description = "True if this email address is primary. Otherwise false.")
 			Boolean primary) {
-		
+
 		builder.setPrimary(primary);
 	}
 
@@ -62,7 +62,7 @@ public class EmailBuilder extends AbstractBuilderCommand<Email> implements Shell
 	public void setType(
 			@Param(value = "type", description = "The type of the attribute.")
 			Type type) {
-		
+
 		builder.setType(type);
 	}
 
@@ -70,7 +70,7 @@ public class EmailBuilder extends AbstractBuilderCommand<Email> implements Shell
 	public void setValue(
 			@Param(value = "value", description = "The value (a valid email-address).")
 			String value) {
-		
+
 		builder.setValue(value);
 	}
 

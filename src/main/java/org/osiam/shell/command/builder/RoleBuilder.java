@@ -11,7 +11,7 @@ import de.raysha.lib.jsimpleshell.handler.ShellDependent;
 
 /**
  * This class contains commands which can create {@link Role}s.
- * 
+ *
  * @author rainu
  */
 public class RoleBuilder extends AbstractBuilderCommand<Role> implements ShellDependent {
@@ -20,23 +20,23 @@ public class RoleBuilder extends AbstractBuilderCommand<Role> implements ShellDe
 
 	public RoleBuilder(Role current) {
 		this.current = current;
-		this.builder = new Role.Builder(current);
+		this.builder = current == null ? new Role.Builder() : new Role.Builder(current);
 	}
-	
+
 	@Override
 	public void cliSetShell(Shell theShell) {
 		if(current != null){
 			theShell.addMainHandler(new ShowRole(), "");
 		}
 	}
-	
+
 	public class ShowRole {
 		@Command(description = "Shows the current (persited) role that will be replaced.")
 		public Role showRole(){
 			return current;
 		}
 	}
-	
+
 	@Command(description = "Shows the role state. This state is not persisted yet!")
 	public Role showState() {
 		return _build();
@@ -46,7 +46,7 @@ public class RoleBuilder extends AbstractBuilderCommand<Role> implements ShellDe
 	public void setDisplay(
 			@Param(value = "display", description = "The display name.")
 			String display) {
-		
+
 		builder.setDisplay(display);
 	}
 
@@ -54,7 +54,7 @@ public class RoleBuilder extends AbstractBuilderCommand<Role> implements ShellDe
 	public void setPrimary(
 			@Param(value = "primary", description = "True if this role is primary. Otherwise false.")
 			Boolean primary) {
-		
+
 		builder.setPrimary(primary);
 	}
 
@@ -62,7 +62,7 @@ public class RoleBuilder extends AbstractBuilderCommand<Role> implements ShellDe
 	public void setType(
 			@Param(value = "type", description = "The type of the attribute.")
 			Type type) {
-		
+
 		builder.setType(type);
 	}
 
@@ -70,7 +70,7 @@ public class RoleBuilder extends AbstractBuilderCommand<Role> implements ShellDe
 	public void setValue(
 			@Param(value = "value", description = "The value.")
 			String value) {
-		
+
 		builder.setValue(value);
 	}
 
