@@ -19,7 +19,11 @@ public class LogoutCommand extends OsiamAccessCommand {
 
 	@Command(description="Logout the current user.")
 	public void logout() throws ExitException {
-		connector.revokeAccessToken(accessToken);
+		try{
+			connector.revokeAccessToken(accessToken);
+		}catch(Exception e){
+			//do nothing
+		}
 
 		//this will cause to exit the current subshell
 		throw new ExitException();

@@ -51,10 +51,18 @@ public class UpdateUserCommand extends OsiamAccessCommand implements ShellDepend
 			@Param(value = "userName", description = "The name of the user.")
 			String userName) throws IOException{
 
-		final User user = getUser(userName);
-		if(user == null) return "There is no user with the name \"" + userName + "\"!";
+		final UpdateUserBuilder builder;
+		final User user;
 
-		final UpdateUserBuilder builder = new UpdateUserBuilder(user);
+		if(inRecordMode()){
+			user = null;
+			builder = new UpdateUserBuilder(null);
+		}else{
+			user = getUser(userName);
+			if(user == null) return "There is no user with the name \"" + userName + "\"!";
+
+			builder = new UpdateUserBuilder(user);
+		}
 
 		final Shell subShell = ShellBuilder.subshell("update-user[" + userName + "]", shell)
 								.behavior()
@@ -68,9 +76,13 @@ public class UpdateUserCommand extends OsiamAccessCommand implements ShellDepend
 
 		subShell.commandLoop();
 
-		final UpdateUser update = builder.build();
-		if(update == null) return null;
+		if(inRecordMode()){
+			return null;
+		}else{
+			final UpdateUser update = builder.build();
+			if(update == null) return null;
 
-		return connector.updateUser(user.getId(), update, accessToken);
+			return connector.updateUser(user.getId(), update, accessToken);
+		}
 	}
 }

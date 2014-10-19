@@ -7,10 +7,9 @@ import org.osiam.client.oauth.Scope;
 
 import de.raysha.lib.jsimpleshell.Shell;
 import de.raysha.lib.jsimpleshell.annotation.Command;
+import de.raysha.lib.jsimpleshell.annotation.Inject;
 import de.raysha.lib.jsimpleshell.annotation.Param;
 import de.raysha.lib.jsimpleshell.builder.ShellBuilder;
-import de.raysha.lib.jsimpleshell.handler.InputDependent;
-import de.raysha.lib.jsimpleshell.handler.ShellDependent;
 import de.raysha.lib.jsimpleshell.io.InputBuilder;
 
 /**
@@ -18,7 +17,7 @@ import de.raysha.lib.jsimpleshell.io.InputBuilder;
  *
  * @author rainu
  */
-public class ConnectionCommand implements ShellDependent, InputDependent {
+public class ConnectionCommand extends AbstractOsiamCommand {
 	private static final String COMMAND_DESCRIPTION_WITH_SECRET = "Open a connection to a osiam server.";
 	private static final String COMMAND_DESCRIPTION_WITHOUT_SECRET = "Open a connection to a osiam server. The client secret will be requested separately.";
 
@@ -36,18 +35,8 @@ public class ConnectionCommand implements ShellDependent, InputDependent {
 	private static final String PARAM_DESCRIPTION_ENDPOINT = "The endpoint of the osiam server.";
 	private static final String PARAM_DESCRIPTION_REDIRECT_URI = "The redirectUri for this client.";
 
-	private Shell shell;
+	@Inject
 	private InputBuilder input;
-
-	@Override
-	public void cliSetShell(Shell theShell) {
-		this.shell = theShell;
-	}
-
-	@Override
-	public void cliSetInput(InputBuilder input) {
-		this.input = input;
-	}
 
 	@Command(description=COMMAND_DESCRIPTION_WITHOUT_SECRET, startsSubshell = true)
 	public void connect(
@@ -57,6 +46,11 @@ public class ConnectionCommand implements ShellDependent, InputDependent {
 			String redirectUri,
 			@Param(value=PARAM_NAME_CLIENT_ID, description=PARAM_DESCRIPTION_CLIENT_ID)
 			String clientId) throws IOException{
+
+		if(inRecordMode()){
+			connect(endpoint, redirectUri, clientId, null);
+			return;
+		}
 
 		final String clientSecret = readClientSecret();
 		connect(endpoint, redirectUri, clientId, clientSecret);
@@ -72,6 +66,11 @@ public class ConnectionCommand implements ShellDependent, InputDependent {
 			String clientId,
 			@Param(value=PARAM_NAME_CLIENT_SECRET, description=PARAM_DESCRIPTION_CLIENT_SECRET)
 			String clientSecret) throws IOException{
+
+		if(inRecordMode()){
+			openSubShell(null);
+			return;
+		}
 
 		final OsiamConnector connector = new OsiamConnector.Builder()
 											.setEndpoint(endpoint)
@@ -94,6 +93,11 @@ public class ConnectionCommand implements ShellDependent, InputDependent {
 			@Param(value=PARAM_NAME_CLIENT_ID, description=PARAM_DESCRIPTION_CLIENT_ID)
 			String clientId) throws IOException{
 
+		if(inRecordMode()){
+			connectAdvanced(authEndpoint, resourceEndpoint, redirectUri, clientId, null);
+			return;
+		}
+
 		final String clientSecret = readClientSecret();
 		connectAdvanced(authEndpoint, resourceEndpoint, redirectUri, clientId, clientSecret);
 	}
@@ -110,6 +114,11 @@ public class ConnectionCommand implements ShellDependent, InputDependent {
 			String clientId,
 			@Param(value=PARAM_NAME_CLIENT_SECRET, description=PARAM_DESCRIPTION_CLIENT_SECRET)
 			String clientSecret) throws IOException{
+
+		if(inRecordMode()){
+			openSubShell(null);
+			return;
+		}
 
 		final OsiamConnector connector = new OsiamConnector.Builder()
 											.setAuthServerEndpoint(authEndpoint)

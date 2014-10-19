@@ -11,10 +11,10 @@ import org.osiam.resources.scim.User;
 /**
  * This class contains some command methods that can be used by Command-classes
  * that have already access to osiam (a connection AND a access token)
- * 
+ *
  * @author rainu
  */
-public abstract class OsiamAccessCommand {
+public abstract class OsiamAccessCommand extends AbstractOsiamCommand {
 	protected AccessToken accessToken;
 	protected final OsiamConnector connector;
 

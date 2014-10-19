@@ -57,10 +57,15 @@ public class CreateGroupCommand extends OsiamAccessCommand implements ShellDepen
 		.println();
 
 		subShell.commandLoop();
-		final Group toCreate = builder.build();
 
-		if(toCreate == null) return null;
-		return connector.createGroup(toCreate, accessToken);
+		if(inRecordMode()){
+			return null;
+		}else{
+			final Group toCreate = builder.build();
+
+			if(toCreate == null) return null;
+			return connector.createGroup(toCreate, accessToken);
+		}
 	}
 
 	@Command(description="Copy a existing group.", startsSubshell = true)
@@ -70,12 +75,18 @@ public class CreateGroupCommand extends OsiamAccessCommand implements ShellDepen
 			@Param(value = "newName", description = "The display name of the new group.")
 			String newDisplayName) throws IOException{
 
-		final Group group = getGroup(displayName);
-		if(group == null) return "A group with the name \"" + displayName + "\" does not exists!";
+		final GroupBuilder builder;
 
-		if(getGroup(newDisplayName) != null) return "A group with the name \"" + newDisplayName + "\" already exists!";
+		if(inRecordMode()){
+			builder = new GroupBuilder(null, displayName);
+		}else{
+			final Group group = getGroup(displayName);
+			if(group == null) return "A group with the name \"" + displayName + "\" does not exists!";
 
-		final GroupBuilder builder = new GroupBuilder(group, newDisplayName);
+			if(getGroup(newDisplayName) != null) return "A group with the name \"" + newDisplayName + "\" already exists!";
+
+			builder = new GroupBuilder(group, newDisplayName);
+		}
 
 		final Shell subShell = ShellBuilder.subshell("createGroup[" + newDisplayName +"]", shell)
 								.behavior()
@@ -88,10 +99,15 @@ public class CreateGroupCommand extends OsiamAccessCommand implements ShellDepen
 		.println();
 
 		subShell.commandLoop();
-		final Group toCreate = builder.build();
 
-		if(toCreate == null) return null;
-		return connector.createGroup(toCreate, accessToken);
+		if(inRecordMode()){
+			return null;
+		}else{
+			final Group toCreate = builder.build();
+
+			if(toCreate == null) return null;
+			return connector.createGroup(toCreate, accessToken);
+		}
 	}
 
 	public class GroupBuilder extends AbstractBuilderCommand<Group> {

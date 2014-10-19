@@ -44,8 +44,10 @@ public class CreateUserCommand extends OsiamAccessCommand implements ShellDepend
 			@Param(value = "userName", description = "The name of the user.")
 			String userName) throws IOException{
 
-		final User user = getUser(userName);
-		if(user != null) return "An user with the name \"" + userName + "\" already exists!";
+		if(!inRecordMode()){
+			final User user = getUser(userName);
+			if(user != null) return "An user with the name \"" + userName + "\" already exists!";
+		}
 
 		final CreateUserBuilder builder = new CreateUserBuilder(userName);
 
@@ -61,10 +63,14 @@ public class CreateUserCommand extends OsiamAccessCommand implements ShellDepend
 
 		subShell.commandLoop();
 
-		final User create = builder.build();
-		if(create == null) return null;
+		if(inRecordMode()){
+			return null;
+		}else{
+			final User create = builder.build();
+			if(create == null) return null;
 
-		return connector.createUser(create, accessToken);
+			return connector.createUser(create, accessToken);
+		}
 	}
 
 	@Command(description = "Copy an existing user.", startsSubshell = true)
@@ -74,12 +80,18 @@ public class CreateUserCommand extends OsiamAccessCommand implements ShellDepend
 			@Param(value = "newUserName", description = "The name of the new user.")
 			String newUserName) throws IOException{
 
-		final User user = getUser(userName);
-		if(user == null) return "An user with the name \"" + userName + "\" does not exists!";
+		final CreateUserBuilder builder;
 
-		if(getUser(newUserName) != null) return "An user with the name \"" + newUserName + "\" already exists!";
+		if(inRecordMode()){
+			builder = new CreateUserBuilder(null, userName);
+		}else{
+			final User user = getUser(userName);
+			if(user == null) return "An user with the name \"" + userName + "\" does not exists!";
 
-		final CreateUserBuilder builder = new CreateUserBuilder(user, newUserName);
+			if(getUser(newUserName) != null) return "An user with the name \"" + newUserName + "\" already exists!";
+
+			builder = new CreateUserBuilder(user, newUserName);
+		}
 
 		final Shell subShell = ShellBuilder.subshell("create-user[" + newUserName + "]", shell)
 								.behavior()
@@ -93,9 +105,13 @@ public class CreateUserCommand extends OsiamAccessCommand implements ShellDepend
 
 		subShell.commandLoop();
 
-		final User create = builder.build();
-		if(create == null) return null;
+		if(inRecordMode()){
+			return null;
+		}else{
+			final User create = builder.build();
+			if(create == null) return null;
 
-		return connector.createUser(create, accessToken);
+			return connector.createUser(create, accessToken);
+		}
 	}
 }

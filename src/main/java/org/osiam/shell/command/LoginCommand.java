@@ -16,10 +16,9 @@ import org.osiam.shell.command.update.UpdateUserCommand;
 
 import de.raysha.lib.jsimpleshell.Shell;
 import de.raysha.lib.jsimpleshell.annotation.Command;
+import de.raysha.lib.jsimpleshell.annotation.Inject;
 import de.raysha.lib.jsimpleshell.annotation.Param;
 import de.raysha.lib.jsimpleshell.builder.ShellBuilder;
-import de.raysha.lib.jsimpleshell.handler.InputDependent;
-import de.raysha.lib.jsimpleshell.handler.ShellDependent;
 import de.raysha.lib.jsimpleshell.io.InputBuilder;
 
 /**
@@ -27,34 +26,29 @@ import de.raysha.lib.jsimpleshell.io.InputBuilder;
  *
  * @author rainu
  */
-public class LoginCommand implements ShellDependent, InputDependent {
+public class LoginCommand extends AbstractOsiamCommand {
 	private static final String PARAM_DESCRIPTION_USERNAME = "The username.";
 
 	private static final String PARAM_NAME_USERNAME = "username";
 
 	private final OsiamConnector connector;
 
-	private Shell shell;
+	@Inject
 	private InputBuilder input;
 
 	public LoginCommand(OsiamConnector connector) {
 		this.connector = connector;
 	}
 
-	@Override
-	public void cliSetShell(Shell theShell) {
-		this.shell = theShell;
-	}
-
-	@Override
-	public void cliSetInput(InputBuilder input) {
-		this.input = input;
-	}
-
 	@Command(description="Login as a user. The password will be requested separately.", startsSubshell = true)
 	public void login(
 			@Param(value = PARAM_NAME_USERNAME, description = PARAM_DESCRIPTION_USERNAME)
 			String userName) throws IOException{
+
+		if(inRecordMode()){
+			login(userName, null);
+			return;
+		}
 
 		final String password = input.invisibleIn()
 									.withPromt("Enter your password: ")
@@ -70,9 +64,13 @@ public class LoginCommand implements ShellDependent, InputDependent {
 			@Param(value = "password", description = "The password for the user.")
 			String password) throws IOException{
 
-		final AccessToken at = connector.retrieveAccessToken(userName, password, Scope.ALL);
-		if(at == null){
-			throw new NullPointerException("The retrieved access token is null!");
+		AccessToken at = null;
+
+		if(!inRecordMode()){
+			at = connector.retrieveAccessToken(userName, password, Scope.ALL);
+			if(at == null){
+				throw new NullPointerException("The retrieved access token is null!");
+			}
 		}
 
 		final Shell subshell = ShellBuilder.subshell("@" + userName, shell)

@@ -46,10 +46,18 @@ public class UpdateGroupCommand extends OsiamAccessCommand implements ShellDepen
 			@Param(value = "groupName", description = "The name of the group.")
 			String groupName) throws IOException{
 
-		final Group group = getGroup(groupName);
-		if(group == null) return "There is no group with the name \"" + groupName + "\"!";
+		final UpdateGroupBuilder builder;
+		final Group group;
 
-		final UpdateGroupBuilder builder = new UpdateGroupBuilder(group);
+		if(inRecordMode()){
+			group = null;
+			builder = new UpdateGroupBuilder(null);
+		}else{
+			group = getGroup(groupName);
+			if(group == null) return "There is no group with the name \"" + groupName + "\"!";
+
+			builder = new UpdateGroupBuilder(group);
+		}
 
 		final Shell subShell = ShellBuilder.subshell("update-group", shell)
 								.behavior()
@@ -63,10 +71,14 @@ public class UpdateGroupCommand extends OsiamAccessCommand implements ShellDepen
 
 		subShell.commandLoop();
 
-		final UpdateGroup update = builder.build();
-		if(update == null) return null;
+		if(inRecordMode()){
+			return null;
+		}else{
+			final UpdateGroup update = builder.build();
+			if(update == null) return null;
 
-		return connector.updateGroup(group.getId(), update, accessToken);
+			return connector.updateGroup(group.getId(), update, accessToken);
+		}
 	}
 
 
