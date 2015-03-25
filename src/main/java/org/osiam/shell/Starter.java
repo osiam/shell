@@ -28,12 +28,13 @@ import org.osiam.shell.command.io.X509CertificateConverter;
 import org.osiam.shell.command.io.X509CertificateTypeConverter;
 
 import de.raysha.lib.jsimpleshell.Shell;
-import de.raysha.lib.jsimpleshell.ShellBuilder;
+import de.raysha.lib.jsimpleshell.builder.ShellBuilder;
 
 public class Starter {
 
 	public static void main(String[] args) throws Exception {
 		final Shell shell = ShellBuilder.shell("osiam-shell")
+							.behavior()
 								.setHistoryFile(new File(System.getProperty("user.home"), ".osiamshell_history"))
 								.addHandler(new ConnectionCommand())
 								.addAuxHandler(new AccessTokenConverter())
@@ -59,8 +60,8 @@ public class Starter {
 								.addAuxHandler(new X509CertificateConverter())
 								.addAuxHandler(new DateConverter())
 								.addAuxHandler(new URIConverter())
-							.build();
-		
+							.back().build();
+
 		shell.processLine("?help");
 		shell.commandLoop();
 	}

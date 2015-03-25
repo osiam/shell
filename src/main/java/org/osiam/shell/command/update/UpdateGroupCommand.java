@@ -11,118 +11,131 @@ import org.osiam.shell.command.AbstractBuilderCommand;
 import org.osiam.shell.command.OsiamAccessCommand;
 
 import de.raysha.lib.jsimpleshell.Shell;
-import de.raysha.lib.jsimpleshell.ShellBuilder;
 import de.raysha.lib.jsimpleshell.annotation.Command;
 import de.raysha.lib.jsimpleshell.annotation.Param;
+import de.raysha.lib.jsimpleshell.builder.ShellBuilder;
 import de.raysha.lib.jsimpleshell.handler.OutputDependent;
 import de.raysha.lib.jsimpleshell.handler.ShellDependent;
 import de.raysha.lib.jsimpleshell.io.OutputBuilder;
 
 /**
  * This class contains commands which can update groups.
- * 
+ *
  * @author rainu
  */
 public class UpdateGroupCommand extends OsiamAccessCommand implements ShellDependent, OutputDependent {
 	private Shell shell;
 	private OutputBuilder output;
-	
+
 	public UpdateGroupCommand(AccessToken at, OsiamConnector connector) {
 		super(at, connector);
 	}
-	
+
 	@Override
 	public void cliSetShell(Shell theShell) {
 		this.shell = theShell;
 	}
-	
+
 	@Override
 	public void cliSetOutput(OutputBuilder output) {
 		this.output = output;
 	}
-	
-	@Command(description = "Update the given group.")
+
+	@Command(description = "Update the given group.", startsSubshell = true)
 	public Object updateGroup(
 			@Param(value = "groupName", description = "The name of the group.")
 			String groupName) throws IOException{
-		
-		final Group group = getGroup(groupName);
-		if(group == null) return "There is no group with the name \"" + groupName + "\"!";
-		
-		final UpdateGroupBuilder builder = new UpdateGroupBuilder(group);
-		
+
+		final UpdateGroupBuilder builder;
+		final Group group;
+
+		if(inRecordMode()){
+			group = null;
+			builder = new UpdateGroupBuilder(null);
+		}else{
+			group = getGroup(groupName);
+			if(group == null) return "There is no group with the name \"" + groupName + "\"!";
+
+			builder = new UpdateGroupBuilder(group);
+		}
+
 		final Shell subShell = ShellBuilder.subshell("update-group", shell)
+								.behavior()
 									.disableExitCommand()
 									.addHandler(builder)
-								.build();
-		
+								.back().build();
+
 		output.out()
 			.normal("In this subshell you can edit the group. Leave this sub shell via \"commit\" to persist the changes.")
 		.println();
-		
+
 		subShell.commandLoop();
-		
-		final UpdateGroup update = builder.build();
-		if(update == null) return null;
-		
-		return connector.updateGroup(group.getId(), update, accessToken);
+
+		if(inRecordMode()){
+			return null;
+		}else{
+			final UpdateGroup update = builder.build();
+			if(update == null) return null;
+
+			return connector.updateGroup(group.getId(), update, accessToken);
+		}
 	}
-	
+
 
 	public class UpdateGroupBuilder extends AbstractBuilderCommand<UpdateGroup> {
 		private final Group group;
 		private UpdateGroup.Builder builder = new UpdateGroup.Builder();
-		
+
 		public UpdateGroupBuilder(Group group) {
 			this.group = group;
 		}
-		
+
 		@Command(description = "Shows the current (persited) group that will be updated.")
 		public Group showGroup(){
 			return group;
 		}
-		
+
 		@Command(description = "Shows the group state. This state is not persisted yet!")
 		public Group showState(){
 			return _build().getScimConformUpdateGroup();
 		}
-		
+
 		@Command(description = "Add the given user to the given group.")
 		public String addUser(
 				@Param(value = "userName", description = "The name of the user.")
 				String userName){
-			
+
 			final User user = getUser(userName);
 			if(user == null) return "There is no user with the name \"" + userName + "\"!";
-			
+
 			builder.addMember(user.getId());
-			
+
 			return null;
 		}
-		
+
 		@Command(description = "Remove the given user from the given group.")
 		public String removeUser(
 				@Param(value = "userName", description = "The name of the user.")
 				String userName){
-			
+
 			final User user = getUser(userName);
 			if(user == null) return "There is no user with the name \"" + userName + "\"!";
-			
+
 			builder.deleteMember(user.getId());
-			
+
 			return null;
 		}
-		
+
 		@Command(description = "Remove all members from the given group.")
 		public void removeAllMembers(){
 			builder.deleteMembers();
 		}
-		
+
 		@Command(description = "Rename the group.")
 		public void rename(
 				@Param(value = "name", description = "The new group display name.")
 				String newName){
-			
+
 			builder.updateDisplayName(newName);
 		}
 
@@ -130,10 +143,10 @@ public class UpdateGroupCommand extends OsiamAccessCommand implements ShellDepen
 		public void setExternalId(
 				@Param(value = "externalId", description = "The new externalId for the group.")
 				String externalId){
-			
+
 			builder.updateExternalId(externalId);
 		}
-		
+
 		@Override
 		protected UpdateGroup _build() {
 			return builder.build();
