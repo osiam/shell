@@ -148,6 +148,6 @@ public class ConnectionCommand extends AbstractOsiamCommand {
 	}
 
 	private String getHostName(OsiamConnector connector) {
-		return connector.getAuthorizationUri(Scope.ALL).getHost();
+		return connector.getAuthorizationUri(Scope.ADMIN).getHost();
 	}
 }
