@@ -67,7 +67,7 @@ public class LoginCommand extends AbstractOsiamCommand {
 		AccessToken at = null;
 
 		if(!inRecordMode()){
-			at = connector.retrieveAccessToken(userName, password, Scope.ALL);
+			at = connector.retrieveAccessToken(userName, password, Scope.ADMIN);
 			if(at == null){
 				throw new NullPointerException("The retrieved access token is null!");
 			}
