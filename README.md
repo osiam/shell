@@ -4,17 +4,17 @@ A Shell for [OSIAM](https://github.com/osiam). This project uses [JSimpleShell](
 
 ## Building
 
-This project uses maven, so you can build it using
+This project uses gradle, so you can build it using
 
-    mvn clean package
+    ./gradlew
 
 ## Running
 
-This guide assumes, that the [OSIAM docker](https://github.com/osiam/docker-image) image is running. 
+This guide assumes that the [OSIAM docker](https://github.com/osiam/docker-image) image is running.
 
 To start the application, just execute the jar-file
 
-    java -jar target/Osiam-Shell.jar
+    java -jar build/libs/shell-1.1-SNAPSHOT-all.jar
 
 The application prints a welcome screen from the [JSimpleShell](https://github.com/rainu/jsimpleshell) shell framework.
 
