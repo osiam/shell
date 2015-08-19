@@ -63,7 +63,7 @@ public class UpdateGroupCommand extends OsiamAccessCommand implements ShellDepen
 								.behavior()
 									.disableExitCommand()
 									.addHandler(builder)
-								.back().build();
+								.build();
 
 		output.out()
 			.normal("In this subshell you can edit the group. Leave this sub shell via \"commit\" to persist the changes.")

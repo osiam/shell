@@ -60,7 +60,7 @@ public class Starter {
 								.addAuxHandler(new X509CertificateConverter())
 								.addAuxHandler(new DateConverter())
 								.addAuxHandler(new URIConverter())
-							.back().build();
+							.build();
 
 		shell.processLine("?help");
 		shell.commandLoop();

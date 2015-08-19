@@ -47,7 +47,7 @@ public class BuilderShellFactory {
 			.behavior()
 				.disableExitCommand()
 				.addHandler(nameBuilder)
-			.back().build();
+			.build();
 
 		output.out()
 			.normal("In this subshell you can create an name. Leave this sub shell via \"commit\" to persist the changes.")
@@ -82,7 +82,7 @@ public class BuilderShellFactory {
 			.behavior()
 				.disableExitCommand()
 				.addHandler(addressBuilder)
-			.back().build();
+			.build();
 
 		output.out()
 			.normal("In this subshell you can create an address. Leave this sub shell via \"commit\" to persist the changes.")
@@ -117,7 +117,7 @@ public class BuilderShellFactory {
 			.behavior()
 				.disableExitCommand()
 				.addHandler(emailBuilder)
-			.back().build();
+			.build();
 
 		output.out()
 			.normal("In this subshell you can create an email. Leave this sub shell via \"commit\" to persist the changes.")
@@ -152,7 +152,7 @@ public class BuilderShellFactory {
 			.behavior()
 				.disableExitCommand()
 				.addHandler(entitlementBuilder)
-			.back().build();
+			.build();
 
 		output.out()
 			.normal("In this subshell you can create an entitlement. Leave this sub shell via \"commit\" to persist the changes.")
@@ -170,7 +170,7 @@ public class BuilderShellFactory {
 			.behavior()
 				.disableExitCommand()
 				.addHandler(extensionBuilder)
-			.back().build();
+			.build();
 
 		output.out()
 			.normal("In this subshell you can create an extension. Leave this sub shell via \"commit\" to persist the changes.")
@@ -205,7 +205,7 @@ public class BuilderShellFactory {
 			.behavior()
 				.disableExitCommand()
 				.addHandler(imBuilder)
-			.back().build();
+			.build();
 
 		output.out()
 			.normal("In this subshell you can create an im. Leave this sub shell via \"commit\" to persist the changes.")
@@ -240,7 +240,7 @@ public class BuilderShellFactory {
 			.behavior()
 				.disableExitCommand()
 				.addHandler(phoneNumberBuilder)
-			.back().build();
+			.build();
 
 		output.out()
 			.normal("In this subshell you can create a phone-number. Leave this sub shell via \"commit\" to persist the changes.")
@@ -275,7 +275,7 @@ public class BuilderShellFactory {
 			.behavior()
 				.disableExitCommand()
 				.addHandler(photoBuilder)
-			.back().build();
+			.build();
 
 		output.out()
 			.normal("In this subshell you can create a photo. Leave this sub shell via \"commit\" to persist the changes.")
@@ -310,7 +310,7 @@ public class BuilderShellFactory {
 			.behavior()
 				.disableExitCommand()
 				.addHandler(roleBuilder)
-			.back().build();
+			.build();
 
 		output.out()
 			.normal("In this subshell you can create a role. Leave this sub shell via \"commit\" to persist the changes.")
@@ -345,7 +345,7 @@ public class BuilderShellFactory {
 			.behavior()
 				.disableExitCommand()
 				.addHandler(x509CertificateBuilder)
-			.back().build();
+			.build();
 
 		output.out()
 			.normal("In this subshell you can create a certificate. Leave this sub shell via \"commit\" to persist the changes.")

@@ -142,7 +142,7 @@ public class ConnectionCommand extends AbstractOsiamCommand {
 		final Shell subshell = ShellBuilder.subshell(getHostName(connector), shell)
 								.behavior()
 									.addHandler(new LoginCommand(connector))
-								.back().build();
+								.build();
 
 		subshell.commandLoop();
 	}

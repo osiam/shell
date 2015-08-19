@@ -50,7 +50,7 @@ public class CreateGroupCommand extends OsiamAccessCommand implements ShellDepen
 								.behavior()
 									.disableExitCommand()
 									.addHandler(builder)
-								.back().build();
+								.build();
 
 		output.out()
 			.normal("In this subshell you can build your group. Leave this sub shell to persist the group.")
@@ -92,7 +92,7 @@ public class CreateGroupCommand extends OsiamAccessCommand implements ShellDepen
 								.behavior()
 									.disableExitCommand()
 									.addHandler(builder)
-								.back().build();
+								.build();
 
 		output.out()
 			.normal("In this subshell you can build your group. Leave this sub shell to persist the group.")
