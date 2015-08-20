@@ -1,10 +1,12 @@
 plugins {
     id 'com.github.johnrengelman.shadow' version '1.2.2'
     id "com.github.hierynomus.license" version "0.11.0"
+    id "com.jfrog.bintray" version "1.2"
 }
 
 apply plugin: 'java'
 apply plugin: 'maven'
+apply plugin: 'maven-publish'
 apply plugin: 'application'
 apply plugin: 'com.github.johnrengelman.shadow'
 
@@ -26,8 +28,8 @@ mainClassName = 'org.osiam.shell.Starter'
 
 jar {
     manifest {
-        attributes  \
-             'Main-Class': mainClassName
+        attributes   \
+              'Main-Class': mainClassName
     }
 }
 
@@ -40,3 +42,31 @@ dependencies {
 }
 
 defaultTasks 'shadowJar'
+
+publishing {
+    publications {
+        bintrayPublication(MavenPublication) {
+            from components.java
+            groupId group
+            artifactId 'shell'
+            version version
+        }
+    }
+}
+
+bintray {
+    user = System.getenv('BINTRAY_USER')
+    key = System.getenv('BINTRAY_KEY')
+    publications = ['bintrayPublication']
+    dryRun = false
+    publish = true
+    pkg {
+        repo = 'maven'
+        name = 'osiam-shell'
+        licenses = ['MIT']
+        vcsUrl = 'https://github.com/osiam/shell.git'
+        version {
+            name = version
+        }
+    }
+}
