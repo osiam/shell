@@ -86,7 +86,7 @@ public class LoginCommand extends AbstractOsiamCommand {
 									.addHandler(new UpdateUserCommand(at, connector))
 									.addHandler(new DeleteGroupCommand(at, connector))
 									.addHandler(new DeleteUserCommand(at, connector))
-								.back().build();
+								.build();
 
 		subshell.commandLoop();
 	}

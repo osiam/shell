@@ -55,7 +55,7 @@ public class CreateUserCommand extends OsiamAccessCommand implements ShellDepend
 								.behavior()
 									.disableExitCommand()
 									.addHandler(builder)
-								.back().build();
+								.build();
 
 		output.out()
 			.normal("In this subshell you can create a new user. Leave this sub shell via \"commit\" to persist the changes.")
@@ -97,7 +97,7 @@ public class CreateUserCommand extends OsiamAccessCommand implements ShellDepend
 								.behavior()
 									.disableExitCommand()
 									.addHandler(builder)
-								.back().build();
+								.build();
 
 		output.out()
 			.normal("In this subshell you can create a new user. Leave this sub shell via \"commit\" to persist the changes.")

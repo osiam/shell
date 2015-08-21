@@ -95,7 +95,7 @@ public class SelectGroupCommand extends OsiamAccessCommand implements ShellDepen
 		final Shell subShell = ShellBuilder.subshell(prompt.toString(), shell)
 								.behavior()
 									.addHandler(new GroupSearchResultCommand(accessToken, connector, builder.build()))
-								.back().build();
+								.build();
 
 		subShell.processLine(GroupSearchResultCommand.COMMAND_NAME_NEXT);
 		subShell.commandLoop();

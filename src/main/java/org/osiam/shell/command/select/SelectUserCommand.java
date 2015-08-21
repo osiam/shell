@@ -90,7 +90,7 @@ public class SelectUserCommand extends OsiamAccessCommand implements ShellDepend
 		final Shell subShell = ShellBuilder.subshell(prompt.toString(), shell)
 								.behavior()
 									.addHandler(new UserSearchResultCommand(accessToken, connector, builder.build()))
-								.back().build();
+								.build();
 
 		subShell.processLine(UserSearchResultCommand.COMMAND_NAME_NEXT);
 		subShell.commandLoop();
