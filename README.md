@@ -34,3 +34,6 @@ For example
 
     login admin koala
 
+You can also make use of the command line arguments by starting the shell like
+
+    java -jar build/libs/shell-1.1-SNAPSHOT-all.jar --endpoint http://localhost:8080 --redirectUri http://localhost:5000/oauth2 --clientId example-client --clientSecret secret

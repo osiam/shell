@@ -2,6 +2,8 @@ package org.osiam.shell;
 
 import java.io.File;
 
+import com.beust.jcommander.JCommander;
+import de.raysha.lib.jsimpleshell.io.OutputBuilder;
 import org.osiam.shell.command.ConnectionCommand;
 import org.osiam.shell.command.io.AccessTokenConverter;
 import org.osiam.shell.command.io.AddressConverter;
@@ -33,6 +35,9 @@ import de.raysha.lib.jsimpleshell.builder.ShellBuilder;
 public class Starter {
 
 	public static void main(String[] args) throws Exception {
+		CommandLineArguments arguments = new CommandLineArguments();
+		JCommander jCommander = new JCommander(arguments, args);
+
 		final Shell shell = ShellBuilder.shell("osiam-shell")
 							.behavior()
 								.setHistoryFile(new File(System.getProperty("user.home"), ".osiamshell_history"))
@@ -62,8 +67,30 @@ public class Starter {
 								.addAuxHandler(new URIConverter())
 							.build();
 
-		shell.processLine("?help");
+		final StringBuilder helpText = new StringBuilder();
+		helpText.append("OSIAM Shell - http://osiam.org\n");
+		helpText.append("Copyright (c) 2015 OSIAM - Distributed under the terms of the MIT License (MIT)\n\n");
+		final OutputBuilder.OutputBuilder_ outputBuilder = shell.getOutputBuilder().out();
+
+		if (arguments.help) {
+			jCommander.usage(helpText);
+			outputBuilder.normal(helpText).println();
+			System.exit(0);
+		}
+
+		helpText.append("For help, type: ?help or invoke the OSIAM Shell with the --help flag.\n");
+		outputBuilder.normal(helpText).println();
+
+		if (arguments.hasConnectionInformation()) {
+			shell.getPipeline().append(String.format("connect %s %s %s %s",
+					arguments.endpoint, arguments.redirectUri,
+					arguments.clientId, arguments.clientSecret));
+
+			if (arguments.hasLoginInformation()) {
+				shell.getPipeline().append(String.format("login %s %s", arguments.username, arguments.password));
+			}
+		}
+
 		shell.commandLoop();
 	}
-
 }
