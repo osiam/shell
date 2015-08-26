@@ -33,7 +33,8 @@ jar {
 dependencies {
     compile(
             "org.osiam:connector4java:${osiamConnectorVersion}",
-            "de.raysha.lib:jsimpleshell:${jSimpleShellVersion}"
+            "de.raysha.lib:jsimpleshell:${jSimpleShellVersion}",
+            "com.beust:jcommander:${jCommanderVersion}"
     )
 }
 
