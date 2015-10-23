@@ -1,6 +1,7 @@
 # osiam-shell [![Build Status](https://travis-ci.org/osiam/shell.png?branch=master)](https://travis-ci.org/osiam/shell)
 
-A Shell for [OSIAM](https://github.com/osiam). This project uses [JSimpleShell](https://github.com/rainu/jsimpleshell) as shell framework.
+A Shell for [OSIAM](https://github.com/osiam/osiam). This project uses
+[JSimpleShell](https://github.com/rainu/jsimpleshell) as shell framework.
 
 ## Building
 
@@ -10,13 +11,15 @@ This project uses gradle, so you can build it using
 
 ## Running
 
-This guide assumes that the [OSIAM docker](https://github.com/osiam/docker-image) image is running.
+This guide assumes that the [OSIAM docker](https://github.com/osiam/docker-image)
+image is running.
 
 To start the application, just execute the jar-file
 
     java -jar build/libs/shell-1.1-SNAPSHOT-all.jar
 
-The application prints a welcome screen from the [JSimpleShell](https://github.com/rainu/jsimpleshell) shell framework.
+The application prints a welcome screen from the
+[JSimpleShell](https://github.com/rainu/jsimpleshell) shell framework.
 
 After launching the application, you can connect to your OSIAM instance
 
@@ -24,7 +27,7 @@ After launching the application, you can connect to your OSIAM instance
 
 For example
 
-    connect http://localhost:8080/ http://localhost:5000/oauth2 example-client secret
+    connect http://localhost:8080/osiam http://localhost:5000/oauth2 example-client secret
 
 And log in
 
@@ -36,4 +39,8 @@ For example
 
 You can also make use of the command line arguments by starting the shell like
 
-    java -jar build/libs/shell-1.1-SNAPSHOT-all.jar --endpoint http://localhost:8080 --redirectUri http://localhost:5000/oauth2 --clientId example-client --clientSecret secret
+    java -jar build/libs/shell-1.1-SNAPSHOT-all.jar
+        --endpoint http://localhost:8080/osiam
+        --redirectUri http://localhost:5000/oauth2
+        --clientId example-client
+        --clientSecret secret

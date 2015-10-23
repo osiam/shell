@@ -36,26 +36,23 @@ import de.raysha.lib.jsimpleshell.builder.ShellBuilder;
 import de.raysha.lib.jsimpleshell.io.InputBuilder;
 
 /**
- * At begining the user must "connect" to a osiam server.
+ * At beginning the user must "connect" to OSIAM.
  *
  * @author rainu
  */
 public class ConnectionCommand extends AbstractOsiamCommand {
+
 	private static final String COMMAND_DESCRIPTION_WITH_SECRET = "Open a connection to a osiam server.";
 	private static final String COMMAND_DESCRIPTION_WITHOUT_SECRET = "Open a connection to a osiam server. The client secret will be requested separately.";
 
-	private static final String PARAM_NAME_ENDPOINT = "endpoint";
-	private static final String PARAM_NAME_RESOURCE_ENDPOINT = "resEndpoint";
-	private static final String PARAM_NAME_AUTHENTICATION_ENDPOINT = "authEndpoint";
+	private static final String PARAM_NAME_OSIAM_ENDPOINT = "osiamEndpoint";
 	private static final String PARAM_NAME_REDIRECT_URI = "redirectUri";
 	private static final String PARAM_NAME_CLIENT_SECRET = "clientSecret";
 	private static final String PARAM_NAME_CLIENT_ID = "clientId";
 
-	private static final String PARAM_DESCRIPTION_RESOURCE_ENDPOINT = "The endpoint of the osiam resource server.";
-	private static final String PARAM_DESCRIPTION_AUTHENTICATION_ENDPOINT = "The endpoint of the osiam authentication server.";
+	private static final String PARAM_DESCRIPTION_OSIAM_ENDPOINT = "The endpoint of OSIAM";
 	private static final String PARAM_DESCRIPTION_CLIENT_SECRET = "The clientSecret for this shell.";
 	private static final String PARAM_DESCRIPTION_CLIENT_ID = "The clientId for this shell.";
-	private static final String PARAM_DESCRIPTION_ENDPOINT = "The endpoint of the osiam server.";
 	private static final String PARAM_DESCRIPTION_REDIRECT_URI = "The redirectUri for this client.";
 
 	@Inject
@@ -63,31 +60,31 @@ public class ConnectionCommand extends AbstractOsiamCommand {
 
 	@Command(description=COMMAND_DESCRIPTION_WITHOUT_SECRET, startsSubshell = true)
 	public void connect(
-			@Param(value=PARAM_NAME_ENDPOINT, description=PARAM_DESCRIPTION_ENDPOINT)
-			String endpoint,
-			@Param(value=PARAM_NAME_REDIRECT_URI, description=PARAM_DESCRIPTION_REDIRECT_URI)
+			@Param(value = PARAM_NAME_OSIAM_ENDPOINT, description = PARAM_DESCRIPTION_OSIAM_ENDPOINT)
+			String osiamEndpoint,
+			@Param(value = PARAM_NAME_REDIRECT_URI, description = PARAM_DESCRIPTION_REDIRECT_URI)
 			String redirectUri,
-			@Param(value=PARAM_NAME_CLIENT_ID, description=PARAM_DESCRIPTION_CLIENT_ID)
+			@Param(value = PARAM_NAME_CLIENT_ID, description = PARAM_DESCRIPTION_CLIENT_ID)
 			String clientId) throws IOException{
 
 		if(inRecordMode()){
-			connect(endpoint, redirectUri, clientId, null);
+			connect(osiamEndpoint, redirectUri, clientId, null);
 			return;
 		}
 
 		final String clientSecret = readClientSecret();
-		connect(endpoint, redirectUri, clientId, clientSecret);
+		connect(osiamEndpoint, redirectUri, clientId, clientSecret);
 	}
 
 	@Command(description=COMMAND_DESCRIPTION_WITH_SECRET, startsSubshell = true)
 	public void connect(
-			@Param(value=PARAM_NAME_ENDPOINT, description=PARAM_DESCRIPTION_ENDPOINT)
-			String endpoint,
-			@Param(value=PARAM_NAME_REDIRECT_URI, description=PARAM_DESCRIPTION_REDIRECT_URI)
+			@Param(value = PARAM_NAME_OSIAM_ENDPOINT, description = PARAM_DESCRIPTION_OSIAM_ENDPOINT)
+			String osiamEndpoint,
+			@Param(value = PARAM_NAME_REDIRECT_URI, description = PARAM_DESCRIPTION_REDIRECT_URI)
 			String redirectUri,
-			@Param(value=PARAM_NAME_CLIENT_ID, description=PARAM_DESCRIPTION_CLIENT_ID)
+			@Param(value = PARAM_NAME_CLIENT_ID, description = PARAM_DESCRIPTION_CLIENT_ID)
 			String clientId,
-			@Param(value=PARAM_NAME_CLIENT_SECRET, description=PARAM_DESCRIPTION_CLIENT_SECRET)
+			@Param(value = PARAM_NAME_CLIENT_SECRET, description = PARAM_DESCRIPTION_CLIENT_SECRET)
 			String clientSecret) throws IOException{
 
 		if(inRecordMode()){
@@ -96,56 +93,7 @@ public class ConnectionCommand extends AbstractOsiamCommand {
 		}
 
 		final OsiamConnector connector = new OsiamConnector.Builder()
-											.setEndpoint(endpoint)
-											.setClientRedirectUri(redirectUri)
-											.setClientId(clientId)
-											.setClientSecret(clientSecret)
-										.build();
-
-		openSubShell(connector);
-	}
-
-	@Command(description=COMMAND_DESCRIPTION_WITHOUT_SECRET, startsSubshell = true)
-	public void connectAdvanced(
-			@Param(value=PARAM_NAME_AUTHENTICATION_ENDPOINT, description=PARAM_DESCRIPTION_AUTHENTICATION_ENDPOINT)
-			String authEndpoint,
-			@Param(value=PARAM_NAME_RESOURCE_ENDPOINT, description=PARAM_DESCRIPTION_RESOURCE_ENDPOINT)
-			String resourceEndpoint,
-			@Param(value=PARAM_NAME_REDIRECT_URI, description=PARAM_DESCRIPTION_REDIRECT_URI)
-			String redirectUri,
-			@Param(value=PARAM_NAME_CLIENT_ID, description=PARAM_DESCRIPTION_CLIENT_ID)
-			String clientId) throws IOException{
-
-		if(inRecordMode()){
-			connectAdvanced(authEndpoint, resourceEndpoint, redirectUri, clientId, null);
-			return;
-		}
-
-		final String clientSecret = readClientSecret();
-		connectAdvanced(authEndpoint, resourceEndpoint, redirectUri, clientId, clientSecret);
-	}
-
-	@Command(description=COMMAND_DESCRIPTION_WITH_SECRET, startsSubshell = true)
-	public void connectAdvanced(
-			@Param(value=PARAM_NAME_AUTHENTICATION_ENDPOINT, description=PARAM_DESCRIPTION_AUTHENTICATION_ENDPOINT)
-			String authEndpoint,
-			@Param(value=PARAM_NAME_RESOURCE_ENDPOINT, description=PARAM_DESCRIPTION_RESOURCE_ENDPOINT)
-			String resourceEndpoint,
-			@Param(value=PARAM_NAME_REDIRECT_URI, description=PARAM_DESCRIPTION_REDIRECT_URI)
-			String redirectUri,
-			@Param(value=PARAM_NAME_CLIENT_ID, description=PARAM_DESCRIPTION_CLIENT_ID)
-			String clientId,
-			@Param(value=PARAM_NAME_CLIENT_SECRET, description=PARAM_DESCRIPTION_CLIENT_SECRET)
-			String clientSecret) throws IOException{
-
-		if(inRecordMode()){
-			openSubShell(null);
-			return;
-		}
-
-		final OsiamConnector connector = new OsiamConnector.Builder()
-											.setAuthServerEndpoint(authEndpoint)
-											.setResourceServerEndpoint(resourceEndpoint)
+											.setEndpoint(osiamEndpoint)
 											.setClientId(clientId)
 											.setClientSecret(clientSecret)
 											.setClientRedirectUri(redirectUri)
