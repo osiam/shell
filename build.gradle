@@ -19,8 +19,9 @@ sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
 repositories {
+    jcenter()
     maven { url "https://maven-repo.evolvis.org/releases" }
-    maven { url "https://maven-repo.evolvis.org/snapshots" }
+    maven { url "https://oss.jfrog.org/artifactory/repo/" }
     maven { url "http://repo.maven.apache.org/maven2" }
 }
 
@@ -50,6 +51,15 @@ publishing {
             groupId group
             artifactId 'shell'
             version version
+        }
+    }
+    repositories {
+        maven {
+            credentials {
+                username System.getenv('BINTRAY_USER')
+                password System.getenv('BINTRAY_KEY')
+            }
+            url 'https://oss.jfrog.org/artifactory/oss-snapshot-local'
         }
     }
 }

@@ -47,14 +47,23 @@ You can also make use of the command line arguments by starting the shell like
 
 ## Uploading
 
-For information about the bintray gradle plugin, please refer to its
-[README](https://github.com/bintray/gradle-bintray-plugin).
-
-Be sure to set the environment variables that are necessary for the upload:
+For both, release and snapshot, be sure to set the environment variables that
+are necessary for the upload:
 
     export BINTRAY_USER=<USER>
     export BINTRAY_KEY=<KEY>
 
-To upload to [bintray](https://bintray.com/), use
+### Snapshot
+
+To upload snapshots to [oss.jfrog.org](https://oss.jfrog.org/), use
+
+    ./gradlew publish
+
+### Release
+
+For information about the bintray gradle plugin, please refer to its
+[README](https://github.com/bintray/gradle-bintray-plugin).
+
+To upload releases to [bintray](https://bintray.com/), use
 
     ./gradlew bintrayUpload
