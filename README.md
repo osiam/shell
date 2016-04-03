@@ -44,3 +44,17 @@ You can also make use of the command line arguments by starting the shell like
         --redirectUri http://localhost:5000/oauth2
         --clientId example-client
         --clientSecret secret
+
+## Uploading
+
+For information about the bintray gradle plugin, please refer to its
+[README](https://github.com/bintray/gradle-bintray-plugin).
+
+Be sure to set the environment variables that are necessary for the upload:
+
+    export BINTRAY_USER=<USER>
+    export BINTRAY_KEY=<KEY>
+
+To upload to [bintray](https://bintray.com/), use
+
+    ./gradlew bintrayUpload
